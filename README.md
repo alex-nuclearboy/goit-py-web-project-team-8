@@ -14,12 +14,20 @@ The code for the personal assistant application, developed by Team 8 as part of 
 
 - **Clone the repository:**
 ```bash
-git clone https://github.com/alex-nuclearboy/goit-py-web-project-team-8.git
+git clone https://github.com/<your-github-username>/goit-py-web-project-team-8.git
 ```
+
+**NOTE:** Replace `<your-github-username>` with your actual GitHub username. 
 
 - **Navigate to the project directory:**
 ```bash
 cd goit-py-web-project-team-8
+```
+
+- **Create your own branch:**
+```bash
+git branch <new-branch>
+git checkout <new-branch>
 ```
 
 - **To set up the environment** use the following commands depending on your operating system:
@@ -70,3 +78,23 @@ python manage.py runserver
 After starting the server, open a web browser and visit the following URL to access the application:
 
 [http://127.0.0.1:8000/](http://127.0.0.1:8000/)
+
+### Making Changes
+
+- **Make your changes in the code.**
+
+- **Add your changes to the staging area and commit them:**
+```bash
+git add .
+git commit -m "Descriptive commit message"
+```
+
+- **Push your changes to the remote repository:**
+```bash
+git push origin <your-branch>
+```
+
+- **Regularly pull the latest changes from the main repository to keep your branch up to date:**
+```bash
+git pull origin main
+```
