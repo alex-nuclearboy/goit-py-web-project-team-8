@@ -84,6 +84,11 @@ After starting the server, open a web browser and visit the following URL to acc
 
 ### Making Changes
 
+- **Regularly pull the latest changes from the main repository to keep your branch up to date:**
+```bash
+git pull origin main
+```
+
 - **Make your changes in the code.**
 
 - **Add your changes to the staging area and commit them:**
@@ -95,9 +100,4 @@ git commit -m "Descriptive commit message"
 - **Push your changes to the remote repository:**
 ```bash
 git push origin <your-branch>
-```
-
-- **Regularly pull the latest changes from the main repository to keep your branch up to date:**
-```bash
-git pull origin main
 ```
