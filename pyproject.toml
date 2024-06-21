@@ -1,0 +1,15 @@
+[tool.poetry]
+name = "personal assistant app"
+version = "0.1.0"
+description = "The personal assistant application, developed as a final progect of the Python web course at GoIT"
+authors = ["Team 8"]
+license = "MIT"
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
