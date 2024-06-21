@@ -12,6 +12,9 @@ The code for the personal assistant application, developed by Team 8 as part of 
 
 ### Installation
 
+- **Fork the repository:**
+Click the "Fork" button in the upper right corner to create a copy of the repository under your GitHub account.
+
 - **Clone the repository:**
 ```bash
 git clone https://github.com/<your-github-username>/goit-py-web-project-team-8.git
