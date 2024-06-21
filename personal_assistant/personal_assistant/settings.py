@@ -149,3 +149,13 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+# Define the directory where media files will be stored
+MEDIA_ROOT = BASE_DIR / 'media'
+MEDIA_URL = '/media/'
+
+# Specify the storage backend for avatars, using local storage
+AVATAR_STORAGE = 'users.storage_avatar.LocalStorage'
+
+
