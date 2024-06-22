@@ -1,3 +1,19 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from .forms import RegisterForm
 
-# Create your views here.
+
+def signupuser(request):
+    if request.user.is_authenticated:
+        return redirect(to='newsapp:index')
+
+    if request.method == 'POST':
+        form = RegisterForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect(to='newsapp:index')
+        else:
+            return render(request, 'users/signup.html', context={"form": form})
+
+    return render(
+        request, 'users/signup.html', context={"form": RegisterForm()}
+    )
