@@ -64,53 +64,63 @@
         </div>
     </header>
 
-    <div class="content-container" style="display: flex; flex-direction: column; align-items: center; max-width: 1200px; margin: auto;">
-        <p>Welcome to Personal Assistant, your all-in-one solution for managing your daily tasks efficiently.</p>
-        <form method="GET" action="{% url 'newsapp:index' %}" style="width: 100%; max-width: 600px; margin-bottom: 20px;">
-            {% if weather_error_message %}
-                <div class="alert-error">{{ weather_error_message }}</div>
-            {% endif %}
-            <label for="city">Enter City for Weather (in English):</label>
-            <input type="text" id="city" name="city" placeholder="Enter city name" value="{{ selected_city }}" required>
-            <button type="submit">Update Weather</button>
-        </form>
+    <div class="content-container">
+        <main>
+            <p>Welcome to Personal Assistant, your all-in-one solution for managing your daily tasks efficiently. Our application offers the following features:</p>
+            <ul>
+                <li><strong>Address Book:</strong> Keep track of all your contacts in one place. Easily add, edit, and manage your contacts with a few clicks.</li>
+                <li><strong>Note Organiser:</strong> Organise your thoughts, ideas, and to-dos with our powerful note management system. Create, edit, and categorise your notes for better productivity.</li>
+                <li><strong>File Repository:</strong> Store and manage your important files securely. Upload, categorise, and access your files from anywhere, anytime.</li>
+                <li><strong>Daily News Summary:</strong> Stay informed with the latest updates in your chosen areas of interest. Get daily news summaries, weather, and exchange rates updates directly within the app.</li>
+            </ul>
+        </main>
+        <aside>
+            <form method="GET" action="{% url 'newsapp:index' %}">
+                {% if weather_error_message %}
+                    <div class="alert-error">{{ weather_error_message }}</div>
+                {% endif %}
+                <label for="city">Enter City for Weather (in English):</label>
+                <input type="text" id="city" name="city" placeholder="Enter city name" value="{{ selected_city }}" required>
+                <button type="submit">Update Weather</button>
+            </form>
 
-        <div style="width: 100%; max-width: 600px;">
-            <h3>Weather in {{ selected_city }}</h3>
-            {% if weather_data %}
-                <p><strong>Temperature:</strong> {{ weather_data.current.temp_c }}°C</p>
-                <p><strong>Condition:</strong> {{ weather_data.current.condition.text }}</p>
-                <p><strong>Humidity:</strong> {{ weather_data.current.humidity }}%</p>
-                <p><strong>Wind:</strong> {{ weather_data.current.wind_kph }} kph</p>
-                <p><strong>Last Updated:</strong> {{ weather_data.current.last_updated }}</p>
-            {% else %}
-                <p>Unable to retrieve weather data.</p>
-            {% endif %}
-        </div>
+            <div>
+                <h3>Weather in {{ selected_city }}</h3>
+                {% if weather_data %}
+                    <p><strong>Temperature:</strong> {{ weather_data.current.temp_c }}°C</p>
+                    <p><strong>Condition:</strong> {{ weather_data.current.condition.text }}</p>
+                    <p><strong>Humidity:</strong> {{ weather_data.current.humidity }}%</p>
+                    <p><strong>Wind:</strong> {{ weather_data.current.wind_kph }} kph</p>
+                    <p><strong>Last Updated:</strong> {{ weather_data.current.last_updated }}</p>
+                {% else %}
+                    <p>Unable to retrieve weather data.</p>
+                {% endif %}
+            </div>
 
-        <div style="width: 100%; max-width: 600px; margin-top: 20px;">
-            <h3>Exchange Rates</h3>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Currency</th>
-                        <th>Rate (NB)</th>
-                        <th>Sale Rate (PrivatBank)</th>
-                        <th>Purchase Rate (PrivatBank)</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for rate in exchange_rates %}
+            <div style="margin-top: 20px;">
+                <h3>Exchange Rates</h3>
+                <table>
+                    <thead>
                         <tr>
-                            <td>{{ rate.currency }}</td>
-                            <td>{{ rate.saleRateNB }}</td>
-                            <td>{{ rate.saleRate|default_if_none:"-" }}</td>
-                            <td>{{ rate.purchaseRate|default_if_none:"-" }}</td>
+                            <th>Currency</th>
+                            <th>Rate (NB)</th>
+                            <th>Sale Rate (PrivatBank)</th>
+                            <th>Purchase Rate (PrivatBank)</th>
                         </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
-        </div>
+                    </thead>
+                    <tbody>
+                        {% for rate in exchange_rates %}
+                            <tr>
+                                <td>{{ rate.currency }}</td>
+                                <td>{{ rate.saleRateNB }}</td>
+                                <td>{{ rate.saleRate|default_if_none:"-" }}</td>
+                                <td>{{ rate.purchaseRate|default_if_none:"-" }}</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </aside>
     </div>
 </body>
 </html>
