@@ -1,0 +1,31 @@
+<?xml version='1.0' encoding="UTF-8"?>
+<en>
+    <newsapp>
+        <title text="Personal Assistant App"/>
+        <welcome text="Welcome to Personal Assistant!"/>
+        <my_notes text="My Notes"/>
+        <profile text="Profile"/>
+        <logout text="Logout"/>
+        <sign_up text="Sign Up"/>
+        <login text="Login"/>
+        <introduction text="Welcome to Personal Assistant, your all-in-one solution for managing your daily tasks efficiently. Our application offers the following features:"/>
+        <address_book text="Address Book: Keep track of all your contacts in one place. Easily add, edit, and manage your contacts with a few clicks."/>
+        <note_organiser text="Note Organiser: Organise your thoughts, ideas, and to-dos with our powerful note management system. Create, edit, and categorise your notes for better productivity."/>
+        <file_repository text="File Repository: Store and manage your important files securely. Upload, categorise, and access your files from anywhere, anytime."/>
+        <daily_news_summary text="Daily News Summary: Stay informed with the latest updates in your chosen areas of interest. Get daily news summaries, weather, and exchange rates updates directly within the app."/>
+        <enter_city text="Enter City for Weather:"/>
+        <update_weather text="Update Weather"/>
+        <weather_in text="Weather in"/>
+        <temperature text="Temperature:"/>
+        <condition text="Condition:"/>
+        <humidity text="Humidity:"/>
+        <wind text="Wind:"/>
+        <last_updated text="Last Updated:"/>
+        <unable_to_retrieve_weather text="Unable to retrieve weather data."/>
+        <exchange_rates text="Exchange Rates"/>
+        <currency text="Currency"/>
+        <rate_nb text="Rate (NB)"/>
+        <sale_rate text="Sale Rate (PrivatBank)"/>
+        <purchase_rate text="Purchase Rate (PrivatBank)"/>
+    </newsapp>
+</en>
