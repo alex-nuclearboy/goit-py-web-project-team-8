@@ -1,36 +1,42 @@
 {% extends "newsapp/base.html" %}
 
-{% block content %}
+{% block title %}{{ translations.login }}{% endblock %}
 
-{% if messages %}
-<div>
-    {% for message in messages %}
-    <div {% if message.tags %} class="alert-{{ message.tags }}" {% endif %}>{{ message }}</div>
-    {% endfor %}
+{% block nav_buttons %}
+<div class="buttons">
+    <a href="{% url 'users:signup' %}" role="button" class="secondary">{{ translations.signup }}</a>
 </div>
-{% endif %}
+{% endblock %}
 
-<form action="{% url 'users:login' %}" method="post">
-    {% csrf_token %}
+{% block content %}
+<div class="container">
     <div>
-        <label> Username:
+        <h2>{{ translations.login }}</h2>
+    </div>
+    {% if messages %}
+    <div>
+        {% for message in messages %}
+        <div {% if message.tags %} class="alert-{{ message.tags }}" {% endif %}>{{ message }}</div>
+        {% endfor %}
+    </div>
+    {% endif %}
+
+    <form action="{% url 'users:login' %}" method="post">
+        {% csrf_token %}
+        <div>
+            <label for="{{ form.username.id_for_label }}">{{ translations.username }}</label>
             {{ form.username }}
-        </label>
-    </div>
-
-    <div>
-        <label>Password:
+        </div>
+        <div>
+            <label for="{{ form.password.id_for_label }}">{{ translations.password }}</label>
             {{ form.password }}
-        </label>
-    </div>
+        </div>
 
-    <div class="grid">
-        <button type="submit">Submit</button>
-        <button type="reset" class="secondary">Reset</button>
-    </div>
-    <div class="small text-center">
-        <a href="{% url "users:password_reset" %}" class="text-center"><i>Forgot Password?</i></a>
-    </div>
-</form>
-
+        <div class="grid">
+            <button type="submit">{{ translations.submit }}</button>
+            <button type="reset" class="secondary">{{ translations.reset }}</button>
+            <button type="button" class="contrast" onclick="window.location.href='{% url 'users:password_reset' %}'">{{ translations.forgot_password }}</button>
+        </div>
+    </form>
+</div>
 {% endblock %}
