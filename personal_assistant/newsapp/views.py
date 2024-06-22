@@ -2,11 +2,35 @@ from django.shortcuts import render
 import requests
 import datetime
 
+import xml.etree.ElementTree as ET
+import os
 
 WEATHER_API_KEY = '7cfac1a5811143f492c163316241906'
 
 
+def load_translations(language):
+    translations = {}
+    file_path = os.path.join(
+        os.path.dirname(__file__), 'locale', f'localization_{language}.xml'
+    )
+    tree = ET.parse(file_path)
+    root = tree.getroot()
+    for item in root.findall('.//newsapp/*'):
+        key = item.tag
+        value = item.get('text')
+        translations[key] = value
+    return translations
+
+
 def main(request):
+    language = request.GET.get('lang')
+    if language:
+        request.session['language'] = language
+    else:
+        language = request.session.get('language', 'en')
+
+    translations = load_translations(language)
+
     error_message = None
     weather_error_message = None
     city = request.GET.get('city', 'Kyiv')
@@ -25,6 +49,7 @@ def main(request):
     exchange_rates = fetch_exchange_rates()
 
     context = {
+        'translations': translations,
         'weather_data': weather_data,
         'exchange_rates': exchange_rates,
         'selected_city': city,

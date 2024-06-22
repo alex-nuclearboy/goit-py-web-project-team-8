@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8"/>
-    <title>Personal Assistant App</title>
+    <title>{{ translations.title }}</title>
     <link rel="stylesheet" href="https://unpkg.com/@picocss/pico@latest/css/pico.min.css"/>
     {% load static %}
     <link rel="stylesheet" href="{% static 'newsapp/style.css' %}">
@@ -45,6 +45,18 @@
             padding: 8px 12px;
             font-size: 20px;
         }
+        .lang-buttons {
+            display: flex;
+            gap: 10px;
+            margin: 0 20px;
+        }
+        .lang-buttons a {
+            margin-left: 0;
+            padding: 8px 12px;
+            font-size: 20px;
+            border-radius: 5px;
+            text-decoration: none;
+        }
     </style>
 </head>
 <body>
@@ -52,22 +64,26 @@
         <div class="left">
             <div class="buttons">
                 {% if user.is_authenticated %}
-                <a href="{% url 'notesapp:note_list' %}" role="button">My Notes</a>
+                <a href="{% url 'notesapp:note_list' %}" role="button">{{ translations.my_notes }}</a>
                 {% endif %}
             </div>
         </div>
         <div class="right">
+            <div class="lang-buttons">
+                <a href="?lang=en" role="button" class="outline">EN</a>
+                <a href="?lang=uk" role="button" class="outline">UA</a>
+            </div>
             {% if user.is_authenticated %}
             <img src="{{ user.profile.avatar.url }}" alt="Avatar">
-            <span>Welcome, <b>{{ user.username }}!</b></span>
+            <span>{{ translations.welcome }}, <b>{{ user.username }}!</b></span>
             <div class="buttons">
-                <a href="{% url 'users:profile' %}" role="button" class="contrast">Profile</a>
-                <a href="{% url 'users:logout' %}" role="button" class="secondary">Logout</a>
+                <a href="{% url 'users:profile' %}" role="button" class="contrast">{{ translations.profile }}</a>
+                <a href="{% url 'users:logout' %}" role="button" class="secondary">{{ translations.logout }}</a>
             </div>
             {% else %}
             <div class="buttons">
-                <a href="{% url 'users:signup' %}" role="button" class="secondary">Sign Up</a>
-                <a href="{% url 'users:login' %}" role="button" class="contrast">Login</a>
+                <a href="{% url 'users:signup' %}" role="button" class="secondary">{{ translations.sign_up }}</a>
+                <a href="{% url 'users:login' %}" role="button" class="contrast">{{ translations.login }}</a>
             </div>
             {% endif %}
         </div>
@@ -75,12 +91,12 @@
 
     <div class="content-container">
         <main>
-            <p>Welcome to Personal Assistant, your all-in-one solution for managing your daily tasks efficiently. Our application offers the following features:</p>
+            <p>{{ translations.introduction }}</p>
             <ul>
-                <li><strong>Address Book:</strong> Keep track of all your contacts in one place. Easily add, edit, and manage your contacts with a few clicks.</li>
-                <li><strong>Note Organiser:</strong> Organise your thoughts, ideas, and to-dos with our powerful note management system. Create, edit, and categorise your notes for better productivity.</li>
-                <li><strong>File Repository:</strong> Store and manage your important files securely. Upload, categorise, and access your files from anywhere, anytime.</li>
-                <li><strong>Daily News Summary:</strong> Stay informed with the latest updates in your chosen areas of interest. Get daily news summaries, weather, and exchange rates updates directly within the app.</li>
+                <li>{{ translations.address_book }}</li>
+                <li>{{ translations.note_organiser }}</li>
+                <li>{{ translations.file_repository }}</li>
+                <li>{{ translations.daily_news_summary }}</li>
             </ul>
         </main>
         <aside>
@@ -88,33 +104,33 @@
                 {% if weather_error_message %}
                     <div class="alert-error">{{ weather_error_message }}</div>
                 {% endif %}
-                <label for="city">Enter City for Weather (in English):</label>
-                <input type="text" id="city" name="city" placeholder="Enter city name" value="{{ selected_city }}" required>
-                <button type="submit">Update Weather</button>
+                <label for="city">{{ translations.enter_city }}</label>
+                <input type="text" id="city" name="city" placeholder="{{ translations.enter_city }}" value="{{ selected_city }}" required>
+                <button type="submit">{{ translations.update_weather }}</button>
             </form>
 
             <div>
-                <h3>Weather in {{ selected_city }}</h3>
+                <h3>{{ translations.weather_in }} {{ selected_city }}</h3>
                 {% if weather_data %}
-                    <p><strong>Temperature:</strong> {{ weather_data.current.temp_c }}°C</p>
-                    <p><strong>Condition:</strong> {{ weather_data.current.condition.text }}</p>
-                    <p><strong>Humidity:</strong> {{ weather_data.current.humidity }}%</p>
-                    <p><strong>Wind:</strong> {{ weather_data.current.wind_kph }} kph</p>
-                    <p><strong>Last Updated:</strong> {{ weather_data.current.last_updated }}</p>
+                    <p><strong>{{ translations.temperature }}</strong> {{ weather_data.current.temp_c }}°C</p>
+                    <p><strong>{{ translations.condition }}</strong> {{ weather_data.current.condition.text }}</p>
+                    <p><strong>{{ translations.humidity }}</strong> {{ weather_data.current.humidity }}%</p>
+                    <p><strong>{{ translations.wind }}</strong> {{ weather_data.current.wind_kph }} kph</p>
+                    <p><strong>{{ translations.last_updated }}</strong> {{ weather_data.current.last_updated }}</p>
                 {% else %}
-                    <p>Unable to retrieve weather data.</p>
+                    <p>{{ translations.unable_to_retrieve_weather }}</p>
                 {% endif %}
             </div>
 
             <div style="margin-top: 20px;">
-                <h3>Exchange Rates</h3>
+                <h3>{{ translations.exchange_rates }}</h3>
                 <table>
                     <thead>
                         <tr>
-                            <th>Currency</th>
-                            <th>Rate (NB)</th>
-                            <th>Sale Rate (PrivatBank)</th>
-                            <th>Purchase Rate (PrivatBank)</th>
+                            <th>{{ translations.currency }}</th>
+                            <th>{{ translations.rate_nb }}</th>
+                            <th>{{ translations.sale_rate }}</th>
+                            <th>{{ translations.purchase_rate }}</th>
                         </tr>
                     </thead>
                     <tbody>
