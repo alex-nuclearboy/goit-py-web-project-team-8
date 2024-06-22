@@ -5,6 +5,7 @@ from django.contrib.auth.forms import (
     AuthenticationForm,
     PasswordResetForm
 )
+from django.utils.translation import gettext_lazy as _
 
 from .models import Profile
 
@@ -37,6 +38,8 @@ class RegisterForm(UserCreationForm):
 
 
 class LoginForm(AuthenticationForm):
+    username = forms.CharField(label=_('Username'), max_length=100)
+    password = forms.CharField(label=_('Password'), widget=forms.PasswordInput)
 
     class Meta:
         model = User
