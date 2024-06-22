@@ -45,24 +45,47 @@
             padding: 8px 12px;
             font-size: 20px;
         }
+        .lang-buttons {
+            display: flex;
+            gap: 10px;
+            margin: 0 20px;
+        }
+        .lang-buttons a {
+            margin-left: 0;
+            padding: 8px 12px;
+            font-size: 20px;
+            border-radius: 5px;
+            text-decoration: none;
+        }
     </style>
 </head>
 <body>
     <header class="header">
         <div class="left">
             <div class="buttons">
-                <a href="/home/" role="button"> Dashboard </a>
+                <a href="/home/" role="button">Dashboard</a>
             </div>
         </div>
         <div class="right">
-            {% if user.is_authenticated %}
-            {% block nav_buttons %}{% endblock %}
-            {% endif %}
+            <div class="lang-buttons">
+                <a href="?lang=en" role="button" class="outline">EN</a>
+                <a href="?lang=uk" role="button" class="outline">UA</a>
+            </div>
+            <div>
+                {% block nav_buttons %}{% endblock %}
+            </div>
         </div>
     </header>
 
     <main class="container">
+        {% if messages %}
+        <div>
+            {% for message in messages %}
+            <div {% if message.tags %} class="alert-{{ message.tags }}" {% endif %}>{{ message }}</div>
+            {% endfor %}
+        </div>
+        {% endif %}
         {% block content %} {% endblock %}
     </main>
-    </body>
+</body>
 </html>

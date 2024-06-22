@@ -1,9 +1,10 @@
 {% extends "newsapp/base.html" %}
 
-{% block content %}
+{% block title %}{{ translations.profile_page }}{% endblock %}
 
+{% block content %}
 <div>
-    <h1>Profile page: {{user.username}}</h1>
+    <h1>{{ translations.profile_page }}: {{ user.username }}</h1>
     <img src="{{ user.profile.avatar.url }}" alt="avatar of user"/>
 </div>
 
@@ -20,18 +21,15 @@
     <div class="form-row">
         <div class="col-md-5">
             <div class="form-group">
-                <label class="small mb-1">Change Avatar:</label>
+                <label class="small mb-1">{{ translations.change_avatar }}:</label>
                 {{ profile_form.avatar }}
                 <span>{{ profile_form.errors.avatar }}</span>
             </div>
         </div>
     </div>
     <div class="grid">
-        <button type="submit">Save Changes</button>
-        <button type="reset" class="secondary">Reset</button>
+        <button type="submit">{{ translations.save_changes }}</button>
+        <button type="reset" class="secondary">{{ translations.reset }}</button>
     </div>
-
 </form>
-
-{% endblock content %}
-
+{% endblock %}
