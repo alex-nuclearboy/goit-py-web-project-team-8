@@ -17,7 +17,7 @@ def note_list(request):
     else:
         notes = Note.objects.all()
 
-    return render(request, 'notes/note_list.html', {'notes': notes, 'tags': Tag.objects.all()})
+    return render(request, 'notesapp/note_list.html', {'notes': notes, 'tags': Tag.objects.all()})
 
 
 def add_note(request):
@@ -26,10 +26,10 @@ def add_note(request):
         if form.is_valid():
             note = form.save()
             form.save_m2m()
-            return redirect('note_list')
+            return redirect('notesapp:note_list')
     else:
         form = NoteForm()
-    return render(request, 'notes/note_form.html', {'form': form})
+    return render(request, 'notesapp/note_form.html', {'form': form})
 
 
 def edit_note(request, id):
@@ -39,16 +39,16 @@ def edit_note(request, id):
         if form.is_valid():
             note = form.save()
             form.save_m2m()
-            return redirect('note_list')
+            return redirect('notesapp:note_list')
     else:
         form = NoteForm(instance=note)
-    return render(request, 'notes/note_form.html', {'form': form})
+    return render(request, 'notesapp/note_form.html', {'form': form})
 
 
 def delete_note(request, id):
     note = get_object_or_404(Note, id=id)
     if request.method == "POST":
         note.delete()
-        return redirect('note_list')
-    return render(request, 'notes/note_confirm_delete.html', {'note': note})
+        return redirect('notesapp:note_list')
+    return render(request, 'notesapp/note_confirm_delete.html', {'note': note})
 

@@ -1,6 +1,4 @@
-# шаблон форми нотаток
-
-{% extends "base_generic.html" %}
+{% extends "newsapp/base.html" %}
 
 {% block content %}
 <h1>{% if form.instance.pk %}Редагувати{% else %}Додати{% endif %} Нотатку</h1>
@@ -9,5 +7,5 @@
     {{ form.as_p }}
     <button type="submit">Зберегти</button>
 </form>
-<a href="{% url 'note_list' %}">Назад до списку</a>
+<a href="{% url 'notesapp:note_list' %}">Назад до списку</a>
 {% endblock %}
