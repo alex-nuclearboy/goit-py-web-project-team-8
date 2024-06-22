@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8"/>
-    <title>{% block title %}Personal Assistant App{% endblock %}</title>
+    <title>Personal Assistant App</title>
     <link rel="stylesheet" href="https://unpkg.com/@picocss/pico@latest/css/pico.min.css"/>
     {% load static %}
     <link rel="stylesheet" href="{% static 'newsapp/style.css' %}">
@@ -14,10 +14,16 @@
             align-items: center;
             border-bottom: 2px solid;
             padding: 20px 0;
+            margin: 0 20px;
         }
         .header .left {
             display: flex;
             align-items: center;
+        }
+        .header .left .buttons a {
+            margin-left: 10px;
+            padding: 8px 12px;
+            font-size: 20px;
         }
         .header .right {
             display: flex;
@@ -44,14 +50,17 @@
 <body>
     <header class="header">
         <div class="left">
-            <h1>Welcome to Personal Assistant!</h1>
+            <div class="buttons">
+                {% if user.is_authenticated %}
+                <a href="{% url 'notesapp:note_list' %}" role="button">My Notes</a>
+                {% endif %}
+            </div>
         </div>
         <div class="right">
             {% if user.is_authenticated %}
             <img src="{{ user.profile.avatar.url }}" alt="Avatar">
             <span>Welcome, <b>{{ user.username }}!</b></span>
             <div class="buttons">
-                <a href="{% url 'notesapp:note_list' %}" role="button">My Notes</a>
                 <a href="{% url 'users:profile' %}" role="button" class="contrast">Profile</a>
                 <a href="{% url 'users:logout' %}" role="button" class="secondary">Logout</a>
             </div>
