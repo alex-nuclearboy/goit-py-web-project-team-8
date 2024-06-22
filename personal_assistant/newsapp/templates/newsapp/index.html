@@ -15,7 +15,10 @@
         </div>
         <div class="right">
             {% if user.is_authenticated %}
+            <img src="{{ user.profile.avatar.url }}" alt="Avatar">
+                <span>Welcome, <b>{{ user.username }}!</b></span>
             <div class="buttons">
+                <a href="{% url 'users:profile' %}" role="button" class="contrast">Profile</a>
                 <a href="{% url 'users:logout' %}" role="button" class="secondary">Logout</a>
             </div>
             {% else %}
