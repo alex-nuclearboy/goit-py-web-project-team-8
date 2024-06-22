@@ -11,7 +11,7 @@ WEATHER_API_KEY = '7cfac1a5811143f492c163316241906'
 def load_translations(language):
     translations = {}
     file_path = os.path.join(
-        os.path.dirname(__file__), 'locale', f'localization_{language}.xml'
+        os.path.dirname(__file__), 'locale', f'localisation_{language}.xml'
     )
     tree = ET.parse(file_path)
     root = tree.getroot()
