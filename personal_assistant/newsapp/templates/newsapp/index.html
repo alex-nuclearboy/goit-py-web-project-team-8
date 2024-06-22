@@ -9,6 +9,17 @@
     <link rel="icon" href="{% static 'newsapp/favicon.ico' %}">
 </head>
 <body>
+    <header class="header">
+        <div class="left">
+            <h1>Welcome to Personal Assistant!</h1>
+        </div>
+        <div class="right">
+            <div class="buttons">
+                <a href="{% url 'users:signup' %}" role="button" class="secondary">Sign Up</a>
+            </div>
+        </div>
+    </header>
+
     <div class="content-container" style="display: flex; flex-direction: column; align-items: center; max-width: 1200px; margin: auto;">
         <p>Welcome to Personal Assistant, your all-in-one solution for managing your daily tasks efficiently.</p>
         <form method="GET" action="{% url 'newsapp:index' %}" style="width: 100%; max-width: 600px; margin-bottom: 20px;">
