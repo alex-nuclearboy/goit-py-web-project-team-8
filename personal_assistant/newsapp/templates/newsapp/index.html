@@ -14,9 +14,16 @@
             <h1>Welcome to Personal Assistant!</h1>
         </div>
         <div class="right">
+            {% if user.is_authenticated %}
+            <div class="buttons">
+                <a href="{% url 'users:logout' %}" role="button" class="secondary">Logout</a>
+            </div>
+            {% else %}
             <div class="buttons">
                 <a href="{% url 'users:signup' %}" role="button" class="secondary">Sign Up</a>
+                <a href="{% url 'users:login' %}" role="button" class="contrast">Login</a>
             </div>
+            {% endif %}
         </div>
     </header>
 
