@@ -7,8 +7,63 @@
     {% load static %}
     <link rel="stylesheet" href="{% static 'newsapp/style.css' %}">
     <link rel="icon" href="{% static 'newsapp/favicon.ico' %}">
+    <style>
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid;
+            padding: 20px 0;
+        }
+        .header .left {
+            display: flex;
+            align-items: center;
+        }
+        .header .right {
+            display: flex;
+            align-items: center;
+        }
+        .header .right img {
+            width: 40px;
+            height: 40px;
+            object-fit: cover;
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+        .header .right .buttons {
+            display: flex;
+            align-items: center;
+        }
+        .header .right .buttons a {
+            margin-left: 10px;
+            padding: 8px 12px;
+            font-size: 20px;
+        }
+    </style>
 </head>
 <body>
+    <header class="header">
+        <div class="left">
+            <h1>Welcome to Personal Assistant!</h1>
+        </div>
+        <div class="right">
+            {% if user.is_authenticated %}
+            <img src="{{ user.profile.avatar.url }}" alt="Avatar">
+            <span>Welcome, <b>{{ user.username }}!</b></span>
+            <div class="buttons">
+                <a href="{% url 'notesapp:note_list' %}" role="button">My Notes</a>
+                <a href="{% url 'users:profile' %}" role="button" class="contrast">Profile</a>
+                <a href="{% url 'users:logout' %}" role="button" class="secondary">Logout</a>
+            </div>
+            {% else %}
+            <div class="buttons">
+                <a href="{% url 'users:signup' %}" role="button" class="secondary">Sign Up</a>
+                <a href="{% url 'users:login' %}" role="button" class="contrast">Login</a>
+            </div>
+            {% endif %}
+        </div>
+    </header>
+
     <div class="content-container" style="display: flex; flex-direction: column; align-items: center; max-width: 1200px; margin: auto;">
         <p>Welcome to Personal Assistant, your all-in-one solution for managing your daily tasks efficiently.</p>
         <form method="GET" action="{% url 'newsapp:index' %}" style="width: 100%; max-width: 600px; margin-bottom: 20px;">
