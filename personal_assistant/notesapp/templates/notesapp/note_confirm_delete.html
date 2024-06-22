@@ -1,0 +1,13 @@
+# шаблон підтвердження видалення нотатки
+
+{% extends "base_generic.html" %}
+
+{% block content %}
+<h1>Видалити нотатку "{{ note.title }}"?</h1>
+<form method="post">
+    {% csrf_token %}
+    <button type="submit">Так, видалити</button>
+</form>
+<a href="{% url 'note_list' %}">Назад до списку</a>
+{% endblock %}
+
