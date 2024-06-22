@@ -1,0 +1,36 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<en>
+    <users>
+        <signup text="Sign Up"/>
+        <login text="Login"/>
+        <username text="Username:"/>
+        <email text="Email:"/>
+        <password text="Password:"/>
+        <password_confirmation text="Password confirmation:"/>
+        <submit text="Submit"/>
+        <reset text="Reset"/>
+        <forgot_password text="Forgot Password?"/>
+        <username_or_password_didnt_match text="Username or password didn't match"/>
+        <login_error text="Username or password didn't match"/>
+        <logout_success text="You have been logged out successfully"/>
+        <profile_update_success text="Your profile is updated successfully"/>
+        <password_reset text="Password Reset"/>
+        <password_reset_request_sent text="Password Reset Request Sent"/>
+        <password_reset_done text="Password reset request sent"/>
+        <password_reset_email_sent text="We've emailed you with instructions on how to reset your password."/>
+        <enter_new_password text="Enter New Password"/>
+        <save_new_password text="Save New Password"/>
+        <password_reset_complete text="Password Reset Complete"/>
+        <request_password_reset text="Request Password Reset"/>
+        <password_reset_no_account text="No account found with the specified email address."/>
+        <email_send_error text="An error occurred while sending the email. Please try again later."/>
+        <password_reset_confirm text="Enter new password"/>
+        <new_password1 text="New password:"/>
+        <new_password2 text="Confirm new password:"/>
+        <save_new_password text="Save new password"/>
+        <password_reset_complete_message text="Your password has been successfully reset. You can now log in with your new password."/>
+        <password_too_short text="This password is too short. It must contain at least 8 characters."/>
+        <password_too_common text="This password is too common."/>
+        <password_entirely_numeric text="This password is entirely numeric."/>
+    </users>
+</en>
