@@ -78,7 +78,7 @@
             <span>{{ translations.welcome }}, <b>{{ user.username }}!</b></span>
             <div class="buttons">
                 <a href="{% url 'users:profile' %}" role="button" class="contrast">{{ translations.profile }}</a>
-                <a href="{% url 'users:logout' %}" role="button" class="secondary">{{ translations.logout }}</a>
+                <a href="{% url 'users:logout' %}?lang={{ request.session.language }}" role="button" class="secondary">{{ translations.logout }}</a>
             </div>
             {% else %}
             <div class="buttons">
@@ -91,6 +91,13 @@
 
     <div class="content-container">
         <main>
+            {% if messages %}
+            <div>
+                {% for message in messages %}
+                    <div {% if message.tags %} class="alert-{{ message.tags }}" {% endif %}>{{ message }}</div>
+                {% endfor %}
+            </div>
+            {% endif %}
             <p>{{ translations.introduction }}</p>
             <ul>
                 <li>{{ translations.address_book }}</li>
