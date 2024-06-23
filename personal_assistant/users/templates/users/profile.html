@@ -1,35 +1,55 @@
 {% extends "newsapp/base.html" %}
 
-{% block title %}{{ translations.profile_page }}{% endblock %}
+{% block title %}{{ translations.profile_title }} {{ user.username }}{% endblock %}
+
+{% block nav_buttons %}
+<div class="buttons">
+    <a href="{% url 'users:logout' %}?lang={{ request.session.language }}" role="button" class="secondary">{{ translations.logout }}</a>
+</div>
+{% endblock %}
 
 {% block content %}
-<div>
-    <h1>{{ translations.profile_page }}: {{ user.username }}</h1>
-    <img src="{{ user.profile.avatar.url }}" alt="avatar of user"/>
-</div>
 
-{% if messages %}
-<div>
-    {% for message in messages %}
-    <div {% if message.tags %} class="alert-{{ message.tags }}" {% endif %}>{{ message }}</div>
-    {% endfor %}
-</div>
-{% endif %}
-
-<form method="post" enctype="multipart/form-data">
-    {% csrf_token %}
-    <div class="form-row">
-        <div class="col-md-5">
-            <div class="form-group">
-                <label class="small mb-1">{{ translations.change_avatar }}:</label>
-                {{ profile_form.avatar }}
-                <span>{{ profile_form.errors.avatar }}</span>
-            </div>
+<div class="container">
+    <h1>{{ translations.profile_title }} {{ user.username }}</h1>
+    <div style="text-align: center; margin-bottom: 20px;">
+        <div style="width: 250px; height: 250px; overflow: hidden; border-radius: 50%; display: inline-block;">
+            <img src="{{ user.profile.avatar.url }}" alt="Avatar of {{ user.username }}" style="width: 100%; height: 100%; object-fit: cover;"/>
         </div>
     </div>
-    <div class="grid">
-        <button type="submit">{{ translations.save_changes }}</button>
-        <button type="reset" class="secondary">{{ translations.reset }}</button>
+
+    {% if messages %}
+    <div>
+        {% for message in messages %}
+        <div {% if message.tags %} class="alert-{{ message.tags }}" {% endif %}>{{ message }}</div>
+        {% endfor %}
     </div>
-</form>
+    {% endif %}
+
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="form-row">
+            <div class="col-md-5">
+                <div class="form-group">
+                    <label for="{{ profile_form.avatar.id_for_label }}" class="small mb-1">{{ translations.change_avatar }}</label>
+                    {{ profile_form.avatar }}
+                    {% if profile_form.errors.avatar %}
+                    <div class="alert-error">
+                        <ul>
+                            {% for error in profile_form.errors.avatar %}
+                            <li>{{ error }}</li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        <div class="grid">
+            <button type="submit">{{ translations.save_changes }}</button>
+            <button type="reset" class="secondary">{{ translations.reset }}</button>
+        </div>
+    </form>
+</div>
+
 {% endblock %}
