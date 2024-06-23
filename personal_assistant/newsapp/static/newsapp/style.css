@@ -1,4 +1,4 @@
-.alert-error, .errorlist {
+.error, .alert-error, .errorlist {
     color: crimson;
 }
 
