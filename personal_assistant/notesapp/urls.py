@@ -8,3 +8,9 @@ urlpatterns = [
     path('delete/<int:id>/', views.delete_note, name='delete_note'),
 ]
 
+
+
+
+
+
+
