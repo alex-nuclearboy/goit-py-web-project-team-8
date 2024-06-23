@@ -78,13 +78,6 @@
     </header>
 
     <main class="container">
-        {% if messages %}
-        <div>
-            {% for message in messages %}
-            <div {% if message.tags %} class="alert-{{ message.tags }}" {% endif %}>{{ message }}</div>
-            {% endfor %}
-        </div>
-        {% endif %}
         {% block content %} {% endblock %}
     </main>
 </body>
