@@ -9,17 +9,18 @@
 .content-container {
     display: flex;
     gap: 20px;
-    max-width: 1200px;
-    margin: auto;
+    max-width: 1364px;
+    margin-left: 164px;
+    margin-right: auto;
 }
 
 main {
-    flex: 3;
+    flex: 7;
     padding-right: 20px;
 }
 
 aside {
-    flex: 1;
+    flex: 3;
     min-width: 200px;
     max-width: 300px;
 }
