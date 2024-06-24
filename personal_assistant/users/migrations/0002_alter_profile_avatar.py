@@ -12,12 +12,8 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.AlterField(
-            model_name="profile",
-            name="avatar",
-            field=models.ImageField(
-                default="default_avatar.png",
-                storage=users.storage_avatar.LocalStorage(),
-                upload_to="profile_images",
-            ),
+            model_name='profile',
+            name='avatar',
+            field=models.ImageField(default='default_avatar.png', storage=users.storage_avatar.LocalStorage(), upload_to='profile_images'),
         ),
     ]
