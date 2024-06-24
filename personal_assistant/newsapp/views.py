@@ -1,10 +1,48 @@
 from django.shortcuts import render
 import requests
 import datetime
+import urllib.parse
 
 from .translations import translations
 
 WEATHER_API_KEY = '681232aad95a86f210ad402860d90308'
+NEWS_API_KEY = 'd933290a98e644f499ad2bee87f7f81c'
+
+CATEGORIES = {
+    'en': [
+        'general', 'business', 'entertainment',
+        'health', 'science', 'sports', 'technology'
+    ],
+    'uk': [
+        'загальні', 'бізнес', 'розваги',
+        'здоров\'я', 'наука', 'спорт', 'технології'
+    ]
+}
+CATEGORY_MAP = {
+    'general': 'загальні',
+    'business': 'бізнес',
+    'entertainment': 'розваги',
+    'health': 'здоров\'я',
+    'science': 'наука',
+    'sports': 'спорт',
+    'technology': 'технології'
+}
+COUNTRIES = {
+    'ua': 'Ukraine',
+    'us': 'USA',
+    'gb': 'United Kingdom',
+    'fr': 'France',
+    'de': 'Germany',
+    'pl': 'Poland'
+}
+COUNTRIES_UA = {
+    'ua': 'Україна',
+    'us': 'США',
+    'gb': 'Велика Британія',
+    'fr': 'Франція',
+    'de': 'Німеччина',
+    'pl': 'Польща'
+}
 
 
 def get_language(request):
@@ -37,6 +75,18 @@ def main(request):
     default_city = 'Kyiv' if language == 'en' else 'Київ'
     city = request.GET.get('city', default_city)
 
+    category = request.GET.get('category', 'general')
+    country = request.GET.get('country', 'us' if language == 'en' else 'ua')
+
+    # Translate the names of categories and countries to display
+    displayed_category = (
+        CATEGORY_MAP.get(category, category) if language == 'uk' else category
+    )
+    displayed_country_name = (
+        COUNTRIES_UA.get(country, 'Unknown') if language == 'uk'
+        else COUNTRIES.get(country, 'Unknown')
+    )
+
     try:
         weather_data = fetch_weather(city, trans, language)
     except ValueError as ve:
@@ -50,11 +100,21 @@ def main(request):
 
     exchange_rates = fetch_exchange_rates()
 
+    news_data = fetch_news(category, country, trans)
+
+    exchange_rates = fetch_exchange_rates()
+
     context = {
         'translations': trans,
+        'categories': CATEGORIES[language],
+        'countries': COUNTRIES if language == 'en' else COUNTRIES_UA,
+        'news_data': news_data,
         'weather_data': weather_data,
         'exchange_rates': exchange_rates,
+        'selected_category': displayed_category,
         'selected_city': city,
+        'selected_country': country,
+        'selected_country_name': displayed_country_name,
         'error_message': error_message,
         'weather_error_message': weather_error_message
     }
@@ -101,3 +161,29 @@ def fetch_exchange_rates():
     ]
     exchange_rates.sort(key=lambda x: required_currencies.index(x['currency']))
     return exchange_rates
+
+
+def fetch_news(category, country, trans):
+    """
+    Fetch news data from NewsAPI.
+    - Retrieves news data for the specified category and country.
+    - Raises a ValueError if there is an error fetching news.
+    """
+    # Translate the category into English if necessary
+    if category in CATEGORY_MAP.values():
+        category = list(CATEGORY_MAP.keys())[
+            list(CATEGORY_MAP.values()).index(category)
+        ]
+
+    url = (
+        f'https://newsapi.org/v2/top-headlines?country={country}'
+        f'&category={urllib.parse.quote(category)}&apiKey={NEWS_API_KEY}'
+    )
+    response = requests.get(url)
+    data = response.json()
+    if response.status_code != 200:
+        raise ValueError(
+            trans['error_fetching_news']
+            % {'error': data.get('message', 'Unknown error')}
+        )
+    return data['articles']
