@@ -136,13 +136,20 @@
                 {% endfor %}
             </div>
             {% endif %}
-            <p>{{ translations.introduction }}</p>
+            <p>{{ translations.introduction|safe }}</p>
             <ul>
-                <li>{{ translations.address_book }}</li>
-                <li>{{ translations.note_organiser }}</li>
-                <li>{{ translations.file_repository }}</li>
-                <li>{{ translations.daily_news_summary }}</li>
+                <li>{{ translations.address_book|safe }}</li>
+                <li>{{ translations.note_organiser|safe }}</li>
+                <li>{{ translations.file_repository|safe }}</li>
+                <li>{{ translations.daily_news_summary|safe }}</li>
             </ul>
+
+            {% if not user.is_authenticated %}
+            <p>
+                {{ translations.access_full_features|safe }} <a href="{% url 'users:signup' %}">{{ translations.signup|safe }}</a> {{ translations.or }} <a href="{% url 'users:login' %}">{{ translations.log_in }}</a>.
+            </p>
+            {% endif %}
+
             <div class="divider"></div>
 
             <div class="news-container">
