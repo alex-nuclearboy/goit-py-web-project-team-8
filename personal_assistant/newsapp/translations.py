@@ -27,7 +27,13 @@ translations = {
         'purchase_rate': 'Purchase Rate',
         'dashboard': 'Dashboard',
         'city_not_found': "City '%(city)s' not found.",
-        'error_fetching_weather': "An error occurred while fetching weather data: %(error)s"
+        'error_fetching_weather': "An error occurred while fetching weather data: %(error)s",
+        'select_news_category': 'Select News Category:',
+        'select_news_country': 'Select Country for News:',
+        'update_news': 'Update News',
+        'todays_news_from': "Today's News from",
+        'category': 'Category',
+        'error_fetching_news': "Error fetching news: %(error)s"
     },
     'uk': {
         'title': 'Особистий Асистент',
@@ -57,6 +63,12 @@ translations = {
         'purchase_rate': 'Курс покупки',
         'dashboard': 'Панель управління',
         'city_not_found': "Місто '%(city)s' не знайдено.",
-        'error_fetching_weather': "Сталася помилка під час отримання даних про погоду: %(error)s"
+        'error_fetching_weather': "Сталася помилка під час отримання даних про погоду: %(error)s",
+        'select_news_category': 'Виберіть категорію новин:',
+        'select_news_country': 'Виберіть країну для новин:',
+        'update_news': 'Оновити новини',
+        'todays_news_from': 'Сьогоднішні новини з:',
+        'category': 'Категорія',
+        'error_fetching_news': "Помилка під час отримання новин: %(error)s"
     }
 }
