@@ -119,11 +119,10 @@
             <div>
                 <h3>{{ translations.weather_in }} {{ selected_city }}</h3>
                 {% if weather_data %}
-                    <p><strong>{{ translations.temperature }}</strong> {{ weather_data.current.temp_c }}°C</p>
-                    <p><strong>{{ translations.condition }}</strong> {{ weather_data.current.condition.text }}</p>
-                    <p><strong>{{ translations.humidity }}</strong> {{ weather_data.current.humidity }}%</p>
-                    <p><strong>{{ translations.wind }}</strong> {{ weather_data.current.wind_kph }} kph</p>
-                    <p><strong>{{ translations.last_updated }}</strong> {{ weather_data.current.last_updated }}</p>
+                    <p><strong>{{ translations.temperature }}</strong> {{ weather_data.main.temp }}°C</p>
+                    <p><strong>{{ translations.condition }}</strong> {{ weather_data.weather.0.description }}</p>
+                    <p><strong>{{ translations.humidity }}</strong> {{ weather_data.main.humidity }}%</p>
+                    <p><strong>{{ translations.wind }}</strong> {{ weather_data.wind.speed }} kph</p>
                 {% else %}
                     <p>{{ translations.unable_to_retrieve_weather }}</p>
                 {% endif %}

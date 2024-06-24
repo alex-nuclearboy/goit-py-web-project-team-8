@@ -2,54 +2,56 @@ from django.shortcuts import render
 import requests
 import datetime
 
-import xml.etree.ElementTree as ET
-import os
+from .translations import translations
 
-WEATHER_API_KEY = '7cfac1a5811143f492c163316241906'
+WEATHER_API_KEY = '681232aad95a86f210ad402860d90308'
 
 
-def load_translations(language):
-    translations = {}
-    file_path = os.path.join(
-        os.path.dirname(__file__), 'locale', f'localisation_{language}.xml'
-    )
-    tree = ET.parse(file_path)
-    root = tree.getroot()
-    for item in root.findall('.//newsapp/*'):
-        key = item.tag
-        value = item.get('text')
-        translations[key] = value
-    return translations
+def get_language(request):
+    """
+    Get the language from the request or session.
+    - Retrieves the language from the GET parameters or session.
+    - Defaults to English if no language is found.
+    - Stores the language in the session.
+    """
+    language = request.GET.get('lang')
+    if not language:
+        language = request.session.get('language', 'en')
+    request.session['language'] = language
+    return language
 
 
 def main(request):
-    language = request.GET.get('lang')
-    if language:
-        request.session['language'] = language
-    else:
-        language = request.session.get('language', 'en')
-
-    translations = load_translations(language)
+    """
+    Main view function to display the weather and exchange rates.
+    - Retrieves the language from the session.
+    - Loads the translations based on the language.
+    - Fetches the weather and exchange rates data.
+    - Handles errors and displays appropriate messages.
+    """
+    language = get_language(request)
+    trans = translations.get(language, translations['en'])
 
     error_message = None
     weather_error_message = None
-    city = request.GET.get('city', 'Kyiv')
+    default_city = 'Kyiv' if language == 'en' else 'Київ'
+    city = request.GET.get('city', default_city)
 
     try:
-        weather_data = fetch_weather(city)
+        weather_data = fetch_weather(city, trans, language)
     except ValueError as ve:
         weather_error_message = str(ve)
         weather_data = None
     except requests.RequestException as e:
         weather_error_message = (
-            f"An error occurred while fetching weather data: {str(e)}"
+            trans['error_fetching_weather'] % {'error': str(e)}
         )
         weather_data = None
 
     exchange_rates = fetch_exchange_rates()
 
     context = {
-        'translations': translations,
+        'translations': trans,
         'weather_data': weather_data,
         'exchange_rates': exchange_rates,
         'selected_city': city,
@@ -59,20 +61,34 @@ def main(request):
     return render(request, 'newsapp/index.html', context)
 
 
-def fetch_weather(city):
+def fetch_weather(city, trans, language):
+    """
+    Fetch weather data from OpenWeatherMap API.
+    - Retrieves weather data for the specified city.
+    - Uses the language parameter to get the data in the desired language.
+    - Raises a ValueError if the city is not found.
+    """
     url = (
-        f'http://api.weatherapi.com/v1/current.json?key={WEATHER_API_KEY}'
-        f'&q={city}'
+        f'https://api.openweathermap.org/data/2.5/weather?q={city}'
+        f'&APPID={WEATHER_API_KEY}&units=metric&lang={language}'
     )
     response = requests.get(url)
-    if response.status_code == 400:
-        raise ValueError(f"City '{city}' not found.")
+    if response.status_code == 401:
+        raise ValueError(
+            trans['error_fetching_weather'] % {'error': 'Invalid API key'}
+        )
+    if response.status_code == 404:
+        raise ValueError(trans['city_not_found'] % {'city': city})
     response.raise_for_status()
     data = response.json()
     return data
 
 
 def fetch_exchange_rates():
+    """
+    Fetch exchange rates data from PrivatBank API.
+    - Retrieves the exchange rates for the required currencies.
+    """
     today = datetime.datetime.today().strftime('%d.%m.%Y')
     url = f'https://api.privatbank.ua/p24api/exchange_rates?json&date={today}'
     response = requests.get(url)
