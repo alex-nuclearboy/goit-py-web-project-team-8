@@ -1,0 +1,36 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<uk>
+    <users>
+        <signup text="Реєстрація"/>
+        <login text="Вхід"/>
+        <username text="Ім'я користувача:"/>
+        <email text="Електронна пошта:"/>
+        <password text="Пароль:"/>
+        <password_confirmation text="Підтвердження паролю:"/>
+        <submit text="Надіслати"/>
+        <reset text="Скинути"/>
+        <forgot_password text="Забули пароль?"/>
+        <username_or_password_didnt_match text="Ім'я користувача або пароль не співпадають"/>
+        <login_error text="Ім'я користувача або пароль не збігаються"/>
+        <logout_success text="Ви успішно вийшли з системи"/>
+        <profile_update_success text="Ваш профіль успішно оновлено"/>
+        <password_reset_no_account text="Не знайдено обліковий запис з вказаною адресою електронної пошти."/>
+        <password_reset text="Скидання паролю"/>
+        <password_reset_request_sent text="Запит на скидання паролю надіслано"/>
+        <password_reset_done text="Запит на скидання паролю надіслано"/>
+        <password_reset_email_sent text="Ми надіслали вам інструкції щодо скидання паролю."/>
+        <enter_new_password text="Введіть новий пароль"/>
+        <save_new_password text="Зберегти новий пароль"/>
+        <password_reset_complete text="Скидання паролю завершено"/>
+        <request_password_reset text="Запит на скидання паролю"/>
+        <email_send_error text="Сталася помилка під час відправлення електронного листа. Будь ласка, спробуйте пізніше."/>
+        <password_reset_confirm text="Введіть новий пароль"/>
+        <new_password1 text="Новий пароль:"/>
+        <new_password2 text="Підтвердьте новий пароль:"/>
+        <save_new_password text="Зберегти новий пароль"/>
+        <password_reset_complete_message text="Ваш пароль було успішно скинуто. Тепер ви можете увійти з новим паролем."/>
+        <password_too_short text="Цей пароль занадто короткий. Він повинен містити принаймні 8 символів."/>
+        <password_too_common text="Цей пароль занадто поширений."/>
+        <password_entirely_numeric text="Цей пароль складається лише з цифр."/>
+    </users>
+</uk>

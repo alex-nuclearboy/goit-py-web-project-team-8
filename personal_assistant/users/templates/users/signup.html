@@ -1,0 +1,82 @@
+{% extends "newsapp/base.html" %}
+
+{% block title %}{{ translations.sign_up }}{% endblock %}
+
+{% block nav_buttons %}
+<div class="buttons">
+    <a href="{% url 'users:login' %}" role="button" class="contrast">{{ translations.login }}</a>
+</div>
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div>
+        <h2>{{ translations.sign_up }}</h2>
+    </div>
+
+    {% if messages %}
+    <div>
+        {% for message in messages %}
+        <div class="alert-error">{{ message }}</div>
+        {% endfor %}
+    </div>
+    {% endif %}
+
+    <form method="post" action="{% url 'users:signup' %}">
+        {% csrf_token %}
+        
+        <div>
+            <label for="{{ form.username.id_for_label }}">{{ translations.username }}</label>
+            {{ form.username }}
+            {% if form.username.errors %}
+            <ul class="errorlist">
+                {% for error in form.username.errors %}
+                <li>{{ error|linebreaksbr }}</li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+        </div>
+
+        <div>
+            <label for="{{ form.email.id_for_label }}">{{ translations.email }}</label>
+            {{ form.email }}
+            {% if form.email.errors %}
+            <ul class="errorlist">
+                {% for error in form.email.errors %}
+                <li>{{ error|linebreaksbr }}</li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+        </div>
+
+        <div>
+            <label for="{{ form.password1.id_for_label }}">{{ translations.password }}</label>
+            {{ form.password1 }}
+            {% if form.password1.errors %}
+            <ul class="errorlist">
+                {% for error in form.password1.errors %}
+                <li>{{ error|linebreaksbr }}</li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+        </div>
+
+        <div>
+            <label for="{{ form.password2.id_for_label }}">{{ translations.password_confirmation }}</label>
+            {{ form.password2 }}
+            {% if form.password2.errors %}
+            <ul class="errorlist">
+                {% for error in form.password2.errors %}
+                <li>{{ error|linebreaksbr }}</li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+        </div>
+
+        <div class="grid">
+            <button type="submit">{{ translations.submit }}</button>
+            <button type="reset" class="secondary">{{ translations.reset }}</button>
+        </div>
+    </form>
+</div>
+{% endblock %}
