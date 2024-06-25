@@ -2,6 +2,8 @@
 
 {% block title %}{{ translations.profile_title }} {{ user.username }}{% endblock %}
 
+{% block dashboard_label %}{{ translations.dashboard }}{% endblock %}
+
 {% block nav_buttons %}
 <div class="buttons">
     <a href="{% url 'users:logout' %}?lang={{ request.session.language }}" role="button" class="secondary">{{ translations.logout }}</a>
