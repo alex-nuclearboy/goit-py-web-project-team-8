@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import Note, Tag
-from .forms import NoteForm, TagForm
+from .forms import NoteForm, TagForm, NoteSearchForm
 from django.db.models import Q
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 
@@ -8,15 +8,22 @@ from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 def note_list(request):
     query = request.GET.get('q')
     tag_query = request.GET.get('tag')
+    search_form = NoteSearchForm(request.GET)
+
+    if search_form.is_valid():
+        query = search_form.cleaned_data.get('query')
+
+    notes = Note.objects.filter(user=request.user)  # Ensure we only get notes for the logged-in user
+
+    selected_tag_name = 'All'
 
     if query:
         notes = Note.objects.filter(
             Q(title__icontains=query) | Q(content__icontains=query)
         ).distinct()
-    elif tag_query:
+    elif tag_query and tag_query != 'All':
         notes = Note.objects.filter(tags__name__icontains=tag_query).distinct()
-    else:
-        notes = Note.objects.all()
+        selected_tag_name = tag_query
 
     # Setting up pagination
     paginator = Paginator(notes, 10)
@@ -28,7 +35,13 @@ def note_list(request):
     except EmptyPage:
         notes = paginator.page(paginator.num_pages)
 
-    return render(request, 'notesapp/note_list.html', {'notes': notes, 'tags': Tag.objects.filter(user=request.user)})
+    return render(request, 'notesapp/note_list.html', {
+        'notes': notes,
+        'tags': Tag.objects.filter(user=request.user),
+        'search_form': search_form,
+        "query": query,
+        'selected_tag_name': selected_tag_name,
+    })
 
 
 def note_details(request, note_id):
