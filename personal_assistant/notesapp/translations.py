@@ -1,6 +1,9 @@
 translations = {
     'en': {
         'dashboard': 'Home Page',
+        'welcome': 'Welcome',
+        'profile': 'Profile',
+        'logout': 'Logout',
         'note_organiser': 'Note Organiser',
         'my_notes': 'My notes',
         'showing_notes_for_tag': 'Showing notes for tag',
@@ -39,6 +42,9 @@ translations = {
     },
     'uk': {
         'dashboard': 'Головна сторінка',
+        'welcome': 'Ласкаво просимо',
+        'profile': 'Профіль',
+        'logout': 'Вийти',
         'note_organiser': 'Органайзер нотаток',
         'my_notes': 'Мої нотатки',
         'showing_notes_for_tag': 'Відображення нотаток для тегу',

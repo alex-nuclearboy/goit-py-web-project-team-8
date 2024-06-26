@@ -5,6 +5,7 @@
 {% block dashboard_label %}{{ translations.dashboard }}{% endblock %}
 
 {% block nav_buttons %}
+<img src="{{ user.profile.avatar.url }}" alt="Avatar" style="margin-left: 16px;">
 <div class="buttons">
     <a href="{% url 'users:logout' %}?lang={{ request.session.language }}" role="button" class="secondary">{{ translations.logout }}</a>
 </div>
