@@ -44,8 +44,8 @@ def note_list(request):
     })
 
 
-def note_details(request, note_id):
-    note = get_object_or_404(Note, pk=note_id, user=request.user)
+def note_details(request, id):
+    note = get_object_or_404(Note, pk=id, user=request.user)
     return render(request, 'notesapp/note_details.html', {"note": note})
 
 
