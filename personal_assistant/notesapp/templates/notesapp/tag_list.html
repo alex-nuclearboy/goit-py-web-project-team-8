@@ -46,7 +46,7 @@
     </main>
     <aside style="flex: 1; min-width: 200px; max-width: 300px;">
         <ul style="margin-left: -30px;">
-            <li><a href="{% url 'notesapp:note_list' %}" role="button" class="contrast" style="width: 240px;">{{ translations.back_to_notes }}</a></li>
+            <li><a href="{% url 'notesapp:note_list' %}" role="button" class="contrast">{{ translations.back_to_notes }}</a></li>
         </ul>
         <h4>{{ translations.add_new_tag }}</h4>
         <form method="post" action="{% url 'notesapp:add_tag' %}" style="margin-bottom: 20px;">
