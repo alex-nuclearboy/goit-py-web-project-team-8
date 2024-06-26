@@ -1,0 +1,38 @@
+{% extends "newsapp/base.html" %}
+
+{% block title %}{{ note.title }}{% endblock %}
+{% block dashboard_label %}{{ translations.dashboard }}{% endblock %}
+
+{% block content %}
+<script>
+    function confirmDelete(form) {
+        if (confirm('{{ translations.confirm_delete_note }}')) {
+            form.submit();
+        }
+    }
+</script>
+
+<div class="content-container" style="display: flex; max-width: 1200px; margin: auto;">
+    <main style="flex: 3; padding-right: 20px;">
+        <h2>{{ note.title }}</h2>
+        <p>{{ note.content }}</p>
+        <p><strong>{{ translations.tags }}:</strong> 
+            {% for tag in note.tags.all %}
+                <a href="{% url 'notesapp:note_list' %}?tag={{ tag.name }}">{{ tag.name }}</a>{% if not forloop.last %}, {% endif %}
+            {% endfor %}
+        </p>
+        <p><strong>{{ translations.created_at }}:</strong> {{ note.created_at }}</p>
+        <p><strong>{{ translations.updated_at }}:</strong> {{ note.updated_at }}</p>
+        <a href="{% url 'notesapp:edit_note' note.id %}" role="button" style="background-color: orange; border: none;">{{ translations.edit_note }}</a>
+        <form action="{% url 'notesapp:delete_note' note.id %}" method="post" style="display:inline;">
+            {% csrf_token %}
+            <button type="button" style="background-color: rgb(238, 60, 48); border: none;" onclick="confirmDelete(this.form)">{{ translations.delete_note }}</button>
+        </form>
+    </main>
+    <aside style="flex: 1; min-width: 200px; max-width: 300px;">
+        <ul style="margin-left: -30px;">
+            <li><a href="{% url 'notesapp:note_list' %}" role="button" class="contrast" style="width: 240px;">{{ translations.back_to_notes }}</a></li>
+        </ul>
+    </aside>
+</div>
+{% endblock %}
