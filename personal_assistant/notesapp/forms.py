@@ -53,5 +53,6 @@ class NoteSearchForm(forms.Form):
     query = forms.CharField(
         required=False,
         max_length=100,
+        label='',
         widget=forms.TextInput()
     )
