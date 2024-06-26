@@ -1,5 +1,6 @@
 from django import forms
 from .models import Note, Tag
+from django.core.exceptions import ValidationError
 
 
 class TagForm(forms.ModelForm):
@@ -8,6 +9,16 @@ class TagForm(forms.ModelForm):
     class Meta:
         model = Tag
         fields = ['name']
+
+    def __init__(self, *args, **kwargs):
+        self.user = kwargs.pop('user', None)
+        super().__init__(*args, **kwargs)
+
+    def clean_name(self):
+        name = self.cleaned_data['name']
+        if Tag.objects.filter(user=self.user, name=name).exists():
+            raise ValidationError('A tag with this name already exists.')
+        return name
 
 
 class NoteForm(forms.ModelForm):
@@ -22,3 +33,17 @@ class NoteForm(forms.ModelForm):
     class Meta:
         model = Note
         fields = ['title', 'content', 'tags']
+
+    def __init__(self, *args, **kwargs):
+        self.user = kwargs.pop('user', None)
+        super().__init__(*args, **kwargs)
+
+    def clean_title(self):
+        title = self.cleaned_data['title']
+        if self.instance.pk:  # If the form edits an existing note
+            if Note.objects.filter(user=self.user, title=title).exclude(pk=self.instance.pk).exists():
+                raise ValidationError('A note with this title already exists.')
+        else:  # If this is a new note
+            if Note.objects.filter(user=self.user, title=title).exists():
+                raise ValidationError('A note with this title already exists.')
+        return title
