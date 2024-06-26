@@ -66,7 +66,7 @@
         .news-container {
             display: flex;
             align-items: center;
-            margin-top: 20px;
+            margin-top: 40px;
             gap: 10px;
         }
         .news-container label,
@@ -90,10 +90,10 @@
         .form-group {
             display: flex;
             flex-direction: column;
-            width: 400px;
+            width: 420px;
         }
         .submit-button {
-            width: 50px;
+            width: 50;
         }
     </style>
 </head>
@@ -128,7 +128,7 @@
     </header>
 
     <div class="content-container">
-        <main>
+        <main style="margin-top: 40px;">
             {% if messages %}
             <div>
                 {% for message in messages %}
@@ -136,13 +136,22 @@
                 {% endfor %}
             </div>
             {% endif %}
-            <p>{{ translations.introduction }}</p>
+            <p>{{ translations.introduction|safe }}</p>
             <ul>
-                <li>{{ translations.address_book }}</li>
-                <li>{{ translations.note_organiser }}</li>
-                <li>{{ translations.file_repository }}</li>
-                <li>{{ translations.daily_news_summary }}</li>
+                <li>{{ translations.address_book|safe }}</li>
+                <li>{{ translations.note_organiser|safe }}</li>
+                <li>{{ translations.file_repository|safe }}</li>
+                <li>{{ translations.daily_news_summary|safe }}</li>
+                <li>{{ translations.weather_updates|safe }}</li>
+                <li>{{ translations.currency_exchange_rates|safe }}</li>
             </ul>
+
+            {% if not user.is_authenticated %}
+            <p>
+                {{ translations.access_full_features|safe }} <a href="{% url 'users:signup' %}">{{ translations.signup|safe }}</a> {{ translations.or }} <a href="{% url 'users:login' %}">{{ translations.log_in }}</a>.
+            </p>
+            {% endif %}
+
             <div class="divider"></div>
 
             <div class="news-container">
@@ -180,7 +189,7 @@
                 {% endfor %}
             </ul>
         </main>
-        <aside>
+        <aside style="margin-top: 40px;">
             <form method="GET" action="{% url 'newsapp:index' %}">
                 {% if weather_error_message %}
                     <div class="alert-error">{{ weather_error_message }}</div>
@@ -191,7 +200,7 @@
             </form>
 
             <div>
-                <h3>{{ translations.weather_in }} {{ selected_city }}</h3>
+                <h3>{{ translations.weather_in }} {{ selected_city }}:</h3>
                 {% if weather_data %}
                     <p><strong>{{ translations.temperature }}</strong> {{ weather_data.main.temp }}°C</p>
                     <p><strong>{{ translations.condition }}</strong> {{ weather_data.weather.0.description }}</p>
@@ -203,7 +212,7 @@
                 {% endif %}
             </div>
 
-            <div style="margin-top: 20px;">
+            <div style="margin-top: 60px;">
                 <h3>{{ translations.exchange_rates }}</h3>
                 <table>
                     <thead>

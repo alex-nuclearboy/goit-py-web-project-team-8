@@ -1,5 +1,6 @@
 translations = {
     'en': {
+        'dashboard': 'Home Page',
         'sign_up': 'Sign Up',
         'login': 'Login',
         'logout': 'Logout',
@@ -47,6 +48,7 @@ translations = {
         'invalid_reset_link': 'This password reset link is invalid. Please request a new one.',
     },
     'uk': {
+        'dashboard': 'Головна сторінка',
         'sign_up': 'Реєстрація',
         'login': 'Вхід',
         'logout': 'Вийти',
