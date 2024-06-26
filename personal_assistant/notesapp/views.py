@@ -31,6 +31,11 @@ def note_list(request):
     return render(request, 'notesapp/note_list.html', {'notes': notes, 'tags': Tag.objects.filter(user=request.user)})
 
 
+def note_details(request, note_id):
+    note = get_object_or_404(Note, pk=note_id, user=request.user)
+    return render(request, 'notesapp/note_details.html', {"note": note})
+
+
 def tag_list(request):
     tags = Tag.objects.filter(user=request.user)
 
