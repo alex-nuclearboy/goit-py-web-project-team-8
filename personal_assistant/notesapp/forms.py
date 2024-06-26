@@ -47,3 +47,11 @@ class NoteForm(forms.ModelForm):
             if Note.objects.filter(user=self.user, title=title).exists():
                 raise ValidationError('A note with this title already exists.')
         return title
+
+
+class NoteSearchForm(forms.Form):
+    query = forms.CharField(
+        required=False,
+        max_length=100,
+        widget=forms.TextInput()
+    )
