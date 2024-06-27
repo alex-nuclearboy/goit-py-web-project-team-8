@@ -5,7 +5,7 @@ from .translations import translations
 
 
 class TagForm(forms.ModelForm):
-    name = forms.CharField(min_length=3, max_length=25, required=True, widget=forms.TextInput())
+    name = forms.CharField(min_length=3, max_length=25, required=True, widget=forms.TextInput(attrs={'autofocus': 'autofocus'}))
 
     class Meta:
         model = Tag
@@ -27,7 +27,7 @@ class TagForm(forms.ModelForm):
 
 
 class NoteForm(forms.ModelForm):
-    title = forms.CharField(min_length=5, max_length=255, required=True, widget=forms.TextInput())
+    title = forms.CharField(min_length=5, max_length=255, required=True, widget=forms.TextInput(attrs={'autofocus': 'autofocus'}))
     content = forms.CharField(min_length=5, max_length=255, required=False, widget=forms.Textarea(attrs={'rows': 4}))
     tags = forms.ModelMultipleChoiceField(
         queryset=Tag.objects.all(),
@@ -66,7 +66,7 @@ class NoteSearchForm(forms.Form):
         required=False,
         max_length=100,
         label='',
-        widget=forms.TextInput()
+        widget=forms.TextInput(attrs={'autofocus': 'autofocus'})
     )
 
     def __init__(self, *args, **kwargs):
