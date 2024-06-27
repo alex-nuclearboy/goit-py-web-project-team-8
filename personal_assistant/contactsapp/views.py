@@ -120,7 +120,8 @@ def tag_details(request, tag_id):
     return HttpResponse(template.render(context=context, request=request))
 
 def index(request):
-    contacts = Contact.objects.order_by("-creation_date")
+    curr_user = request.user.id
+    contacts = Contact.objects.filter(creator=curr_user).order_by("-creation_date")
     latest_contacts = contacts[:10]
     template = loader.get_template("contactsapp/index.html")
     context = {
