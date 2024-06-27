@@ -70,6 +70,26 @@
             {% endif %}
         {% endif %}
         <footer style="text-align: center; margin-top: 20px;">
+            <style>
+                .pagination a {
+                    display: inline-block;
+                    padding: 8px 12px;
+                    margin: 2px;
+                    text-decoration: none;
+                    background-color: #4CAF50;
+                    color: white;
+                    border: 1px solid #4CAF50;
+                    border-radius: 4px;
+                    font-size: 19px;
+                    width: 140px;
+                    text-align: center;
+                }
+                .pagination a:hover {
+                    background-color: #45a049;
+                    border-color: #45a049;
+                }
+            </style>
+
             <div class="pagination">
                 {% if notes.has_previous %}
                     <a href="?page=1{% if query %}&query={{ query }}{% endif %}{% if selected_tag_name %}&tag={{ selected_tag_name }}{% endif %}" role="button">{{ translations.first }}</a>

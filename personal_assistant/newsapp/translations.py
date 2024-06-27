@@ -44,8 +44,8 @@ translations = {
     },
     'uk': {
         'title': 'Особистий Асистент',
-        'my_notes': 'Мої Нотатки',
-        'my_contacts': 'Мої Контакти',
+        'my_notes': 'Мої нотатки',
+        'my_contacts': 'Мої контакти',
         'welcome': 'Ласкаво просимо',
         'profile': 'Профіль',
         'logout': 'Вийти',

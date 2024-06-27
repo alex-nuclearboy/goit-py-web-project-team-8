@@ -1,6 +1,8 @@
 translations = {
     'en': {
         'dashboard': 'Home Page',
+        'my_notes': 'My Notes',
+        'my_contacts': 'My Contacts',
         'sign_up': 'Sign Up',
         'login': 'Login',
         'logout': 'Logout',
@@ -49,6 +51,8 @@ translations = {
     },
     'uk': {
         'dashboard': 'Головна сторінка',
+        'my_notes': 'Мої нотатки',
+        'my_contacts': 'Мої контакти',
         'sign_up': 'Реєстрація',
         'login': 'Вхід',
         'logout': 'Вийти',
