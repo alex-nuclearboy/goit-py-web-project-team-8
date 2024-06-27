@@ -1,6 +1,7 @@
 translations = {
     'en': {
         'dashboard': 'Home Page',
+        'my_contacts': 'My Contacts',
         'welcome': 'Welcome',
         'profile': 'Profile',
         'logout': 'Logout',
@@ -51,6 +52,7 @@ translations = {
     },
     'uk': {
         'dashboard': 'Головна сторінка',
+        'my_contacts': 'Мої контакти',
         'welcome': 'Ласкаво просимо',
         'profile': 'Профіль',
         'logout': 'Вийти',
