@@ -109,10 +109,6 @@
                 <a href="{% url 'notesapp:add_note' %}" role="button" class="contrast" style="width: 240px; background-color: rgb(112, 8, 153); border: none;">{{ translations.add_note }}</a>
             </li>
         </ul>
-        
-        <div style="margin-top: 40px;">
-
-        </div>
         <h4>{{ translations.search }}</h4>
         <form method="get" action="{% url 'notesapp:note_list' %}" style="margin-bottom: 20px;">
             {{ search_form.as_p }}
