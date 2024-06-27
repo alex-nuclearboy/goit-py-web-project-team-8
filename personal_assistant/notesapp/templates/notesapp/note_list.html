@@ -2,6 +2,7 @@
 
 {% block title %}{{ translations.note_organiser }}{% endblock %}
 {% block dashboard_label %}{{ translations.dashboard }}{% endblock %}
+{% block nav_left_buttons %}<a href="{% url 'contactsapp:index' %}" role="button">{{ translations.my_contacts }}</a>{% endblock %}
 {% block nav_buttons %}
 <img src="{{ user.profile.avatar.url }}" alt="Avatar" style="margin-left: 16px;">
 <div class="buttons">
