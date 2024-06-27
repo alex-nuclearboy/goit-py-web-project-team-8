@@ -1,0 +1,43 @@
+{% extends "newsapp/base.html" %}
+
+{% block nav_buttons %}
+    <li class="nav-item">
+        <a href="{% url 'contactsapp:index' %}">
+            <span><button class="primary" aria-current="page" >Latest Contacts</button></span>
+        </a>
+    </li>
+    <li class="nav-item">
+        <a href="{% url 'contactsapp:tags' %}">
+            <span></span><button class="primary" aria-current="page" >Tags</button></span>
+        </a>
+    </li>
+    {% if user.is_authenticated %}
+        <li class="nav-item">
+            <a href="{% url 'contactsapp:contacts' %}">
+                <span><button class="primary">All Contacts</button></span>
+            </a>
+        </li>
+        <li class="nav-item">
+            <form class="d-flex" action="{% url 'logout' %}" method="post"> {% csrf_token %}
+                <button class="primary" type="submit">Log Out</button>
+            </form>
+        </li>
+    {% else %}
+        <li class="nav-item">
+            <a href="{% url 'login' %}">
+                <span><button class="primary">All Contacts</button></span>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a href="{% url 'contactsapp:register' %}">
+                <span><button class="primary">Create account</button></span>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a href="{% url 'login' %}">
+                <span><button class="primary">Login</button></span>
+            </a>
+        </li>
+    {% endif %}
+
+{% endblock nav_buttons %}

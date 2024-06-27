@@ -26,4 +26,5 @@ urlpatterns = [
     path('notesapp/', include('notesapp.urls')),
     path('contactsapp/', include('contactsapp.urls')),
     path('filemanagerapp/', include('filemanagerapp.urls')),
+    path("accounts/", include("django.contrib.auth.urls")),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
