@@ -81,7 +81,7 @@
             {% csrf_token %}
             {{ tag_form.as_p }}
             <input type="hidden" name="language" value="{{ request.session.language }}">
-            <button type="submit" class="contrast">{{ translations.add_tag }}</button>
+            <button type="submit" style="background-color: rgb(112, 8, 153); border: none;">{{ translations.add_tag }}</button>
         </form>
     </aside>
 
