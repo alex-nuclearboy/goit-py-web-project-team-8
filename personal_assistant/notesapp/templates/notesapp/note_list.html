@@ -104,8 +104,10 @@
         </footer>
     </main>
     <aside style="flex: 1; min-width: 200px; max-width: 300px;">
-        <ul style="margin-left: -30px;">
-            <li><a href="{% url 'notesapp:add_note' %}" role="button" class="contrast" style="width: 240px;">{{ translations.add_note }}</a></li>
+        <ul style="padding-left: 0; list-style-type: none;">
+            <li style="margin-bottom: 20px;">
+                <a href="{% url 'notesapp:add_note' %}" role="button" class="contrast" style="width: 240px; background-color: rgb(112, 8, 153); border: none;">{{ translations.add_note }}</a>
+            </li>
         </ul>
         
         <div style="margin-top: 40px;">
@@ -114,20 +116,26 @@
         <h4>{{ translations.search }}</h4>
         <form method="get" action="{% url 'notesapp:note_list' %}" style="margin-bottom: 20px;">
             {{ search_form.as_p }}
-            <div class="grid">
-                <button type="submit">{{ translations.search }}</button>
-                <button type="button" onclick="resetFormAndRedirect()" class="secondary">{{ translations.reset }}</button>
+            <div style="display: flex; gap: 10px;">
+                <button type="submit" style="flex: 1;">{{ translations.search }}</button>
+                <button type="button" onclick="resetFormAndRedirect()" class="secondary" style="flex: 1;">{{ translations.reset }}</button>
             </div>
         </form>
 
         <h4>{{ translations.tags }}</h4>
-        <ul style="margin-left: -30px;">
-            <li><a href="{% url 'notesapp:tag_list' %}" role="button" class="contrast" style="width: 240px; background-color: rgb(8, 194, 153); border: none;">{{ translations.tag_manager }}</a></li>
-            <li><a href="#" onclick="filterByTag('All')">{{ translations.all }}</a></li>
-            {% for tag in tags %}
-            <li><a href="#" onclick="filterByTag('{{ tag.name }}')">{{ tag.name }}</a></li>
-            {% endfor %}
+        <ul style="padding-left: 0; list-style-type: none;">
+            <li style="margin-bottom: 10px;">
+                <a href="{% url 'notesapp:tag_list' %}" role="button" class="contrast" style="width: 240px; background-color: rgb(8, 194, 153); border: none;">{{ translations.tag_manager }}</a>
+            </li>
+            <li>
+                <a href="#" onclick="filterByTag('All')">{{ translations.all }}</a>
+            </li>
         </ul>
+        <div style="margin-left: 10px;">
+            {% for tag in tags %}
+            <a href="#" onclick="filterByTag('{{ tag.name }}')">{{ tag.name }}</a>{% if not forloop.last %}, {% endif %}
+            {% endfor %}
+        </div>
     </aside>
 </div>
 {% endblock %}
