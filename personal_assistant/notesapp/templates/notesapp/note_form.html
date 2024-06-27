@@ -24,6 +24,7 @@
         <form method="post">
             {% csrf_token %}
             {{ form.as_p }}
+            <input type="hidden" name="language" value="{{ request.session.language }}">
             <button type="submit">{{ translations.save }}</button>
         </form>
     </main>

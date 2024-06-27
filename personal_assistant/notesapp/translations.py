@@ -39,6 +39,15 @@ translations = {
         'no_tags_yet': 'It looks like you don\'t have any tags yet. You can add a new tag to get started.',
         'created_at': 'Created at',
         'updated_at': 'Updated at',
+        'title': 'Note title',
+        'enter_note_title': 'Enter note title',
+        'content': 'Content',
+        'enter_note_content': 'Enter note content',
+        'note_title_exists': 'A note with this title already exists.',
+        'tag_name': 'Tag name',
+        'enter_tag_name': 'Enter tag name',
+        'tag_exists': 'A tag with this name already exists.',
+        'search_field': 'Search notes...'
     },
     'uk': {
         'dashboard': 'Головна сторінка',
@@ -80,5 +89,14 @@ translations = {
         'no_tags_yet': 'Схоже, у вас ще немає тегів. Ви можете додати новий тег, щоб почати.',
         'created_at': 'Створено',
         'updated_at': 'Оновлено',
+        'title': 'Заголовок нотатки',
+        'enter_note_title': 'Введіть заголовок нотатки',
+        'content': 'Зміст',
+        'enter_note_content': 'Введіть зміст нотатки',
+        'note_title_exists': 'Нотатка з таким заголовком вже існує.',
+        'tag_name': 'Назва тегу',
+        'enter_tag_name': 'Введіть назву тегу',
+        'tag_exists': 'Тег з такою назвою вже існує.',
+        'search_field': 'Пошук нотаток...'
     }
 }

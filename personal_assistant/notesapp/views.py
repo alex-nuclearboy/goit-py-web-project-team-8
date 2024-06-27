@@ -3,12 +3,15 @@ from .models import Note, Tag
 from .forms import NoteForm, TagForm, NoteSearchForm
 from django.db.models import Q
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
+from .context_processors import get_language
+from .translations import translations
 
 
 def note_list(request):
+    language = get_language(request)
     query = request.GET.get('q')
     tag_query = request.GET.get('tag')
-    search_form = NoteSearchForm(request.GET)
+    search_form = NoteSearchForm(request.GET, language=language)
 
     if search_form.is_valid():
         query = search_form.cleaned_data.get('query')
@@ -50,6 +53,7 @@ def note_details(request, id):
 
 
 def tag_list(request):
+    language = get_language(request)
     tags = Tag.objects.filter(user=request.user)
 
     # Setting up pagination
@@ -62,12 +66,14 @@ def tag_list(request):
     except EmptyPage:
         tags = paginator.page(paginator.num_pages)
 
-    return render(request, 'notesapp/tag_list.html', {'tags': tags, 'tag_form': TagForm()})
+    return render(request, 'notesapp/tag_list.html', {'tags': tags, 'tag_form': TagForm(user=request.user, language=language)})
 
 
 def add_note(request):
+    language = get_language(request)
+    trans = translations.get(language, translations['en'])
     if request.method == "POST":
-        form = NoteForm(request.POST, user=request.user)
+        form = NoteForm(request.POST, user=request.user, language=language)
         if form.is_valid():
             note = form.save(commit=False)
             note.user = request.user
@@ -82,14 +88,18 @@ def add_note(request):
             return redirect('notesapp:note_list')
         else:
             tags = Tag.objects.filter(user=request.user).all()
-            return render(request, 'notesapp/note_form.html', {"tags": tags, 'form': form})
+            return render(request, 'notesapp/note_form.html', {"tags": tags, 'form': form, 'translations': trans})
+
     else:
-        return render(request, 'notesapp/note_form.html', {'form': NoteForm(user=request.user)})
+        form = NoteForm(user=request.user, language=language, initial={'language': language})
+        return render(request, 'notesapp/note_form.html', {'form': form, 'translations': trans})
 
 
 def add_tag(request):
+    language = get_language(request)
+    trans = translations.get(language, translations['en'])
     if request.method == 'POST':
-        form = TagForm(request.POST, user=request.user)
+        form = TagForm(request.POST, user=request.user, language=language)
         if form.is_valid():
             tag = form.save(commit=False)
             tag.user = request.user
@@ -97,7 +107,7 @@ def add_tag(request):
             return redirect(to='notesapp:tag_list')
         else:
             tags = Tag.objects.filter(user=request.user)
-            return render(request, 'notesapp/tag_list.html', {'tags': tags, 'tag_form': form})
+            return render(request, 'notesapp/tag_list.html', {'tags': tags, 'tag_form': form, 'translations': trans})
 
     return redirect('notesapp:tag_list')
 

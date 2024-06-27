@@ -1,6 +1,7 @@
 from django import forms
 from .models import Note, Tag
 from django.core.exceptions import ValidationError
+from .translations import translations
 
 
 class TagForm(forms.ModelForm):
@@ -12,12 +13,16 @@ class TagForm(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
         self.user = kwargs.pop('user', None)
+        self.language = kwargs.pop('language', 'en')
         super().__init__(*args, **kwargs)
+        self.trans = translations.get(self.language, translations['en'])
+        self.fields['name'].widget.attrs.update({'placeholder': self.trans['enter_tag_name']})
+        self.fields['name'].label = self.trans['tag_name']
 
     def clean_name(self):
         name = self.cleaned_data['name']
         if Tag.objects.filter(user=self.user, name=name).exists():
-            raise ValidationError('A tag with this name already exists.')
+            raise ValidationError(self.trans['tag_name_exists'])
         return name
 
 
@@ -36,16 +41,23 @@ class NoteForm(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
         self.user = kwargs.pop('user', None)
+        self.language = kwargs.pop('language', 'en')
         super().__init__(*args, **kwargs)
+        self.trans = translations.get(self.language, translations['en'])
+        self.fields['title'].widget.attrs.update({'placeholder': self.trans['enter_note_title']})
+        self.fields['title'].label = self.trans['title']
+        self.fields['content'].widget.attrs.update({'placeholder': self.trans['enter_note_content']})
+        self.fields['content'].label = self.trans['content']
+        self.fields['tags'].label = self.trans['tags']
 
     def clean_title(self):
         title = self.cleaned_data['title']
         if self.instance.pk:  # If the form edits an existing note
             if Note.objects.filter(user=self.user, title=title).exclude(pk=self.instance.pk).exists():
-                raise ValidationError('A note with this title already exists.')
+                raise ValidationError(self.trans['note_title_exists'])
         else:  # If this is a new note
             if Note.objects.filter(user=self.user, title=title).exists():
-                raise ValidationError('A note with this title already exists.')
+                raise ValidationError(self.trans['note_title_exists'])
         return title
 
 
@@ -56,3 +68,9 @@ class NoteSearchForm(forms.Form):
         label='',
         widget=forms.TextInput()
     )
+
+    def __init__(self, *args, **kwargs):
+        self.language = kwargs.pop('language', 'en')
+        super().__init__(*args, **kwargs)
+        self.trans = translations.get(self.language, translations['en'])
+        self.fields['query'].widget.attrs.update({'placeholder': self.trans['search_field']})
