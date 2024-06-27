@@ -1,0 +1,50 @@
+
+{% extends "contactsapp/base.html" %}
+
+{% load static %}
+
+{% block content %}
+
+    {% if contacts %}
+        <ul>
+            {% if user.is_authenticated %}
+                <a role="button" type="submit" style="transform: scale(0.95); width:30%;" href="{% url 'contactsapp:add_contact' %}">ADD</a>
+            {% endif %}
+            {% for contact in contacts %}
+            <li>
+                <div>
+                    <h3>{{ contact.name }}</h3>
+                        {% for tag in contact.tags.all %}
+                            <a role="button" class="secondary" style="transform: scale(0.95)" href="/contactsapp/tags/{{tag.id}}/">{{tag}}</a>
+                        {% endfor %}
+                    <div>
+                        <span class="small_bold">{{ contact.phone }}</span>
+                        <span class="small">, created on {{contact.creation_date|date}}</span>
+                    
+                        <style>
+                            .small_bold {
+                            font-size: 16px;
+                            font-weight: bold;
+                            }
+                            .small {
+                            font-size: 16px;
+                            }
+                        </style>
+                        {% if user.is_authenticated %}
+                            <a role="button" style="transform: scale(0.85)" href="{% url 'contactsapp:contact_update' contact.id %}">EDIT</a>
+                            <a role="button" style="transform: scale(0.85)" href="{% url 'contactsapp:contact_delete' contact.id %}">DELETE</a>
+                        {% endif %}
+                        <br><br/>
+                    </div>
+                </div>
+            </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <h2> You haven't created any contacts yet. </h2>
+        {% if user.is_authenticated %}
+            <a role="button" type="submit" style="transform: scale(0.95); width:30%;" href="{% url 'contactsapp:add_contact' %}">ADD</a>
+        {% endif %}
+    {% endif %}
+  
+{% endblock content %}

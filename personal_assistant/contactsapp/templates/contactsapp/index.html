@@ -1,0 +1,42 @@
+
+{% extends "contactsapp/base.html" %}
+
+
+{% load static %}
+
+{% block content %}
+
+
+    {% if latest_contacts %}
+    <ul>
+        {% for contact in latest_contacts %}
+        <li>
+            <div>
+                <h3>{{ contact.name }}</h3>
+                {% for tag in contact.tags.all %}
+                    <a role="button" class="secondary"style="transform: scale(0.95)" href="/contactsapp/tags/{{tag.id}}/">{{tag}}</a>
+                {% endfor %}
+                <div>
+                    <span class="small_bold">{{ contact.phone }}</span>
+                    <span class="small">, created on {{contact.creation_date|date}}</span>
+                  
+                    <style>
+                        .small_bold {
+                        font-size: 24px;
+                        font-weight: bold;
+                        }
+                        .small {
+                        font-size: 24px;
+                        }
+                    </style>
+                    <br><br/>
+                </div>
+            </div>
+        </li>
+        {% endfor %}
+    </ul>
+    {% else %}
+    <h2>No contacts have been added yet. Yours can be the first! </h2>
+    {% endif %}
+  
+{% endblock content %}

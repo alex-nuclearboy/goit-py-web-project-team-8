@@ -1,0 +1,10 @@
+{% extends "contactsapp/base.html" %}
+
+{% block content %}
+<form method="add_contact" action="contactsapp:contact_details">
+    {{form}}
+    <button type="submit" class="primary">Submit</button>
+</form>
+
+
+{% endblock content %}
