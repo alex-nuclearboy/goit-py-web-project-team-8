@@ -1,4 +1,5 @@
 from django.shortcuts import render, get_object_or_404, redirect
+from django.contrib.auth.decorators import login_required
 from .models import Note, Tag
 from .forms import NoteForm, TagForm, NoteSearchForm
 from django.db.models import Q
@@ -7,6 +8,7 @@ from .context_processors import get_language
 from .translations import translations
 
 
+@login_required
 def note_list(request):
     language = get_language(request)
     query = request.GET.get('q')
@@ -47,11 +49,13 @@ def note_list(request):
     })
 
 
+@login_required
 def note_details(request, id):
     note = get_object_or_404(Note, pk=id, user=request.user)
     return render(request, 'notesapp/note_details.html', {"note": note})
 
 
+@login_required
 def tag_list(request):
     language = get_language(request)
     tags = Tag.objects.filter(user=request.user)
@@ -69,6 +73,7 @@ def tag_list(request):
     return render(request, 'notesapp/tag_list.html', {'tags': tags, 'tag_form': TagForm(user=request.user, language=language)})
 
 
+@login_required
 def add_note(request):
     language = get_language(request)
     trans = translations.get(language, translations['en'])
@@ -95,6 +100,7 @@ def add_note(request):
         return render(request, 'notesapp/note_form.html', {'form': form, 'translations': trans})
 
 
+@login_required
 def add_tag(request):
     language = get_language(request)
     trans = translations.get(language, translations['en'])
@@ -112,6 +118,7 @@ def add_tag(request):
     return redirect('notesapp:tag_list')
 
 
+@login_required
 def edit_note(request, id):
     note = get_object_or_404(Note, id=id)
     if request.method == "POST":
@@ -133,6 +140,7 @@ def edit_note(request, id):
     return render(request, 'notesapp/note_form.html', {'form': form})
 
 
+@login_required
 def delete_note(request, id):
     note = get_object_or_404(Note, id=id,  user=request.user)
     if request.method == "POST":
@@ -141,6 +149,7 @@ def delete_note(request, id):
     return redirect('notesapp:note_list')
 
 
+@login_required
 def delete_tag(request, id):
     tag = get_object_or_404(Tag, id=id, user=request.user)
     if request.method == 'POST':
