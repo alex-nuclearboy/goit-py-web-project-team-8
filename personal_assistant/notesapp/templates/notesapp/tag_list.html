@@ -59,6 +59,7 @@
         <form method="post" action="{% url 'notesapp:add_tag' %}" style="margin-bottom: 20px;">
             {% csrf_token %}
             {{ tag_form.as_p }}
+            <input type="hidden" name="language" value="{{ request.session.language }}">
             <button type="submit" class="contrast">{{ translations.add_tag }}</button>
         </form>
     </aside>
