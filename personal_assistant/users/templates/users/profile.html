@@ -3,6 +3,10 @@
 {% block title %}{{ translations.profile_title }} {{ user.username }}{% endblock %}
 
 {% block dashboard_label %}{{ translations.dashboard }}{% endblock %}
+{% block nav_left_buttons %}
+    <a href="{% url 'notesapp:note_list' %}" role="button">{{ translations.my_notes }}
+    <a href="{% url 'contactsapp:index' %}" role="button">{{ translations.my_contacts }}</a>
+{% endblock %}
 
 {% block nav_buttons %}
 <img src="{{ user.profile.avatar.url }}" alt="Avatar" style="margin-left: 16px;">
