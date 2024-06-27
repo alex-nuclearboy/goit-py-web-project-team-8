@@ -46,7 +46,7 @@ translations = {
         'note_title_exists': 'A note with this title already exists.',
         'tag_name': 'Tag name',
         'enter_tag_name': 'Enter tag name',
-        'tag_exists': 'A tag with this name already exists.',
+        'tag_name_exists': 'A tag with this name already exists.',
         'search_field': 'Search notes...'
     },
     'uk': {
@@ -96,7 +96,7 @@ translations = {
         'note_title_exists': 'Нотатка з таким заголовком вже існує.',
         'tag_name': 'Назва тегу',
         'enter_tag_name': 'Введіть назву тегу',
-        'tag_exists': 'Тег з такою назвою вже існує.',
+        'tag_name_exists': 'Тег з такою назвою вже існує.',
         'search_field': 'Пошук нотаток...'
     }
 }
