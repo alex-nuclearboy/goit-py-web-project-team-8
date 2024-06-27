@@ -1,0 +1,37 @@
+{% extends "newsapp/base.html" %}
+
+{% block title %}{% if form.instance.pk %}{{ translations.edit_note }}{% else %}{{ translations.add_note }}{% endif %}{% endblock %}
+{% block dashboard_label %}{{ translations.dashboard }}{% endblock %}
+{% block nav_buttons %}
+<img src="{{ user.profile.avatar.url }}" alt="Avatar" style="margin-left: 16px;">
+<div class="buttons">
+    <a href="{% url 'users:profile' %}" role="button" class="contrast">{{ translations.profile }}</a>
+    <a href="{% url 'users:logout' %}?lang={{ request.session.language }}" role="button" class="secondary">{{ translations.logout }}</a>
+</div>
+{% endblock %}
+
+{% block content %}
+<script>
+    function resetFormAndRedirect() {
+        document.querySelector('form').reset();
+        window.location.href = '{% url "notesapp:note_list" %}';
+    }
+</script>
+
+<div class="content-container" style="display: flex; max-width: 1200px; margin: auto;">
+    <main style="flex: 3; padding-right: 20px;">
+        <h1>{% if form.instance.pk %}{{ translations.edit_note }}{% else %}{{ translations.add_note }}{% endif %}</h1>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">{{ translations.save }}</button>
+        </form>
+    </main>
+    <aside style="flex: 1; min-width: 200px; max-width: 300px;">
+        <ul style="margin-left: -30px;">
+            <li><a href="{% url 'notesapp:note_list' %}" role="button" class="contrast" style="width: 240px;">{{ translations.back_to_list }}</a></li>
+            <li><a href="{% url 'notesapp:tag_list' %}" role="button" class="contrast" style="width: 240px; background-color: rgb(8, 194, 153); border: none;">{{ translations.tag_manager }}</a></li>
+        </ul>
+    </aside>
+</div>
+{% endblock %}

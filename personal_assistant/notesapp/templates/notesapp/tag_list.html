@@ -1,0 +1,67 @@
+{% extends "newsapp/base.html" %}
+
+{% block title %}{{ translations.tag_manager }}{% endblock %}
+{% block dashboard_label %}{{ translations.dashboard }}{% endblock %}
+{% block nav_buttons %}
+<img src="{{ user.profile.avatar.url }}" alt="Avatar" style="margin-left: 16px;">
+<div class="buttons">
+    <a href="{% url 'users:profile' %}" role="button" class="contrast">{{ translations.profile }}</a>
+    <a href="{% url 'users:logout' %}?lang={{ request.session.language }}" role="button" class="secondary">{{ translations.logout }}</a>
+</div>
+{% endblock %}
+
+{% block content %}
+<script>
+    function confirmDelete(form) {
+        if (confirm('{{ translations.confirm_delete_tag }}')) {
+            form.submit();
+        }
+    }
+</script>
+
+<div class="content-container" style="display: flex; max-width: 1200px; margin: auto;">
+    <main style="flex: 3; padding-right: 20px;">
+        <h2>{{ translations.tag_manager }}</h2>
+        {% if tags %}
+        <ul>
+            {% for tag in tags %}
+            <li>
+                <a href="{% url 'notesapp:note_list' %}?tag={{ tag.name }}" role="button" class="outline" style="width: 200px;">{{ tag.name }}</a>
+                <form action="{% url 'notesapp:delete_tag' tag.id %}" method="post" style="display:inline;">
+                    {% csrf_token %}
+                    <button type="button" style="background-color: rgb(238, 60, 48); border: none;" onclick="confirmDelete(this.form)">{{ translations.delete_tag }}</button>
+                </form>
+            </li>
+            {% endfor %}
+        </ul>
+        <footer style="text-align: center; margin-top: 20px;">
+            <div class="pagination">
+                {% if tags.has_previous %}
+                    <a href="?page=1" role="button">{{ translations.first }}</a>
+                    <a href="?page={{ tags.previous_page_number }}" role="button">{{ translations.previous }}</a>
+                {% endif %}
+                <span style="padding-left: 15px; padding-right: 15px">{{ translations.page }} {{ tags.number }} {{ translations.of }} {{ tags.paginator.num_pages }}</span>
+                {% if tags.has_next %}
+                    <a href="?page={{ tags.next_page_number }}" role="button">{{ translations.next }}</a>
+                    <a href="?page={{ tags.paginator.num_pages }}" role="button">{{ translations.last }}</a>
+                {% endif %}
+            </div>
+        </footer>
+        {% else %}
+            <p>{{ translations.no_tags_yet }}</p>
+        {% endif %}
+    </main>
+    <aside style="flex: 1; min-width: 200px; max-width: 300px;">
+        <ul style="margin-left: -30px;">
+            <li><a href="{% url 'notesapp:note_list' %}" role="button" class="contrast">{{ translations.back_to_notes }}</a></li>
+        </ul>
+        <h4>{{ translations.add_new_tag }}</h4>
+        <form method="post" action="{% url 'notesapp:add_tag' %}" style="margin-bottom: 20px;">
+            {% csrf_token %}
+            {{ tag_form.as_p }}
+            <button type="submit" class="contrast">{{ translations.add_tag }}</button>
+        </form>
+    </aside>
+
+</div>
+{% endblock %}

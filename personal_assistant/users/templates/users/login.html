@@ -1,0 +1,58 @@
+{% extends "newsapp/base.html" %}
+
+{% block title %}{{ translations.login }}{% endblock %}
+
+{% block dashboard_label %}{{ translations.dashboard }}{% endblock %}
+
+{% block nav_buttons %}
+<div class="buttons">
+    <a href="{% url 'users:signup' %}" role="button" class="secondary">{{ translations.sign_up }}</a>
+</div>
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div>
+        <h2>{{ translations.login }}</h2>
+    </div>
+    {% if messages %}
+    <div>
+        {% for message in messages %}
+        <div {% if message.tags %} class="alert-{{ message.tags }}" {% endif %}>{{ message }}</div>
+        {% endfor %}
+    </div>
+    {% endif %}
+
+    <form action="{% url 'users:login' %}" method="post">
+        {% csrf_token %}
+        <div>
+            <label for="{{ form.username.id_for_label }}">{{ form.username.label }}</label>
+            {{ form.username }}
+            {% if form.username.errors %}
+            <ul class="errorlist">
+                {% for error in form.username.errors %}
+                <li>{{ error }}</li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+        </div>
+        <div>
+            <label for="{{ form.password.id_for_label }}">{{ form.password.label }}</label>
+            {{ form.password }}
+            {% if form.password.errors %}
+            <ul class="errorlist">
+                {% for error in form.password.errors %}
+                <li>{{ error }}</li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+        </div>
+
+        <div class="grid">
+            <button type="submit">{{ translations.submit }}</button>
+            <button type="reset" class="secondary">{{ translations.reset }}</button>
+            <button type="button" class="contrast" onclick="window.location.href='{% url 'users:password_reset' %}'">{{ translations.forgot_password }}</button>
+        </div>
+    </form>
+</div>
+{% endblock %}

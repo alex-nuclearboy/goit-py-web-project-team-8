@@ -1,0 +1,112 @@
+{% extends "newsapp/base.html" %}
+
+{% block title %}{{ translations.note_organiser }}{% endblock %}
+{% block dashboard_label %}{{ translations.dashboard }}{% endblock %}
+{% block nav_buttons %}
+<img src="{{ user.profile.avatar.url }}" alt="Avatar" style="margin-left: 16px;">
+<div class="buttons">
+    <a href="{% url 'users:profile' %}" role="button" class="contrast">{{ translations.profile }}</a>
+    <a href="{% url 'users:logout' %}?lang={{ request.session.language }}" role="button" class="secondary">{{ translations.logout }}</a>
+</div>
+{% endblock %}
+
+{% block content %}
+<script>
+    function confirmDelete(form) {
+        if (confirm('{{ translations.confirm_delete_note }}')) {
+            form.submit();
+        }
+    }
+
+    function resetFormAndRedirect() {
+        document.querySelector('form').reset();
+        window.location.href = '{% url "notesapp:note_list" %}';
+    }
+
+    function filterByTag(tagName) {
+        const baseUrl = '{% url "notesapp:note_list" %}';
+        const url = new URL(baseUrl, window.location.origin);
+        url.searchParams.set('tag', tagName);
+        window.location.href = url.toString();
+    }
+</script>
+
+<style>
+    .note-button {
+        width: 200px;
+    }
+</style>
+
+<div class="content-container" style="display: flex; max-width: 1200px; margin: auto;">
+    <main style="flex: 3; padding-right: 20px;">
+        <h2>{{ translations.my_notes }}</h2>
+        {% if selected_tag_name and selected_tag_name != 'All' %}
+            <p>{{ translations.showing_notes_for_tag }}: <strong>{{ selected_tag_name }}</strong></p>
+        {% endif %}
+        {% if query %}
+            <p>{{ translations.showing_search_results_for }}: <strong>{{ query }}</strong></p>
+        {% endif %}
+        {% if notes %}
+        <ul>
+            {% for note in notes %}
+            <li>
+                <a href="{% url 'notesapp:note_details' note.id %}" role="button" class="outline note-button">{{ note.title }}</a>
+                <a href="{% url 'notesapp:edit_note' note.id %}" role="button" style="background-color: orange; border: none;">{{ translations.edit_note }}</a>
+                <form action="{% url 'notesapp:delete_note' note.id %}" method="post" style="display:inline;">
+                    {% csrf_token %}
+                    <button type="button" style="background-color: rgb(238, 60, 48); border: none;" onclick="confirmDelete(this.form)">{{ translations.delete_note }}</button>
+                </form>
+            </li>
+            {% endfor %}
+        </ul>
+        {% else %}
+            {% if query %}
+                <p>{{ translations.no_notes_found_for }} "<strong>{{ query }}</strong>". {{ translations.create_new_note_question }}</p>
+            {% elif selected_tag_name and selected_tag_name != 'All' %}
+                <p>{{ translations.no_notes_for_tag }} <strong>{{ selected_tag_name }}</strong>. {{ translations.add_new_note }}</p>
+            {% else %}
+                <p>{{ translations.no_notes_yet }} {{ translations.add_new_note_to_start }}</p>
+            {% endif %}
+        {% endif %}
+        <footer style="text-align: center; margin-top: 20px;">
+            <div class="pagination">
+                {% if notes.has_previous %}
+                    <a href="?page=1{% if query %}&query={{ query }}{% endif %}{% if selected_tag_name %}&tag={{ selected_tag_name }}{% endif %}" role="button">{{ translations.first }}</a>
+                    <a href="?page={{ notes.previous_page_number }}{% if query %}&query={{ query }}{% endif %}{% if selected_tag_name %}&tag={{ selected_tag_name }}{% endif %}" role="button">{{ translations.previous }}</a>
+                {% endif %}
+                <span style="padding-left: 15px; padding-right: 15px">{{ translations.page }} {{ notes.number }} {{ translations.of }} {{ notes.paginator.num_pages }}</span>
+                {% if notes.has_next %}
+                    <a href="?page={{ notes.next_page_number }}{% if query %}&query={{ query }}{% endif %}{% if selected_tag_name %}&tag={{ selected_tag_name }}{% endif %}" role="button">{{ translations.next }}</a>
+                    <a href="?page={{ notes.paginator.num_pages }}{% if query %}&query={{ query }}{% endif %}{% if selected_tag_name %}&tag={{ selected_tag_name }}{% endif %}" role="button">{{ translations.last }}</a>
+                {% endif %}
+            </div>
+        </footer>
+    </main>
+    <aside style="flex: 1; min-width: 200px; max-width: 300px;">
+        <ul style="margin-left: -30px;">
+            <li><a href="{% url 'notesapp:add_note' %}" role="button" class="contrast" style="width: 240px;">{{ translations.add_note }}</a></li>
+        </ul>
+        
+        <div style="margin-top: 40px;">
+
+        </div>
+        <h4>{{ translations.search }}</h4>
+        <form method="get" action="{% url 'notesapp:note_list' %}" style="margin-bottom: 20px;">
+            {{ search_form.as_p }}
+            <div class="grid">
+                <button type="submit">{{ translations.search }}</button>
+                <button type="button" onclick="resetFormAndRedirect()" class="secondary">{{ translations.reset }}</button>
+            </div>
+        </form>
+
+        <h4>{{ translations.tags }}</h4>
+        <ul style="margin-left: -30px;">
+            <li><a href="{% url 'notesapp:tag_list' %}" role="button" class="contrast" style="width: 240px; background-color: rgb(8, 194, 153); border: none;">{{ translations.tag_manager }}</a></li>
+            <li><a href="#" onclick="filterByTag('All')">{{ translations.all }}</a></li>
+            {% for tag in tags %}
+            <li><a href="#" onclick="filterByTag('{{ tag.name }}')">{{ tag.name }}</a></li>
+            {% endfor %}
+        </ul>
+    </aside>
+</div>
+{% endblock %}
