@@ -5,7 +5,7 @@ from django.utils.timezone import now
 # Create your models here.
 class Tag(models.Model):
     name = models.CharField(max_length=50, verbose_name='Name', default="Sample tag")
-    creator = models.ForeignKey(User, on_delete=models.CASCADE, default=1)
+    creator = models.ForeignKey(User, on_delete=models.CASCADE, default=1, related_name='cm_tag_set')
 
     def __str__(self):
         return self.name
