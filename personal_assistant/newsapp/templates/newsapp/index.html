@@ -103,6 +103,7 @@
             <div class="buttons">
                 {% if user.is_authenticated %}
                 <a href="{% url 'notesapp:note_list' %}" role="button">{{ translations.my_notes }}</a>
+                <a href="{% url 'contactsapp:index' %}" role="button">{{ translations.my_contacts }}</a>
                 {% endif %}
             </div>
         </div>
