@@ -94,6 +94,8 @@
         }
         .submit-button {
             width: 50;
+            background-color: rgb(5, 150, 41); 
+            border: none;
         }
     </style>
 </head>
@@ -197,7 +199,7 @@
                 {% endif %}
                 <label for="city">{{ translations.enter_city }}</label>
                 <input type="text" id="city" name="city" placeholder="{{ translations.enter_city }}" value="{{ selected_city }}" required>
-                <button type="submit">{{ translations.update_weather }}</button>
+                <button type="submit" style="background-color: rgb(5, 150, 41); border: none;">{{ translations.update_weather }}</button>
             </form>
 
             <div>
