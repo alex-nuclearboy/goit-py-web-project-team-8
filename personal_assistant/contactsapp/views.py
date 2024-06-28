@@ -103,6 +103,7 @@ def my_contacts(request):
     return HttpResponse(template.render(context=context, request=request))
 
 def contact_details(request, contact_id):
+    localization = text_array[get_language(request)]
     contact = Contact.objects.get(pk=contact_id)
     template = loader.get_template("contactsapp/contact.html")
     creator = None
@@ -112,6 +113,17 @@ def contact_details(request, contact_id):
         creator = False
     context = {
         "contact":contact,
+        "text":{
+            'tags':localization['tags'],
+            'not_found':localization['contact_not_found'],
+            'name':localization['contact_name'],
+            'phone':localization['contact_phone'],
+            'mail':localization['contact_mail'],
+            'address':localization['contact_address'],
+            'creation':localization['contact_creation'],
+            'edit':localization['contact_edit'],
+            'delete':localization['contact_delete']
+        },
         "creator":creator,
         "title":contact.name
         }
