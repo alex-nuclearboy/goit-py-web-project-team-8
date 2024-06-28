@@ -94,6 +94,7 @@ def my_contacts(request):
             'list':localization['list'],
             'tags':localization['tags'],
             'add':localization['add'],
+            'add_cont':localization['add_cont'],
             'edit':localization['edit'],
             'delete':localization['delete']
         },
@@ -117,10 +118,18 @@ def contact_details(request, contact_id):
     return HttpResponse(template.render(context=context, request=request))
 
 def tags(request):
+    localization = text_array[get_language(request)]
     tags = Tag.objects.order_by("-name")
     template = loader.get_template("contactsapp/tags.html")
     context = {
         "tags":tags,
+        "text":{
+            'tag':localization['tag'],
+            'list_empty':localization['tag_list_empty'],
+            'list':localization['tag_list'],
+            'tags':localization['tags'],
+            'add_tag':localization['add_tag']
+        },
         "title":"All tags"
         }
     return HttpResponse(template.render(context=context, request=request))
