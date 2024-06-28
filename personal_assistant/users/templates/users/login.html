@@ -42,9 +42,9 @@
         </div>
 
         <div class="grid">
-            <button type="submit">{{ translations.submit }}</button>
-            <button type="reset" class="secondary">{{ translations.reset }}</button>
-            <button type="button" class="contrast" onclick="window.location.href='{% url 'users:password_reset' %}'">{{ translations.forgot_password }}</button>
+            <button type="submit" style="background-color: #0a9396; border: none;">{{ translations.submit }}</button>
+            <button type="reset" style="background-color: #ae2012; border: none;">{{ translations.reset }}</button>
+            <button type="button" style="background-color: #ee9b00; border: none;" onclick="window.location.href='{% url 'users:password_reset' %}'">{{ translations.forgot_password }}</button>
         </div>
     </form>
 </div>

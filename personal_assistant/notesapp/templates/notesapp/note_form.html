@@ -17,13 +17,16 @@
             {% csrf_token %}
             {{ form.as_p }}
             <input type="hidden" name="language" value="{{ request.session.language }}">
-            <button type="submit">{{ translations.save }}</button>
+            <div class="grid">
+                <button type="submit" style="background-color: #0a9396; border: none;">{{ translations.save }}</button>
+                <button type="reset" style="background-color: #ae2012; border: none;">{{ translations.reset }}</button>
+            </div>
         </form>
     </main>
     <aside style="flex: 1; min-width: 200px; max-width: 300px;">
         <ul style="margin-left: -30px;">
-            <li><a href="{% url 'notesapp:note_list' %}" role="button" class="contrast" style="width: 240px;">{{ translations.back_to_list }}</a></li>
-            <li><a href="{% url 'notesapp:tag_list' %}" role="button" class="contrast" style="width: 240px; background-color: rgb(8, 194, 153); border: none;">{{ translations.tag_manager }}</a></li>
+            <li><a href="{% url 'notesapp:note_list' %}" role="button" class="contrast" style="width: 240px; background-color: #94d2bd; border: none;">{{ translations.back_to_list }}</a></li>
+            <li><a href="{% url 'notesapp:tag_list' %}" role="button" class="contrast" style="width: 240px; background-color: #005f73; border: none;">{{ translations.tag_manager }}</a></li>
         </ul>
     </aside>
 </div>

@@ -1,7 +1,7 @@
 {% extends "newsapp/base.html" %}
 
 {% block dashboard_label %}{{ translations.dashboard }}{% endblock %}
-{% block nav_left_buttons %}<a href="{% url 'contactsapp:index' %}" role="button">{{ translations.my_contacts }}</a>{% endblock %}
+{% block nav_left_buttons %}<a href="{% url 'contactsapp:index' %}" role="button" style="background-color: #0a9396; border: none">{{ translations.my_contacts }}</a>{% endblock %}
 {% block nav_right_buttons %}
 <img src="{{ user.profile.avatar.url }}" alt="Avatar" style="margin-left: 16px;">
 <div class="buttons">

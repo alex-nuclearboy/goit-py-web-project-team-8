@@ -37,10 +37,10 @@
             {% for note in notes %}
             <li>
                 <a href="{% url 'notesapp:note_details' note.id %}" role="button" class="outline" style="width: 200px;">{{ note.title }}</a>
-                <a href="{% url 'notesapp:edit_note' note.id %}" role="button" style="background-color: orange; border: none;">{{ translations.edit_note }}</a>
+                <a href="{% url 'notesapp:edit_note' note.id %}" role="button" style="background-color: #ee9b00; border: none;">{{ translations.edit_note }}</a>
                 <form action="{% url 'notesapp:delete_note' note.id %}" method="post" style="display:inline;">
                     {% csrf_token %}
-                    <button type="button" style="background-color: rgb(238, 60, 48); border: none;" onclick="confirmDelete(this.form)">{{ translations.delete_note }}</button>
+                    <button type="button" style="background-color: #ae2012; border: none;" onclick="confirmDelete(this.form)">{{ translations.delete_note }}</button>
                 </form>
             </li>
             {% endfor %}
@@ -66,17 +66,16 @@
                     padding: 8px 12px;
                     margin: 2px;
                     text-decoration: none;
-                    background-color: #4CAF50;
+                    background-color: #0a9396;
                     color: white;
-                    border: 1px solid #4CAF50;
+                    border: none;
                     border-radius: 4px;
                     font-size: 19px;
                     width: 140px;
                     text-align: center;
                 }
                 .pagination a:hover {
-                    background-color: #45a049;
-                    border-color: #45a049;
+                    background-color: #005f73;
                 }
             </style>
 
@@ -96,22 +95,22 @@
     <aside style="flex: 1; min-width: 200px; max-width: 300px;">
         <ul style="padding-left: 0; list-style-type: none;">
             <li style="margin-bottom: 20px;">
-                <a href="{% url 'notesapp:add_note' %}" role="button" class="contrast" style="width: 240px; background-color: rgb(112, 8, 153); border: none;">{{ translations.add_note }}</a>
+                <a href="{% url 'notesapp:add_note' %}" role="button" class="contrast" style="width: 240px; color: #fff; background-color: #94d2bd; border: none;">{{ translations.add_note }}</a>
             </li>
         </ul>
         <h4>{{ translations.search }}</h4>
         <form method="get" action="{% url 'notesapp:note_list' %}" style="margin-bottom: 20px;">
             {{ search_form.as_p }}
             <div style="display: flex; gap: 10px;">
-                <button type="submit" style="flex: 1;">{{ translations.search }}</button>
-                <button type="button" onclick="resetFormAndRedirect()" class="secondary" style="flex: 1;">{{ translations.reset }}</button>
+                <button type="submit" style="flex: 1; background-color: #0a9396; border: none;">{{ translations.search }}</button>
+                <button type="button" onclick="resetFormAndRedirect()" style="flex: 1; background-color: #ae2012; border: none;">{{ translations.reset }}</button>
             </div>
         </form>
 
         <h4>{{ translations.tags }}</h4>
         <ul style="padding-left: 0; list-style-type: none;">
             <li style="margin-bottom: 10px;">
-                <a href="{% url 'notesapp:tag_list' %}" role="button" class="contrast" style="width: 240px; background-color: rgb(8, 194, 153); border: none;">{{ translations.tag_manager }}</a>
+                <a href="{% url 'notesapp:tag_list' %}" role="button" class="contrast" style="width: 240px; color: #fff; background-color: #005f73; border: none;">{{ translations.tag_manager }}</a>
             </li>
             <li>
                 <a href="#" onclick="filterByTag('All')">{{ translations.all }}</a>

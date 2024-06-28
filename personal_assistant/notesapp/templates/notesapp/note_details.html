@@ -22,15 +22,15 @@
         </p>
         <p><strong>{{ translations.created_at }}:</strong> {{ note.created_at }}</p>
         <p><strong>{{ translations.updated_at }}:</strong> {{ note.updated_at }}</p>
-        <a href="{% url 'notesapp:edit_note' note.id %}" role="button" style="background-color: orange; border: none;">{{ translations.edit_note }}</a>
+        <a href="{% url 'notesapp:edit_note' note.id %}" role="button" style="background-color: #ee9b00; border: none;">{{ translations.edit_note }}</a>
         <form action="{% url 'notesapp:delete_note' note.id %}" method="post" style="display:inline;">
             {% csrf_token %}
-            <button type="button" style="background-color: rgb(238, 60, 48); border: none;" onclick="confirmDelete(this.form)">{{ translations.delete_note }}</button>
+            <button type="button" style="background-color: #ae2012; border: none;" onclick="confirmDelete(this.form)">{{ translations.delete_note }}</button>
         </form>
     </main>
     <aside style="flex: 1; min-width: 200px; max-width: 300px;">
         <ul style="margin-left: -30px;">
-            <li><a href="{% url 'notesapp:note_list' %}" role="button" class="contrast" style="width: 240px;">{{ translations.back_to_notes }}</a></li>
+            <li><a href="{% url 'notesapp:note_list' %}" role="button" class="contrast" style="width: 240px; background-color: #94d2bd; border: none;">{{ translations.back_to_notes }}</a></li>
         </ul>
     </aside>
 </div>

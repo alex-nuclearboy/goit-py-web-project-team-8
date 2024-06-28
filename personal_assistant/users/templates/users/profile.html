@@ -4,8 +4,8 @@
 
 {% block dashboard_label %}{{ translations.dashboard }}{% endblock %}
 {% block nav_left_buttons %}
-    <a href="{% url 'notesapp:note_list' %}" role="button">{{ translations.my_notes }}
-    <a href="{% url 'contactsapp:index' %}" role="button">{{ translations.my_contacts }}</a>
+    <a href="{% url 'notesapp:note_list' %}" role="button" style="background-color: #94d2bd; border: none;">{{ translations.my_notes }}
+    <a href="{% url 'contactsapp:index' %}" role="button" style="background-color: #0a9396; border: none;">{{ translations.my_contacts }}</a>
 {% endblock %}
 
 {% block nav_right_buttons %}
@@ -53,8 +53,8 @@
             </div>
         </div>
         <div class="grid">
-            <button type="submit">{{ translations.save_changes }}</button>
-            <button type="reset" class="secondary">{{ translations.reset }}</button>
+            <button type="submit" style="background-color: #0a9396; border: none;">{{ translations.save_changes }}</button>
+            <button type="reset" style="background-color: #ae2012; border: none;">{{ translations.reset }}</button>
         </div>
     </form>
 </div>
