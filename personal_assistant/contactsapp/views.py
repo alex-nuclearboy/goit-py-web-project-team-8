@@ -90,8 +90,8 @@ def my_contacts(request):
         "contacts": your_contacts,
         "text":{
             "contact":localization['contact'],
-            'list_empty':localization['list_empty'],
-            'list':localization['list'],
+            'list_empty':localization['contact_list_empty'],
+            'list':localization['contact_list'],
             'tags':localization['tags'],
             'add':localization['add'],
             'add_cont':localization['add_cont'],
@@ -135,6 +135,7 @@ def tags(request):
     return HttpResponse(template.render(context=context, request=request))
 
 def tag_details(request, tag_id):
+    localization = text_array[get_language(request)]
     tag = Tag.objects.get(pk=tag_id)
     contacts = Contact.objects.filter(tags=tag)
     template = loader.get_template("contactsapp/tag.html")
@@ -145,6 +146,12 @@ def tag_details(request, tag_id):
         creator = False
     context = {
         "tag":tag,
+        "text":{
+            "tagged_contacts":localization['tagged_contacts'],
+            "tags":localization['tags'],
+            'edit':localization['tag_edit'],
+            'delete':localization['tag_delete']
+        },
         "contacts":contacts,
         "creator":creator,
         "title":tag.name
@@ -160,8 +167,8 @@ def index(request):
     context = {
         "text":{
             "contact":localization['contact'],
-            'latest_empty':localization['latest_empty'],
-            'latest':localization['latest'],
+            'latest_empty':localization['contact_latest_empty'],
+            'latest':localization['contact_latest'],
             'tags':localization['tags']
         },
         "latest_contacts": latest_contacts,

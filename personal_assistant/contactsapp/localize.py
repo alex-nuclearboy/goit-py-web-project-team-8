@@ -6,6 +6,7 @@ text_array = {
                         'contact_list_empty':'No contacts have been added yet.',
                         'tag_list':'Here is the list of all your tags:',
                         'tag_list_empty':'No tags have been added yet.',
+                        'tagged_contacts':'All contacts, associated with a tag',
                         'contact':'Contact',
                         'tag':'Tag',
                         'tags':'Tags',
@@ -14,6 +15,8 @@ text_array = {
                         'add_tag':'Add a new tag',
                         'edit':'Edit',
                         'delete':'Delete',
+                        'tag_edit':'Edit Tag',
+                        'tag_delete':'Delete Tag',
                     },
                 'ua':{
                         'latest':'',
