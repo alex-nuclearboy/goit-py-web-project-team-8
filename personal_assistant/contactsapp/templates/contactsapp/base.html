@@ -1,6 +1,6 @@
 {% extends "newsapp/base.html" %}
 
-{% block nav_buttons %}
+{% block nav_right_buttons %}
     <li class="nav-item">
         <a role="button" aria-current="page" href="{% url 'contactsapp:index' %}">Latest Contacts</a>
     </li>
@@ -29,4 +29,4 @@
         </li>
     {% endif %}
 
-{% endblock nav_buttons %}
+{% endblock nav_right_buttons %}
