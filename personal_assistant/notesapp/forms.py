@@ -30,7 +30,7 @@ class NoteForm(forms.ModelForm):
     title = forms.CharField(min_length=5, max_length=255, required=True, widget=forms.TextInput())
     content = forms.CharField(min_length=5, max_length=255, required=False, widget=forms.Textarea(attrs={'rows': 4}))
     tags = forms.ModelMultipleChoiceField(
-        queryset=Tag.objects.all(),
+        queryset=Tag.objects.none(),  # Initially empty request
         widget=forms.CheckboxSelectMultiple,
         required=False
     )
@@ -44,6 +44,7 @@ class NoteForm(forms.ModelForm):
         self.language = kwargs.pop('language', 'en')
         super().__init__(*args, **kwargs)
         self.trans = translations.get(self.language, translations['en'])
+        self.fields['tags'].queryset = Tag.objects.filter(user=self.user)
         self.fields['title'].widget.attrs.update({'placeholder': self.trans['enter_note_title']})
         self.fields['title'].label = self.trans['title']
         self.fields['content'].widget.attrs.update({'placeholder': self.trans['enter_note_content']})
