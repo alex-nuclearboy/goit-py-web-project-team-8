@@ -19,6 +19,7 @@ def note_list(request):
         query = search_form.cleaned_data.get('query')
 
     notes = Note.objects.filter(user=request.user)  # Ensure we only get notes for the logged-in user
+    notes = notes.order_by('created_at')
 
     selected_tag_name = 'All'
 
@@ -60,6 +61,7 @@ def note_details(request, id):
 def tag_list(request):
     language = get_language(request)
     tags = Tag.objects.filter(user=request.user)
+    tags = tags.order_by('id')
 
     # Setting up pagination
     paginator = Paginator(tags, 10)
