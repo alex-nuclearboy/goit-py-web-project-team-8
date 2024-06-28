@@ -7,10 +7,8 @@
 
 
     {% if tags %}
+    <h2>{{ text.list }}</h2>
     <ul>
-        {% if user.is_authenticated %}
-            <a role="button" type="submit" style="transform: scale(0.95); width:30%;" href="{% url 'contactsapp:add_tag' %}">ADD</a>
-        {% endif %}
         {% for tag in tags %}
             <li>
                 <div>
@@ -28,10 +26,10 @@
         {% endfor %}
     </ul>
     {% else %}
-        <h2>No tags have been added yet. Yours can be the first! </h2>
-        {% if user.is_authenticated %}
-            <a role="button" type="submit" style="transform: scale(0.95); width:30%;" href="{% url 'contactsapp:add_tag' %}">ADD</a>
-        {% endif %}
+        <h2>{{ text.list_empty }}</h2>
+    {% endif %}
+    {% if user.is_authenticated %}
+        <a role="button" type="submit" style="transform: scale(0.95); width:33%; margin: 0 33% 0 33%;" href="{% url 'contactsapp:add_tag' %}">{{ text.add_tag }}</a>
     {% endif %}
   
 {% endblock content %}

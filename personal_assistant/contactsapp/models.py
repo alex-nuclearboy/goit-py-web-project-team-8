@@ -41,7 +41,7 @@ class Contact(models.Model):
     email = models.CharField(max_length=30, verbose_name='Email', default="-")
     address = models.CharField(max_length=50, verbose_name='Address', default="-")
     birth_day = models.CharField(max_length=2, verbose_name='Birth day', default="-", choices=days_table)
-    birth_month = models.CharField(max_length=15, verbose_name='Birth month', default="-", choices=months_table)
+    birth_month = models.CharField(max_length=20, verbose_name='Birth month', default="-", choices=months_table)
     birth_year = models.CharField(max_length=4, verbose_name='Birth year', default="-", choices=years_table)
     tags = models.ManyToManyField(Tag)
     creation_date = models.DateTimeField(default=now, verbose_name='Creation date')
