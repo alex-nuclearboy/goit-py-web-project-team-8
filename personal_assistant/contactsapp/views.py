@@ -3,10 +3,10 @@ from django.template import loader
 from django.shortcuts import redirect, render
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
+from .localize import text_array
 
 from django.contrib.auth.models import User
 from .models import Contact, Tag
-from .forms import ContactForm, CustomUserCreationForm
 
 #from .transfer import prepare_data_for_db
 
@@ -67,13 +67,36 @@ class TagDeleteView(DeleteView):
     template_name_suffix = "_delete_form"
     success_url = reverse_lazy("contactsapp:index")
     
+def get_language(request):
+    """
+    Get the language from the request or session.
+    - Retrieves the language from the GET parameters or session.
+    - Defaults to English if no language is found.
+    - Stores the language in the session.
+    """
+    language = request.GET.get('lang')
+    if not language:
+        language = request.session.get('language', 'en')
+    request.session['language'] = language
+    return language
+
 # Create your views here.
 def my_contacts(request):
+    localization = text_array[get_language(request)]
     curr_user = request.user.id
     your_contacts = Contact.objects.filter(creator=curr_user).order_by("-creation_date")
     template = loader.get_template("contactsapp/contacts.html")
     context = {
         "contacts": your_contacts,
+        "text":{
+            "contact":localization['contact'],
+            'list_empty':localization['list_empty'],
+            'list':localization['list'],
+            'tags':localization['tags'],
+            'add':localization['add'],
+            'edit':localization['edit'],
+            'delete':localization['delete']
+        },
         "title":"Your contacts"
     }
     return HttpResponse(template.render(context=context, request=request))
@@ -120,28 +143,20 @@ def tag_details(request, tag_id):
     return HttpResponse(template.render(context=context, request=request))
 
 def index(request):
+    localization = text_array[get_language(request)]
     curr_user = request.user.id
     contacts = Contact.objects.filter(creator=curr_user).order_by("-creation_date")
     latest_contacts = contacts[:10]
     template = loader.get_template("contactsapp/index.html")
     context = {
+        "text":{
+            "contact":localization['contact'],
+            'latest_empty':localization['latest_empty'],
+            'latest':localization['latest'],
+            'tags':localization['tags']
+        },
         "latest_contacts": latest_contacts,
         "contacts": contacts,
         "title":"Home page"
     }
     return HttpResponse(template.render(context=context, request=request))
-
-
-def register(request):  
-    if request.method == 'POST':  
-        form = CustomUserCreationForm(request.POST)  
-        if form.is_valid():
-            form.save()  
-            return redirect(to="contactsapp:index")
-    else:  
-        form = CustomUserCreationForm()  
-    context = {  
-        'form':form,
-        "title":"Home page"
-    }  
-    return render(request, 'registration/register.html', context) 
