@@ -8,7 +8,7 @@
     <a href="{% url 'contactsapp:index' %}" role="button">{{ translations.my_contacts }}</a>
 {% endblock %}
 
-{% block nav_buttons %}
+{% block nav_right_buttons %}
 <img src="{{ user.profile.avatar.url }}" alt="Avatar" style="margin-left: 16px;">
 <div class="buttons">
     <a href="{% url 'users:logout' %}?lang={{ request.session.language }}" role="button" class="secondary">{{ translations.logout }}</a>
