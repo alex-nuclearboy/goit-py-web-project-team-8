@@ -1,15 +1,6 @@
-{% extends "newsapp/base.html" %}
+{% extends "notesapp/base.html" %}
 
 {% block title %}{{ translations.note_organiser }}{% endblock %}
-{% block dashboard_label %}{{ translations.dashboard }}{% endblock %}
-{% block nav_left_buttons %}<a href="{% url 'contactsapp:index' %}" role="button">{{ translations.my_contacts }}</a>{% endblock %}
-{% block nav_buttons %}
-<img src="{{ user.profile.avatar.url }}" alt="Avatar" style="margin-left: 16px;">
-<div class="buttons">
-    <a href="{% url 'users:profile' %}" role="button" class="contrast">{{ translations.profile }}</a>
-    <a href="{% url 'users:logout' %}?lang={{ request.session.language }}" role="button" class="secondary">{{ translations.logout }}</a>
-</div>
-{% endblock %}
 
 {% block content %}
 <script>
@@ -32,12 +23,6 @@
     }
 </script>
 
-<style>
-    .note-button {
-        width: 200px;
-    }
-</style>
-
 <div class="content-container" style="display: flex; max-width: 1200px; margin: auto;">
     <main style="flex: 3; padding-right: 20px;">
         <h2>{{ translations.my_notes }}</h2>
@@ -51,7 +36,7 @@
         <ul>
             {% for note in notes %}
             <li>
-                <a href="{% url 'notesapp:note_details' note.id %}" role="button" class="outline note-button">{{ note.title }}</a>
+                <a href="{% url 'notesapp:note_details' note.id %}" role="button" class="outline" style="width: 200px;">{{ note.title }}</a>
                 <a href="{% url 'notesapp:edit_note' note.id %}" role="button" style="background-color: orange; border: none;">{{ translations.edit_note }}</a>
                 <form action="{% url 'notesapp:delete_note' note.id %}" method="post" style="display:inline;">
                     {% csrf_token %}
@@ -109,7 +94,7 @@
                 <a href="{% url 'notesapp:add_note' %}" role="button" class="contrast" style="width: 240px; background-color: rgb(112, 8, 153); border: none;">{{ translations.add_note }}</a>
             </li>
         </ul>
-        
+
         <div style="margin-top: 40px;">
 
         </div>
