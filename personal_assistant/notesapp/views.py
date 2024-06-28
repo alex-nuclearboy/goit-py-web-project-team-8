@@ -24,10 +24,11 @@ def note_list(request):
 
     if query:
         notes = Note.objects.filter(
-            Q(title__icontains=query) | Q(content__icontains=query)
+            Q(user=request.user) &
+            (Q(title__icontains=query) | Q(content__icontains=query))
         ).distinct()
     elif tag_query and tag_query != 'All':
-        notes = Note.objects.filter(tags__name__icontains=tag_query).distinct()
+        notes = Note.objects.filter(tags__name__icontains=tag_query, user=request.user).distinct()
         selected_tag_name = tag_query
 
     # Setting up pagination
