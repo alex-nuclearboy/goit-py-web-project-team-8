@@ -47,13 +47,18 @@
         </ul>
         {% else %}
             {% if query %}
-                <p>{{ translations.no_notes_found_for }} "<strong>{{ query }}</strong>". {{ translations.create_new_note_question }}</p>
+                <p>{{ translations.no_notes_found_for }} "<strong>{{ query }}</strong>". {{ translations.create_new_note_question }}
+                <a href="{% url 'notesapp:add_note' %}">{{ translations.create_new_note }}</a>?</p>
             {% elif selected_tag_name and selected_tag_name != 'All' %}
-                <p>{{ translations.no_notes_for_tag }} <strong>{{ selected_tag_name }}</strong>. {{ translations.add_new_note }}</p>
+                <p>{{ translations.no_notes_for_tag }} <strong>{{ selected_tag_name }}</strong>. {{ translations.you_can }}
+                <a href="{% url 'notesapp:add_note' %}">{{ translations.add_new_note }}</a>.</p>
             {% else %}
-                <p>{{ translations.no_notes_yet }} {{ translations.add_new_note_to_start }}</p>
+                <p>{{ translations.no_notes_yet }} {{ translations.you_can }}
+                <a href="{% url 'notesapp:add_note' %}">{{ translations.add_new_note }}</a>
+                {{ translations.to_start }}</p>
             {% endif %}
         {% endif %}
+
         <footer style="text-align: center; margin-top: 20px;">
             <style>
                 .pagination a {
