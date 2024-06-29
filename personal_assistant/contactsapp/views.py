@@ -10,6 +10,7 @@ from .localize import text_array
 from django.contrib.auth.models import User
 from .models import Contact, Group
 from .forms import ContactForm, GroupForm
+from .context_processors import get_language
 
 
 @method_decorator(login_required, name='dispatch')
@@ -71,7 +72,6 @@ class GroupCreateView(CreateView):
 
     def get_form_kwargs(self):
         kwargs = super().get_form_kwargs()
-        kwargs['user'] = self.request.user
         kwargs['language'] = get_language(self.request)
         return kwargs
 
@@ -109,20 +109,6 @@ class GroupDeleteView(DeleteView):
         return Group.objects.filter(creator=self.request.user)
 
 
-def get_language(request):
-    """
-    Get the language from the request or session.
-    - Retrieves the language from the GET parameters or session.
-    - Defaults to English if no language is found.
-    - Stores the language in the session.
-    """
-    language = request.GET.get('lang')
-    if not language:
-        language = request.session.get('language', 'en')
-    request.session['language'] = language
-    return language
-
-
 def my_contacts(request):
     localization = text_array[get_language(request)]
     curr_user = request.user.id
@@ -140,7 +126,8 @@ def my_contacts(request):
             'edit': localization['edit'],
             'delete': localization['delete']
         },
-        "title": "Your contacts"
+        "title": "Your contacts",
+        "translations": localization,
     }
     return HttpResponse(template.render(context=context, request=request))
 
@@ -169,25 +156,27 @@ def contact_details(request, contact_id):
             'delete': localization['contact_delete']
         },
         "creator": creator,
-        "title": contact.name
+        "title": contact.name,
+        "translations": localization,
         }
     return HttpResponse(template.render(context=context, request=request))
 
 
-def group(request):
+def groups(request):
     localization = text_array[get_language(request)]
-    groups = Group.objects.order_by("-name")
-    template = loader.get_template("contactsapp/tags.html")
+    groups = Group.objects.order_by("-id")
+    template = loader.get_template("contactsapp/groups.html")
     context = {
         "groups": groups,
         "text": {
             'group': localization['group'],
-            'list_empty': localization['tag_list_empty'],
-            'list': localization['tag_list'],
+            'list_empty': localization['group_list_empty'],
+            'list': localization['group_list'],
             'groups': localization['groups'],
             'add_group': localization['add_group']
         },
-        "title": "All groups"
+        "title": "All groups",
+        "translations": localization,
         }
     return HttpResponse(template.render(context=context, request=request))
 
@@ -212,7 +201,8 @@ def group_details(request, group_id):
         },
         "contacts": contacts,
         "creator": creator,
-        "title": group.name
+        "title": group.name,
+        "translations": localization,
         }
     return HttpResponse(template.render(context=context, request=request))
 
@@ -230,8 +220,10 @@ def index(request):
             'latest': localization['contact_latest'],
             'groups': localization['groups']
         },
+        "translations": localization,
         "latest_contacts": latest_contacts,
         "contacts": contacts,
-        "title": "Home page"
+        "title": "Home page",
     }
     return HttpResponse(template.render(context=context, request=request))
+
