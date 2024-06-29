@@ -1,50 +1,42 @@
 from django.db import models
 from django.contrib.auth.models import User
-from django.utils.timezone import now
+from django.utils.translation import gettext_lazy as _
 
-# Create your models here.
-class Tag(models.Model):
-    name = models.CharField(max_length=50, verbose_name='Name', default="Sample tag")
-    creator = models.ForeignKey(User, on_delete=models.CASCADE, default=1, related_name='cm_tag_set')
+class Group(models.Model):
+    name_en = models.CharField(max_length=100, verbose_name=_('Group Name (English)'))
+    name_uk = models.CharField(max_length=100, verbose_name=_('Group Name (Ukrainian)'))
+    creator = models.ForeignKey(User, on_delete=models.CASCADE)
+
+    class Meta:
+        constraints = [models.UniqueConstraint(fields=['creator', 'name_en'], name='group_of_creator_en'),
+                       models.UniqueConstraint(fields=['creator', 'name_uk'], name='group_of_creator_uk')]
+        verbose_name = 'Group'
+        verbose_name_plural = 'Groups'
 
     def __str__(self):
-        return self.name
+        return self.name_en
+
+    def get_name(self, language):
+        if language == 'uk':
+            return self.name_uk
+        return self.name_en
+
 
 class Contact(models.Model):
-    days_table = {}
-    months_table = {
-        "January":"January",
-        "February":"February",
-        "March":"March",
-        "April":"April",
-        "May":"May",
-        "June":"June",
-        "July":"July",
-        "August":"August",
-        "September":"September",
-        "October":"October",
-        "November":"November",
-        "December":"December",
-                    }
-    years_table = {}
-    for i in range(1,32):
-        if i > 9:
-            days_table[str(i)] = i
-        else:
-            days_table["0" + str(i)] = "0" + str(i)
-    for i in range(1,2025):
-        years_table[str(i)] = i
+    creator = models.ForeignKey(User, on_delete=models.CASCADE)
+    name = models.CharField(max_length=20, verbose_name='Name', null=False)
+    phone = models.CharField(max_length=12, verbose_name='Phone', blank=True)
+    email = models.EmailField(max_length=30, verbose_name='Email', blank=True)
+    address = models.CharField(max_length=100, verbose_name='Address', blank=True)
+    birthday = models.DateField(default=None, verbose_name='Birthday', null=True, blank=True)
+    group = models.ForeignKey(Group, on_delete=models.SET_NULL, verbose_name='Group', null=True, blank=True)
+    creation_time = models.DateTimeField(auto_now_add=True, verbose_name='Creation time')
+    update_time = models.DateTimeField(auto_now=True, verbose_name='Update time')
 
-    creator = models.ForeignKey(User, on_delete=models.CASCADE, default=1)
-    name = models.CharField(max_length=20, verbose_name='Name', default="Unnamed contact")
-    phone = models.CharField(max_length=12, verbose_name='Phone', default="-")
-    email = models.CharField(max_length=30, verbose_name='Email', default="-")
-    address = models.CharField(max_length=50, verbose_name='Address', default="-")
-    birth_day = models.CharField(max_length=2, verbose_name='Birth day', default="-", choices=days_table)
-    birth_month = models.CharField(max_length=20, verbose_name='Birth month', default="-", choices=months_table)
-    birth_year = models.CharField(max_length=4, verbose_name='Birth year', default="-", choices=years_table)
-    tags = models.ManyToManyField(Tag)
-    creation_date = models.DateTimeField(default=now, verbose_name='Creation date')
+    class Meta:
+        constraints = [models.UniqueConstraint(fields=['creator', 'name'], name='contact_of_creator')]
+        verbose_name = 'Contact'
+        verbose_name_plural = 'Contacts'
 
     def __str__(self):
-        return f"{self.name} -{self.phone}."
+        return f"{self.name}: {self.phone}."
