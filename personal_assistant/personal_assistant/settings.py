@@ -79,6 +79,7 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                 'notesapp.context_processors.translations_context_processor',
+                'contactsapp.context_processors.translations_context_processor',
             ],
         },
     },

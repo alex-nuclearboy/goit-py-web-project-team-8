@@ -1,32 +1,17 @@
 {% extends "newsapp/base.html" %}
 
-{% block nav_right_buttons %}
-    <li class="nav-item">
-        <a role="button" aria-current="page" href="{% url 'contactsapp:index' %}">Latest Contacts</a>
-    </li>
-    <li class="nav-item">
-        <a role="button" aria-current="page" href="{% url 'contactsapp:tags' %}">Tags</a>
-    </li>
-    {% if user.is_authenticated %}
-        <li class="nav-item">
-            <a role="button" aria-current="page" href="{% url 'contactsapp:contacts' %}">All Contacts</a>
-        </li>
-        <li class="nav-item">
-            <a role="button" class="contrast" aria-current="page" href="{% url 'users:profile' %}">Profile</a>
-        </li>
-        <li class="nav-item">
-            <a role="button" class="secondary" aria-current="page" href="{% url 'users:logout' %}">Log Out</a>
-        </li>
-    {% else %}
-        <li class="nav-item">
-            <a role="button" aria-current="page" href="{% url 'users:login' %}">All Contacts</a>
-        </li>
-        <li class="nav-item">
-            <a role="button" aria-current="page" href="{% url 'users:signup' %}">Create account</a>
-        </li>
-        <li class="nav-item">
-            <a role="button" aria-current="page" href="{% url 'users:login' %}">Login</a>
-        </li>
-    {% endif %}
+{% block dashboard_label %}{{ translations.dashboard }}{% endblock %}
 
+{% block nav_right_buttons %}
+    <a role="button" aria-current="page" href="{% url 'contactsapp:index' %}">{{ translations.latest_contacts }}</a>
+    <a role="button" aria-current="page" href="{% url 'contactsapp:groups' %}">{{ translations.groups }}</a>
+    {% if user.is_authenticated %}
+        <a role="button" aria-current="page" href="{% url 'contactsapp:contacts' %}">{{ translations.all_contacts }}</a>
+        <a role="button" class="contrast" aria-current="page" href="{% url 'users:profile' %}">{{ translations.profile }}</a>
+        <a role="button" class="secondary" aria-current="page" href="{% url 'users:logout' %}">{{ translations.logout }}</a>
+    {% else %}
+        <a role="button" aria-current="page" href="{% url 'users:login' %}">{{ translations.all_contacts }}</a>
+        <a role="button" aria-current="page" href="{% url 'users:signup' %}">{{ translations.create_account }}</a>
+        <a role="button" aria-current="page" href="{% url 'users:login' %}">{{ translations.login }}</a>
+    {% endif %}
 {% endblock nav_right_buttons %}

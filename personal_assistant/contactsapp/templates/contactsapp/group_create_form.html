@@ -1,7 +1,7 @@
 {% extends "contactsapp/base.html" %}
 
 {% block content %}
-    <h1>{{ translations.create_contact }}</h1>
+    <h1>{{ translations.create_group }}</h1>
     <form method="POST">{% csrf_token %}
         {{ form.as_p }}
         <div class="grid">
