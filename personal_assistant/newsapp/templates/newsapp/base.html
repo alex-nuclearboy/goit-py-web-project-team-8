@@ -63,16 +63,15 @@
     <header class="header">
         <div class="left">
             <div class="buttons">
-                <a href="/home/" role="button">{% block dashboard_label %}Dashboard{% endblock %}</a>
+                <a href="/home/" role="button" style="background-color: #9b2226; border: none">{% block dashboard_label %}Dashboard{% endblock %}</a>
+                {% block nav_left_buttons %}{% endblock %}
             </div>
         </div>
         <div class="right">
             <div class="lang-buttons">
                 <a href="?lang=en" role="button" class="outline">EN</a>
                 <a href="?lang=uk" role="button" class="outline">UA</a>
-            </div>
-            <div>
-                {% block nav_buttons %}{% endblock %}
+                {% block nav_right_buttons %}{% endblock %}
             </div>
         </div>
     </header>
