@@ -1,7 +1,7 @@
 from django.contrib import admin
 
-from .models import Contact, Tag
+from .models import Contact, Group
 
 # Register your models here.
 admin.site.register(Contact)
-admin.site.register(Tag)
+admin.site.register(Group)
