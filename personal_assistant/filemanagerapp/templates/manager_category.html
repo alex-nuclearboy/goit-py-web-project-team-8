@@ -1,0 +1,24 @@
+<h1>Manage Categories</h1>
+<!-- Форма для создания/удаления категорий -->
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" name="create">Create Category</button>
+</form>
+
+<h2>Existing Categories</h2>
+<ul>
+    {% for category in categories %}
+        <li>
+            {{ category.name }} {% if not category.is_standard %}
+            <form method="post" style="display:inline;">
+                {% csrf_token %}
+                <input type="hidden" name="category_id" value="{{ category.id }}">
+                <button type="submit" name="delete">Delete</button>
+            </form>
+            {% endif %}
+        </li>
+    {% endfor %}
+</ul>
+
+<a href="{% url 'file_list' %}">Back to files</a>
