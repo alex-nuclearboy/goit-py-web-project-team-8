@@ -10,6 +10,14 @@ from .translations import translations
 
 @login_required
 def note_list(request):
+    """
+    View function for displaying a list of notes associated with the logged-in user.
+
+    Retrieves notes based on search queries and tag filters, handles pagination.
+
+    Returns:
+    HttpResponse: Rendered template with notes, tags, search form, and tag filter.
+    """
     language = get_language(request)
     query = request.GET.get('q')
     tag_query = request.GET.get('tag')
@@ -53,6 +61,14 @@ def note_list(request):
 
 @login_required
 def note_details(request, id):
+    """
+    View function for displaying details of a specific note.
+
+    Retrieves and displays the note based on the provided ID.
+
+    Args:
+    id (int): The ID of the note to display
+    """
     note = get_object_or_404(Note, pk=id, user=request.user)
     return render(request, 'notesapp/note_details.html', {"note": note})
 
