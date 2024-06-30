@@ -78,6 +78,8 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'notesapp.context_processors.translations_context_processor',
+                'contactsapp.context_processors.translations_context_processor',
             ],
         },
     },
@@ -85,6 +87,9 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'personal_assistant.wsgi.application'
 
+
+LOGIN_REDIRECT_URL = '/home/'
+LOGOUT_REDIRECT_URL = '/home/'
 
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases

@@ -2,6 +2,7 @@ translations = {
     'en': {
         'title': 'Personal Assistant App',
         'my_notes': 'My Notes',
+        'my_contacts': 'My Contacts',
         'welcome': 'Welcome',
         'profile': 'Profile',
         'logout': 'Logout',
@@ -43,7 +44,8 @@ translations = {
     },
     'uk': {
         'title': 'Особистий Асистент',
-        'my_notes': 'Мої Нотатки',
+        'my_notes': 'Мої нотатки',
+        'my_contacts': 'Мої контакти',
         'welcome': 'Ласкаво просимо',
         'profile': 'Профіль',
         'logout': 'Вийти',

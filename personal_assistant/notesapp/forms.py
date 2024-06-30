@@ -68,7 +68,7 @@ class NoteForm(forms.ModelForm):
     title = forms.CharField(min_length=5, max_length=255, required=True, widget=forms.TextInput(attrs={'autofocus': 'autofocus'}))
     content = forms.CharField(min_length=5, max_length=255, required=False, widget=forms.Textarea(attrs={'rows': 4}))
     tags = forms.ModelMultipleChoiceField(
-        queryset=Tag.objects.none(),
+        queryset=Tag.objects.none(),  # Initially empty request
         widget=forms.CheckboxSelectMultiple,
         required=False
     )
@@ -107,10 +107,10 @@ class NoteForm(forms.ModelForm):
         str: The cleaned title field.
         """
         title = self.cleaned_data['title']
-        if self.instance.pk:
+        if self.instance.pk:  # If the form edits an existing note
             if Note.objects.filter(user=self.user, title=title).exclude(pk=self.instance.pk).exists():
                 raise ValidationError(self.trans['note_title_exists'])
-        else:
+        else:  # If this is a new note
             if Note.objects.filter(user=self.user, title=title).exists():
                 raise ValidationError(self.trans['note_title_exists'])
         return title
@@ -145,5 +145,3 @@ class NoteSearchForm(forms.Form):
         super().__init__(*args, **kwargs)
         self.trans = translations.get(self.language, translations['en'])
         self.fields['query'].widget.attrs.update({'placeholder': self.trans['search_field']})
-
-

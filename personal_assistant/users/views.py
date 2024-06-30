@@ -196,14 +196,14 @@ class CustomPasswordResetView(
     subject_template_name = 'users/password_reset_subject.txt'
     form_class = CustomPasswordResetForm
 
-    def get_success_message(self, cleaned_data):
-        """
-        Get the success message for password reset email sent.
-        - Retrieves the translated success message.
-        """
-        language = get_language(self.request)
-        trans = translations.get(language, translations['en'])
-        return trans['email_sent'] % {'email': cleaned_data['email']}
+    # def get_success_message(self, cleaned_data):
+    #     """
+    #     Get the success message for password reset email sent.
+    #     - Retrieves the translated success message.
+    #     """
+    #     language = get_language(self.request)
+    #     trans = translations.get(language, translations['en'])
+    #     return trans['email_sent'] % {'email': cleaned_data['email']}
 
     def get_form_kwargs(self):
         """
@@ -270,11 +270,11 @@ class CustomPasswordResetConfirmView(
         Handle a valid form submission.
         - Displays a success message upon successful password reset.
         """
-        language = get_language(self.request)
-        trans = translations.get(language, translations['en'])
-        messages.success(
-            self.request, trans['password_reset_complete_message']
-        )
+        # language = get_language(self.request)
+        # trans = translations.get(language, translations['en'])
+        # messages.success(
+        #     self.request, trans['password_reset_complete_message']
+        # )
         return super().form_valid(form)
 
 

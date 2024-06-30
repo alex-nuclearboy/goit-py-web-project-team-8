@@ -2,8 +2,6 @@ from django.db import models
 from django.contrib.auth.models import User
 
 
-# Create your models here.
-
 class Tag(models.Model):
     """
     Represents a tag associated with a user.
@@ -19,8 +17,8 @@ class Tag(models.Model):
     Methods:
     __str__(): Returns the string representation of the tag.
     """
-    name = models.CharField(max_length=50)
-    user = models.ForeignKey(User, on_delete=models.CASCADE, default=1)
+    name = models.CharField(max_length=50, null=False)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
 
     objects = models.Manager()
 
@@ -34,7 +32,7 @@ class Tag(models.Model):
         Returns:
         str: The name of the tag.
         """
-        return self.name
+        return f"{self.name}"
 
 
 class Note(models.Model):
@@ -59,7 +57,9 @@ class Note(models.Model):
     title = models.CharField(max_length=255)
     content = models.TextField()
     tags = models.ManyToManyField(Tag, related_name='notes')
-    user = models.ForeignKey(User, on_delete=models.CASCADE, default=1)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
 
     objects = models.Manager()
 
@@ -73,4 +73,4 @@ class Note(models.Model):
         Returns:
         str: The title of the note.
         """
-        return self.title
+        return f'{self.title}'
