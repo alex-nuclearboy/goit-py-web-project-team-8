@@ -10,6 +10,14 @@ from .translations import translations
 
 @login_required
 def note_list(request):
+    """
+    View function for displaying a list of notes associated with the logged-in user.
+
+    Retrieves notes based on search queries and tag filters, handles pagination.
+
+    Returns:
+    HttpResponse: Rendered template with notes, tags, search form, and tag filter.
+    """
     language = get_language(request)
     query = request.GET.get('q')
     tag_query = request.GET.get('tag')
@@ -53,12 +61,31 @@ def note_list(request):
 
 @login_required
 def note_details(request, id):
+    """
+    View function for displaying details of a specific note.
+
+    Retrieves and displays the note based on the provided ID.
+
+    Args:
+    id (int): The ID of the note to display
+    """
     note = get_object_or_404(Note, pk=id, user=request.user)
     return render(request, 'notesapp/note_details.html', {"note": note})
 
 
 @login_required
 def tag_list(request):
+    """
+    View function for displaying a list of tags associated with the logged-in user.
+
+    Retrieves and displays tags, handles pagination.
+
+    Parameters:
+    request (HttpRequest): The HTTP request object.
+
+    Returns:
+    HttpResponse: Rendered template with tags and tag form.
+    """
     language = get_language(request)
     tags = Tag.objects.filter(user=request.user)
     tags = tags.order_by('id')
@@ -78,6 +105,17 @@ def tag_list(request):
 
 @login_required
 def add_note(request):
+    """
+    View function for adding a new note.
+
+    Handles form submission for creating a new note.
+
+    Parameters:
+    request (HttpRequest): The HTTP request object.
+
+    Returns:
+    HttpResponse: Redirects to the note list or re-renders the note form on validation failure.
+    """
     language = get_language(request)
     trans = translations.get(language, translations['en'])
     if request.method == "POST":
@@ -105,6 +143,17 @@ def add_note(request):
 
 @login_required
 def add_tag(request):
+    """
+    View function for adding a new tag.
+
+    Handles form submission for creating a new tag.
+
+    Parameters:
+    request (HttpRequest): The HTTP request object.
+
+    Returns:
+    HttpResponse: Redirects to the tag list or re-renders the tag form on validation failure.
+    """
     language = get_language(request)
     trans = translations.get(language, translations['en'])
     if request.method == 'POST':
@@ -123,6 +172,18 @@ def add_tag(request):
 
 @login_required
 def edit_note(request, id):
+    """
+    View function for editing an existing note.
+
+    Handles form submission for updating a note.
+
+    Parameters:
+    request (HttpRequest): The HTTP request object.
+    id (int): The ID of the note to edit.
+
+    Returns:
+    HttpResponse: Redirects to the note list or re-renders the note form on validation failure.
+    """
     note = get_object_or_404(Note, id=id)
     if request.method == "POST":
         form = NoteForm(request.POST, instance=note, user=request.user)
@@ -145,6 +206,18 @@ def edit_note(request, id):
 
 @login_required
 def delete_note(request, id):
+    """
+    View function for deleting a note.
+
+    Handles form submission for deleting a note.
+
+    Parameters:
+    request (HttpRequest): The HTTP request object.
+    id (int): The ID of the note to delete.
+
+    Returns:
+    HttpResponse: Redirects to the note list.
+    """
     note = get_object_or_404(Note, id=id,  user=request.user)
     if request.method == "POST":
         note.delete()
@@ -154,6 +227,18 @@ def delete_note(request, id):
 
 @login_required
 def delete_tag(request, id):
+    """
+    View function for deleting a tag.
+
+    Handles form submission for deleting a tag.
+
+    Parameters:
+    request (HttpRequest): The HTTP request object.
+    id (int): The ID of the tag to delete.
+
+    Returns:
+    HttpResponse: Redirects to the tag list.
+    """
     tag = get_object_or_404(Tag, id=id, user=request.user)
     if request.method == 'POST':
         tag.delete()
