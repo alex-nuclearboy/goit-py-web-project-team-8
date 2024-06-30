@@ -1,15 +1,16 @@
 from django.http import HttpResponse
 from django.template import loader
-from django.shortcuts import redirect, render
+from django.shortcuts import redirect, render, get_object_or_404
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
 from django.utils.decorators import method_decorator
 from django.contrib.auth.decorators import login_required
+from django.db.models import Q
 from .localize import text_array
 
 from django.contrib.auth.models import User
 from .models import Contact, Group
-from .forms import ContactForm, GroupForm
+from .forms import ContactForm, GroupForm, ContactSearchForm
 from .context_processors import get_language
 
 
@@ -17,8 +18,8 @@ from .context_processors import get_language
 class ContactCreateView(CreateView):
     model = Contact
     form_class = ContactForm
-    template_name_suffix = "_create_form"
-    success_url = reverse_lazy("contactsapp:index")
+    template_name = "contactsapp/contact_form.html"
+    success_url = reverse_lazy("contactsapp:contacts")
 
     def get_form_kwargs(self):
         kwargs = super().get_form_kwargs()
@@ -28,9 +29,8 @@ class ContactCreateView(CreateView):
 
     def form_valid(self, form):
         fields = form.save(commit=False)
-        fields.creator = User.objects.get(id=self.request.user.id)
+        fields.creator = self.request.user  # Set the creator field
         fields.save()
-        setattr(form.instance, self.author, self.request.user)
         return super().form_valid(form)
 
 
@@ -38,8 +38,8 @@ class ContactCreateView(CreateView):
 class ContactUpdateView(UpdateView):
     model = Contact
     form_class = ContactForm
-    template_name_suffix = "_update_form"
-    success_url = reverse_lazy("contactsapp:index")
+    template_name = "contactsapp/contact_form.html"
+    success_url = reverse_lazy("contactsapp:contacts")
 
     def get_form_kwargs(self):
         kwargs = super().get_form_kwargs()
@@ -67,8 +67,8 @@ class ContactDeleteView(DeleteView):
 class GroupCreateView(CreateView):
     model = Group
     form_class = GroupForm
-    template_name_suffix = "_create_form"
-    success_url = reverse_lazy("contactsapp:index")
+    template_name = "contactsapp/group_form.html"
+    success_url = reverse_lazy("contactsapp:groups")
 
     def get_form_kwargs(self):
         kwargs = super().get_form_kwargs()
@@ -86,12 +86,11 @@ class GroupCreateView(CreateView):
 class GroupUpdateView(UpdateView):
     model = Group
     form_class = GroupForm
-    template_name_suffix = "_update_form"
-    success_url = reverse_lazy("contactsapp:index")
+    template_name = "contactsapp/group_form.html"
+    success_url = reverse_lazy("contactsapp:groups")
 
     def get_form_kwargs(self):
         kwargs = super().get_form_kwargs()
-        kwargs['user'] = self.request.user
         kwargs['language'] = get_language(self.request)
         return kwargs
 
@@ -103,19 +102,39 @@ class GroupUpdateView(UpdateView):
 class GroupDeleteView(DeleteView):
     model = Group
     template_name_suffix = "_delete_form"
-    success_url = reverse_lazy("contactsapp:index")
+    success_url = reverse_lazy("contactsapp:groups")
 
     def get_queryset(self):
         return Group.objects.filter(creator=self.request.user)
 
 
+@login_required
 def my_contacts(request):
-    localization = text_array[get_language(request)]
+    language = get_language(request)
+    localization = text_array[language]
     curr_user = request.user.id
-    your_contacts = Contact.objects.filter(creator=curr_user).order_by("-creation_time")
-    template = loader.get_template("contactsapp/contacts.html")
+
+    query = request.GET.get('query', '')
+    group_id = request.GET.get('group_id')
+
+    # Create the search form with the current query
+    search_form = ContactSearchForm(request.GET, language=language)
+
+    # Filter contacts based on query and group_id
+    contacts = Contact.objects.filter(creator=curr_user)
+    if group_id:
+        contacts = contacts.filter(group_id=group_id)
+    if query:
+        contacts = contacts.filter(Q(name__icontains=query) | Q(phone__icontains=query))
+
+    contacts = contacts.order_by("-creation_time")
+    groups = Group.objects.filter(creator=curr_user)
+
+    template = loader.get_template("contactsapp/contact_list.html")
     context = {
-        "contacts": your_contacts,
+        "contacts": contacts,
+        "groups": groups,
+        "search_form": search_form,
         "text": {
             "contact": localization['contact'],
             'list_empty': localization['contact_list_empty'],
@@ -124,7 +143,14 @@ def my_contacts(request):
             'add': localization['add'],
             'add_cont': localization['add_cont'],
             'edit': localization['edit'],
-            'delete': localization['delete']
+            'delete': localization['delete'],
+            'create_group': localization['create_group'],
+            'create_button': localization['create_button'],
+            'update_group': localization['update_group'],
+            'add_contact': localization['add_contact'],
+            'go_to_groups': localization['go_to_groups'],
+            'all': localization['all'],
+            'search_field': localization['search_field'],
         },
         "title": "Your contacts",
         "translations": localization,
@@ -150,8 +176,8 @@ def contact_details(request, contact_id):
             'phone': localization['contact_phone'],
             'mail': localization['contact_mail'],
             'address': localization['contact_address'],
-            'creation': localization['contact_creation'],
-            'update': localization['contact_update'],
+            'creation': localization['create_contact'],
+            'update': localization['update_contact'],
             'edit': localization['contact_edit'],
             'delete': localization['contact_delete']
         },
@@ -163,48 +189,39 @@ def contact_details(request, contact_id):
 
 
 def groups(request):
-    localization = text_array[get_language(request)]
-    groups = Group.objects.order_by("-id")
-    template = loader.get_template("contactsapp/groups.html")
+    language = get_language(request)
+    localization = text_array[language]
+    user_groups = Group.objects.filter(creator=request.user).order_by("-id")
+    for group in user_groups:
+        group.display_name = group.name
+
+    template = loader.get_template("contactsapp/group_list.html")
     context = {
-        "groups": groups,
+        "groups": user_groups,
         "text": {
-            'group': localization['group'],
-            'list_empty': localization['group_list_empty'],
             'list': localization['group_list'],
+            'list_empty': localization['group_list_empty'],
             'groups': localization['groups'],
-            'add_group': localization['add_group']
+            'add_group': localization['add_group'],
+            'edit': localization['edit'],
+            'delete': localization['delete'],
+            'confirm_delete': localization['confirm_delete_group'],
+            'back_to_contacts': localization['back_to_contacts']
         },
-        "title": "All groups",
+        "title": localization['all_groups'],
+        "language": language,
         "translations": localization,
-        }
+    }
     return HttpResponse(template.render(context=context, request=request))
 
 
-def group_details(request, group_id):
-    localization = text_array[get_language(request)]
-    group = Group.objects.get(pk=group_id)
-    contacts = Contact.objects.filter(group=group)
-    template = loader.get_template("contactsapp/tag.html")
-    creator = None
-    if group.creator == request.user:
-        creator = True
-    else:
-        creator = False
-    context = {
-        "group": group,
-        "text": {
-            "contacts_of_group": localization['contacts_of_group'],
-            "groups": localization['groups'],
-            'edit': localization['tag_edit'],
-            'delete': localization['tag_delete']
-        },
-        "contacts": contacts,
-        "creator": creator,
-        "title": group.name,
-        "translations": localization,
-        }
-    return HttpResponse(template.render(context=context, request=request))
+@login_required
+def delete_group(request, pk):
+    group = get_object_or_404(Group, pk=pk, creator=request.user)
+    if request.method == 'POST':
+        group.delete()
+        return redirect('contactsapp:groups')
+    return redirect('contactsapp:groups')
 
 
 def index(request):
@@ -226,4 +243,3 @@ def index(request):
         "title": "Home page",
     }
     return HttpResponse(template.render(context=context, request=request))
-

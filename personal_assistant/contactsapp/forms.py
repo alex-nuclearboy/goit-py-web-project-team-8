@@ -66,27 +66,35 @@ class ContactForm(forms.ModelForm):
 
 
 class GroupForm(forms.ModelForm):
-    name_en = forms.CharField(
+    name = forms.CharField(
         min_length=3,
         max_length=25,
         required=True,
-        widget=forms.TextInput(attrs={"class": "form-control", "autofocus": "true",})
-    )
-
-    name_uk = forms.CharField(
-        min_length=3,
-        max_length=25,
-        required=True,
-        widget=forms.TextInput(attrs={"class": "form-control", "autofocus": "true",})
+        widget=forms.TextInput(attrs={"class": "form-control", "autofocus": "true"})
     )
 
     class Meta:
         model = Group
-        fields = ['name_en', 'name_uk']
+        fields = ['name']
 
     def __init__(self, *args, **kwargs):
         language = kwargs.pop('language', 'en')
         super().__init__(*args, **kwargs)
         self.trans = translations.get(language, translations['en'])
-        self.fields['name_en'].label = self.trans['group_name_en']
-        self.fields['name_uk'].label = self.trans['group_name_uk']
+        self.fields['name'].label = self.trans['group_name']
+        self.fields['name'].widget.attrs.update({'placeholder': self.trans['group_name_placeholder']})
+
+
+class ContactSearchForm(forms.Form):
+    query = forms.CharField(
+        required=False,
+        max_length=100,
+        label='',
+        widget=forms.TextInput(attrs={'autofocus': 'autofocus'})
+    )
+
+    def __init__(self, *args, **kwargs):
+        self.language = kwargs.pop('language', 'en')
+        super().__init__(*args, **kwargs)
+        self.trans = translations.get(self.language, translations['en'])
+        self.fields['query'].widget.attrs.update({'placeholder': self.trans['search_field']})

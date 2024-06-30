@@ -3,7 +3,10 @@
 {% block content %}
     <h1>{{ translations.create_group }}</h1>
     <form method="POST">{% csrf_token %}
-        {{ form.as_p }}
+        <div>
+            <label for="id_name">{{ form.name.label }}</label>
+            {{ form.name }}
+        </div>
         <div class="grid">
             <button type="submit" class="primary">{{ translations.create_button }}</button>
             <button type="reset" class="primary">{{ translations.reset_button }}</button>

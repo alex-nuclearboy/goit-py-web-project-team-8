@@ -1,0 +1,75 @@
+{% extends "contactsapp/base.html" %}
+
+{% block content %}
+<script>
+    function confirmDelete(form, contactName) {
+        if (confirm('{{ text.confirm_delete }} "' + contactName + '"?')) {
+            form.submit();
+        }
+    }
+
+    function resetFormAndRedirect() {
+        document.querySelector('form').reset();
+        window.location.href = '{% url "contactsapp:contacts" %}';
+    }
+</script>
+
+<div class="content-container" style="display: flex; max-width: 1200px; margin: auto;">
+    <main style="flex: 3; padding-right: 20px;">
+        {% if contacts %}
+            <h2>{{ text.list }}</h2>
+            <ul>
+                {% for contact in contacts %}
+                    <li style="margin-bottom: 10px;">
+                        <a href="{% url 'contactsapp:contact_details' contact.id %}" role="button" class="outline" style="width: 200px;">
+                            {{ contact.name }}
+                        </a>
+                        <a href="{% url 'contactsapp:update_contact' contact.id %}" role="button" style="background-color: #ee9b00; border: none; padding: 5px 10px; margin-left: 10px;">{{ text.edit }}</a>
+                        <form action="{% url 'contactsapp:delete_contact' contact.id %}" method="post" style="display: inline;">
+                            {% csrf_token %}
+                            <button type="button" style="color: #fff; background-color: #ae2012; border: none; padding: 5px 10px; margin-left: 10px;" onclick="confirmDelete(this.form, '{{ contact.name }}')">{{ text.delete }}</button>
+                        </form>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <h2>{{ text.list_empty }}</h2>
+        {% endif %}
+    </main>
+
+    <aside style="flex: 1; min-width: 200px; max-width: 300px;">
+        <div style="margin-bottom: 40px; margin-top: 40px;">
+            <a role="button" style="width: 240px; color: #fff; background-color: #0a9396; border: none; padding: 10px; display: inline-block; text-align: center;" href="{% url 'contactsapp:add_contact' %}">{{ translations.add_contact }}</a>
+        </div>
+        <form method="get" action="{% url 'contactsapp:contacts' %}">
+            <h3>{{ translations.search }}</h3>
+            {{ search_form.as_p }}
+            <div style="display: flex; gap: 10px;">
+                <button type="submit" style="flex: 1; background-color: #0a9396; border: none; padding: 5px 10px; margin-left: 10px;">{{ translations.search }}</button>
+                <button type="button" onclick="resetFormAndRedirect()" style="flex: 1; background-color: #ae2012; border: none; padding: 5px 10px; margin-left: 10px;">{{ translations.reset }}</button>
+            </div>
+        </form>
+        <ul style="list-style: none; padding: 0;">
+            <li>
+                
+            </li>
+            {% if groups %}
+                <h3>{{ translations.groups }}</h3>
+                <li style="margin-bottom: 10px;">
+                    <a href="{% url 'contactsapp:groups' %}" role="button" style="width: 240px; color: #fff; background-color: #94d2bd; border: none; padding: 10px; display: inline-block; text-align: center;">{{ translations.go_to_groups }}</a>
+                </li>
+                <ul>
+                    <li>
+                        <a href="{% url 'contactsapp:contacts' %}" style="text-decoration: none; color: #0a9396;">{{ translations.all }}</a>
+                    </li>
+                    {% for group in groups %}
+                        <li>
+                            <a href="{% url 'contactsapp:contacts' %}?group_id={{ group.id }}" style="text-decoration: none; color: #0a9396;">{{ group.name }}</a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        </ul>
+    </aside>
+</div>
+{% endblock content %}

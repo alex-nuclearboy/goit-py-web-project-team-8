@@ -2,24 +2,18 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.utils.translation import gettext_lazy as _
 
+
 class Group(models.Model):
-    name_en = models.CharField(max_length=100, verbose_name=_('Group Name (English)'))
-    name_uk = models.CharField(max_length=100, verbose_name=_('Group Name (Ukrainian)'))
+    name = models.CharField(max_length=100, verbose_name=_('Group Name'))
     creator = models.ForeignKey(User, on_delete=models.CASCADE)
 
     class Meta:
-        constraints = [models.UniqueConstraint(fields=['creator', 'name_en'], name='group_of_creator_en'),
-                       models.UniqueConstraint(fields=['creator', 'name_uk'], name='group_of_creator_uk')]
+        constraints = [models.UniqueConstraint(fields=['creator', 'name'], name='unique_group_for_user')]
         verbose_name = 'Group'
         verbose_name_plural = 'Groups'
 
     def __str__(self):
-        return self.name_en
-
-    def get_name(self, language):
-        if language == 'uk':
-            return self.name_uk
-        return self.name_en
+        return self.name
 
 
 class Contact(models.Model):

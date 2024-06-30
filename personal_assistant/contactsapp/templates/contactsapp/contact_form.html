@@ -1,0 +1,45 @@
+{% extends "contactsapp/base.html" %}
+
+{% block content %}
+<style>
+    .button {
+        padding: 16px 20px;
+        color: #fff;
+        border: none;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        margin: 4px 2px;
+        cursor: pointer;
+        border-radius: 4px;
+    }
+    .primary {
+        background-color: #007bff;
+    }
+    .cancel {
+        background-color: #ae2012;
+    }
+</style>
+
+    <h2>
+        {% if form.instance.pk %}
+            {{ translations.update_contact }}
+        {% else %}
+            {{ translations.create_contact }}
+        {% endif %}
+    </h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <div class="grid">
+            <button type="submit" class="button primary">
+                {% if form.instance.pk %}
+                    {{ translations.update_button }}
+                {% else %}
+                    {{ translations.create_button }}
+                {% endif %}
+            </button>
+            <a href="{% url 'contactsapp:contacts' %}" class="button cancel">{{ translations.cancel_button }}</a>
+        </div>
+    </form>
+{% endblock content %}

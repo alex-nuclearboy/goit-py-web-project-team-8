@@ -1,0 +1,54 @@
+{% extends "contactsapp/base.html" %}
+
+{% block content %}
+<script>
+    function confirmDelete(form, groupName) {
+        if (confirm('{{ text.confirm_delete }} "' + groupName + '"?')) {
+            form.submit();
+        }
+    }
+</script>
+
+<div class="content-container" style="display: flex; max-width: 1200px; margin: auto;">
+    <main style="flex: 3; padding-right: 20px;">
+        {% if groups %}
+            <h2>{{ text.list }}</h2>
+            <ul>
+                {% for group in groups %}
+                    <li style="margin-bottom: 10px;">
+                        <a href="{% url 'contactsapp:contacts' %}?group_id={{ group.id }}" role="button" class="outline" style="width: 200px;">
+                            {% if group.name == 'Family' %}
+                                {{ translations.family_group }}
+                            {% elif group.name == 'Friends' %}
+                                {{ translations.friends_group }}
+                            {% elif group.name == 'Work' %}
+                                {{ translations.work_group }}
+                            {% else %}
+                                {{ group.name }}
+                            {% endif %}
+                        </a>
+                        <a href="{% url 'contactsapp:update_group' group.id %}" role="button" style="background-color: #ee9b00; border: none; padding: 5px 10px; margin-left: 10px;">{{ text.edit }}</a>
+                        <form action="{% url 'contactsapp:delete_group' group.id %}" method="post" style="display: inline;">
+                            {% csrf_token %}
+                            <button type="button" style="color: #fff; background-color: #ae2012; border: none; padding: 5px 10px; margin-left: 10px;" onclick="confirmDelete(this.form, '{{ group.name }}')">{{ text.delete }}</button>
+                        </form>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <h2>{{ text.list_empty }}</h2>
+        {% endif %}
+    </main>
+
+    <aside style="flex: 1; min-width: 200px; max-width: 300px;">
+        <ul style="list-style: none; padding: 0;">
+            <li style="margin-bottom: 10px;">
+                <a href="{% url 'contactsapp:contacts' %}" role="button" style="width: 240px; color: #fff; background-color: #94d2bd; border: none; padding: 10px; display: inline-block; text-align: center;">{{ translations.back_to_contacts }}</a>
+            </li>
+            <li>
+                <a role="button" style="width: 240px; color: #fff; background-color: #0a9396; border: none; padding: 10px; display: inline-block; text-align: center;" href="{% url 'contactsapp:add_group' %}">{{ text.add_group }}</a>
+            </li>
+        </ul>
+    </aside>
+</div>
+{% endblock content %}

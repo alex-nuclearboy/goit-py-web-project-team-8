@@ -16,6 +16,14 @@
         <h2>{{ translations.login }}</h2>
     </div>
 
+    {% if messages %}
+    <div>
+        {% for message in messages %}
+        <div class="alert-error">{{ message }}</div>
+        {% endfor %}
+    </div>
+    {% endif %}
+
     <form action="{% url 'users:login' %}" method="post">
         {% csrf_token %}
         <div>
