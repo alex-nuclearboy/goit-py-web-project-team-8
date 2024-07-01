@@ -42,7 +42,7 @@ def note_list(request):
         selected_tag_name = tag_query
 
     # Setting up pagination
-    paginator = Paginator(notes, 1)
+    paginator = Paginator(notes, 10)
     page_number = request.GET.get('page')
     try:
         notes = paginator.page(page_number)
@@ -96,7 +96,7 @@ def tag_list(request):
     tags = tags.order_by('id')
 
     # Setting up pagination
-    paginator = Paginator(tags, 1)
+    paginator = Paginator(tags, 10)
     page_number = request.GET.get('page')
     try:
         tags = paginator.page(page_number)

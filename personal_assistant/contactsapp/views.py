@@ -124,7 +124,7 @@ def my_contacts(request):
     groups = Group.objects.filter(creator=curr_user)
 
     # Setting up pagination
-    paginator = Paginator(contacts, 1)
+    paginator = Paginator(contacts, 10)
     page_number = request.GET.get('page')
     try:
         contacts = paginator.page(page_number)
