@@ -1,5 +1,7 @@
 {% extends "contactsapp/base.html" %}
 
+{% block title %}{% if form.instance.pk %}{{ translations.update_group }}{% else %}{{ translations.create_group }}{% endif %}{% endblock %}
+
 {% block content %}
 <style>
     .button {
@@ -14,7 +16,7 @@
         border-radius: 4px;
     }
     .primary {
-        background-color: #007bff;
+        background-color: #0a9396;
     }
     .cancel {
         background-color: #ae2012;
@@ -39,7 +41,7 @@
                     {{ translations.create_button }}
                 {% endif %}
             </button>
-            <a href="{% url 'contactsapp:groups' %}" class="button cancel">{{ translations.cancel_button }}</a>
+            <a href="{% url 'contactsapp:group_list' %}" class="button cancel">{{ translations.cancel_button }}</a>
         </div>
     </form>
 {% endblock content %}
