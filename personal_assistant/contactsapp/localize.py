@@ -6,6 +6,7 @@ text_array = {
         'create_account': 'Sign Up',
         'login': 'Login',
         'my_notes': 'My Notes',
+        'my_contacts': 'My Contacts',
         'addressbook': 'Address Book',
         'my_groups': 'Contact Groups',
         'contact_list': 'My Contacts',
@@ -79,7 +80,9 @@ text_array = {
         'October': 'October',
         'November': 'November',
         'December': 'December',
-        'contact_not_found': 'Error! Contact not found!'
+        'contact_not_found': 'Error! Contact not found!',
+        'back_to_list': 'Back to List',
+        '': ''
     },
     'uk': {
         'dashboard': 'Головна сторінка',
@@ -88,6 +91,7 @@ text_array = {
         'create_account': 'Реєстрація',
         'login': 'Вхід',
         'my_notes': 'Мої нотатки',
+        'my_contacts': 'Мої контакти',
         'addressbook': 'Книга контактів',
         'my_groups': 'Групи контактів',
         'contact_list': 'Мої контакти',
@@ -161,6 +165,7 @@ text_array = {
         'October': 'жовтня',
         'November': 'листопада',
         'December': 'грудня',
-        'contact_not_found': 'Помилка! Контакт не знайдено!'
+        'contact_not_found': 'Помилка! Контакт не знайдено!',
+        'back_to_list': 'Назад до списку'
     }
 }
