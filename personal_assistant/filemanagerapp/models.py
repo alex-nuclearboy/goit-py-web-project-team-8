@@ -26,8 +26,8 @@ class UserFile(models.Model):
     
     Attributes:
     user: The user who owns the tag.
-    name (str): tag name up to 50 characters long.
-    category (choices=CATEGORY_CHOICES): The default category for user.
+    name (str): tag name up to 255 characters long.
+    category (CATEGORY): The default category for user.
     file: user file 
     
     Methods:
@@ -70,7 +70,7 @@ class Category(models.Model):
     CATEGORY_CHOICES - Standard categories for all users
 
     Attributes:
-    name (str): tag name up to 50 characters long.
+    name (str): tag name up to 255 characters long.
     is_standard (choices=CATEGORY_CHOICES): The default category for user.
         
     Methods:
