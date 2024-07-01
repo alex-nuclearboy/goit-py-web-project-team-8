@@ -3,6 +3,12 @@
 {% block title %}{% if form.instance.pk %}{{ translations.update_contact }}{% else %}{{ translations.create_contact }}{% endif %}{% endblock %}
 
 {% block content %}
+<script>
+    function resetFormAndRedirect() {
+        document.querySelector('form').reset();
+        window.location.href = '{% url "contactsapp:contact_list" %}';
+    }
+</script>
 <style>
     .button {
         padding: 16px 20px;
@@ -14,34 +20,100 @@
         margin: 4px 2px;
         cursor: pointer;
         border-radius: 4px;
+        transition: background-color 0.3s ease;
     }
-    .primary {
+
+    .button.primary {
         background-color: #0a9396;
     }
-    .cancel {
+
+    .button.primary:hover {
+        background-color: #086f6d;
+    }
+
+    .button.cancel {
         background-color: #ae2012;
+    }
+
+    .button.cancel:hover {
+        background-color: #7e1710;
+    }
+
+    .button.contrast {
+        background-color: #005f73;
+        color: #fff;
+        padding: 10px;
+        display: inline-block;
+        text-align: center;
+        width: 240px;
+    }
+
+    .button.contrast:hover {
+        background-color: #004050;
+    }
+
+    .button.groups {
+        background-color: #ca6702;
+        color: #fff;
+        padding: 10px;
+        display: inline-block;
+        text-align: center;
+        width: 240px;
+    }
+
+    .button.groups:hover {
+        background-color: #a35402;
+    }
+
+    .content-container {
+        display: flex;
+        max-width: 1200px;
+        margin: auto;
+    }
+
+    main {
+        flex: 3;
+        padding-right: 20px;
+    }
+
+    aside {
+        flex: 1;
+        min-width: 200px;
+        max-width: 300px;
+    }
+
+    .grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
     }
 </style>
 
-    <h2>
-        {% if form.instance.pk %}
-            {{ translations.update_contact }}
-        {% else %}
-            {{ translations.create_contact }}
-        {% endif %}
-    </h2>
-    <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <div class="grid">
-            <button type="submit" class="button primary">
-                {% if form.instance.pk %}
-                    {{ translations.update_button }}
-                {% else %}
-                    {{ translations.create_button }}
-                {% endif %}
-            </button>
-            <a href="{% url 'contactsapp:contact_list' %}" class="button cancel">{{ translations.cancel_button }}</a>
+<div class="content-container">
+    <main>
+        <h1>{% if form.instance.pk %}{{ translations.update_contact }}{% else %}{{ translations.create_contact }}{% endif %}</h1>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <div class="grid">
+                <button type="submit" class="button primary">
+                    {% if form.instance.pk %}
+                        {{ translations.update_button }}
+                    {% else %}
+                        {{ translations.create_button }}
+                    {% endif %}
+                </button>
+                <a href="{% url 'contactsapp:contact_list' %}" class="button cancel">{{ translations.cancel_button }}</a>
+            </div>
+        </form>
+    </main>
+    <aside>
+        <div style="margin-bottom: 40px; margin-top: 40px;">
+            <a href="{% url 'contactsapp:contact_list' %}" role="button" class="button contrast">{{ translations.back_to_list }}</a>
         </div>
-    </form>
+        <div style="margin-bottom: 40px; margin-top: 40px;">
+            <a href="{% url 'contactsapp:group_list' %}" role="button" class="button groups">{{ translations.groups }}</a>
+        </div>
+    </aside>
+</div>
 {% endblock content %}

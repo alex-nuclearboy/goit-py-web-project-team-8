@@ -13,6 +13,48 @@
     }
 </script>
 
+<style>
+    .title_bold {
+        font-size: 30px;
+        font-weight: bold;
+    }
+    .small {
+        font-size: 24px;
+    }
+    .button {
+        padding: 10px 20px;
+        color: #fff;
+        border: none;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        margin: 4px 2px;
+        cursor: pointer;
+        border-radius: 4px;
+        transition: background-color 0.3s ease;
+    }
+    .primary {
+        background-color: #ee9b00;
+    }
+    .primary:hover {
+        background-color: #cc7a00;
+    }
+    .delete {
+        background-color: #ae2012;
+    }
+    .delete:hover {
+        background-color: #8c1a0b;
+    }
+    .back-button {
+        width: 240px;
+        background-color: #005f73;
+        text-align: center;
+    }
+    .back-button:hover {
+        background-color: #004052;
+    }
+</style>
+
 <div class="content-container" style="display: flex; max-width: 1200px; margin: auto;">
     <main style="flex: 3; padding-right: 20px;">
         {% if contact %}
@@ -37,11 +79,11 @@
                     </li>
                     <li style="margin-bottom: 10px;">
                         <span class="title_bold">{{ text.created_at }}:</span>
-                        <span class="small">{{ contact.creation_time|date:"j F Y"|translate_month:months }}</span>
+                        <span class="small">{{ contact.creation_time|date:"j F Y; H:i"|translate_month:months }}</span>
                     </li>
                     <li style="margin-bottom: 10px;">
                         <span class="title_bold">{{ text.updated_at }}:</span>
-                        <span class="small">{{ contact.update_time|date:"j F Y"|translate_month:months }}</span>
+                        <span class="small">{{ contact.update_time|date:"j F Y; H:i"|translate_month:months }}</span>
                     </li>
                     <li style="margin-bottom: 10px;">
                         <span class="title_bold">{{ text.group }}:</span>
@@ -67,56 +109,20 @@
                         <a role="button" class="button primary" style="margin: 10px 0;" href="{% url 'contactsapp:update_contact' contact.id %}">{{ text.edit }}</a>
                         <form action="{% url 'contactsapp:delete_contact' contact.id %}" method="post" style="display: inline;">
                             {% csrf_token %}
-                            <button type="button" class="button danger" onclick="confirmDelete(this.form, '{{ contact.name }}')">{{ text.delete }}</button>
+                            <button type="button" class="button delete" onclick="confirmDelete(this.form, '{{ contact.name }}')">{{ text.delete }}</button>
                         </form>
                     {% endif %}
                 </div>
             </ul>
-            <style>
-                .title_bold {
-                    font-size: 30px;
-                    font-weight: bold;
-                }
-                .tags_bold {
-                    font-size: 27px;
-                    font-weight: bold;
-                }
-                .small_bold {
-                    font-size: 24px;
-                    font-weight: bold;
-                }
-                .small {
-                    font-size: 24px;
-                }
-                .button {
-                    padding: 10px 20px;
-                    color: #fff;
-                    border: none;
-                    text-align: center;
-                    text-decoration: none;
-                    display: inline-block;
-                    margin: 4px 2px;
-                    cursor: pointer;
-                    border-radius: 4px;
-                }
-                .primary {
-                    background-color: #ee9b00;
-                }
-                .danger {
-                    background-color: #ae2012;
-                }
-            </style>
         {% else %}
             <h2>{{ text.not_found }}</h2>
         {% endif %}
     </main>
 
     <aside style="flex: 1; min-width: 200px; max-width: 300px;">
-        <ul style="list-style: none; padding: 0;">
-            <li>
-                <a role="button" class="button" style="width: 240px; background-color: #005f73; text-align: center;" href="{% url 'contactsapp:contact_list' %}">{{ translations.back_to_contacts }}</a>
-            </li>
-        </ul>
+        <div style="margin-bottom: 40px; margin-top: 40px;">
+            <a role="button" class="button back-button" href="{% url 'contactsapp:contact_list' %}">{{ translations.back_to_contacts }}</a>
+        </div>
     </aside>
 </div>
 {% endblock content %}

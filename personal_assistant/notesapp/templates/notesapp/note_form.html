@@ -9,25 +9,111 @@
         window.location.href = '{% url "notesapp:note_list" %}';
     }
 </script>
+<style>
+    .button {
+        padding: 16px 20px;
+        color: #fff;
+        border: none;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        margin: 4px 2px;
+        cursor: pointer;
+        border-radius: 4px;
+        transition: background-color 0.3s ease;
+    }
 
-<div class="content-container" style="display: flex; max-width: 1200px; margin: auto;">
-    <main style="flex: 3; padding-right: 20px;">
+    .button.primary {
+        background-color: #0a9396;
+    }
+
+    .button.primary:hover {
+        background-color: #086f6d;
+    }
+
+    .button.cancel {
+        background-color: #ae2012;
+    }
+
+    .button.cancel:hover {
+        background-color: #7e1710;
+    }
+
+    .button.contrast {
+        background-color: #005f73;
+        color: #fff;
+        padding: 10px;
+        display: inline-block;
+        text-align: center;
+        width: 240px;
+    }
+
+    .button.contrast:hover {
+        background-color: #004050;
+    }
+
+    .button.tag-manager {
+        background-color: #CA6702;
+        color: #fff;
+        padding: 10px;
+        display: inline-block;
+        text-align: center;
+        width: 240px;
+    }
+
+    .button.tag-manager:hover {
+        background-color: #a35402;
+    }
+
+    .content-container {
+        display: flex;
+        max-width: 1200px;
+        margin: auto;
+    }
+
+    main {
+        flex: 3;
+        padding-right: 20px;
+    }
+
+    aside {
+        flex: 1;
+        min-width: 200px;
+        max-width: 300px;
+    }
+
+    .grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+    }
+</style>
+
+<div class="content-container">
+    <main>
         <h1>{% if form.instance.pk %}{{ translations.edit_note }}{% else %}{{ translations.add_note }}{% endif %}</h1>
         <form method="post">
             {% csrf_token %}
             {{ form.as_p }}
-            <input type="hidden" name="language" value="{{ request.session.language }}">
             <div class="grid">
-                <button type="submit" style="background-color: #0a9396; border: none;">{{ translations.save }}</button>
-                <button type="reset" style="background-color: #ae2012; border: none;">{{ translations.reset }}</button>
+                <button type="submit" class="button primary">
+                    {% if form.instance.pk %}
+                        {{ translations.update_button }}
+                    {% else %}
+                        {{ translations.create_button }}
+                    {% endif %}
+                </button>
+                <a href="{% url 'notesapp:note_list' %}" class="button cancel">{{ translations.cancel_button }}</a>
             </div>
         </form>
     </main>
-    <aside style="flex: 1; min-width: 200px; max-width: 300px;">
-        <ul style="margin-left: -30px;">
-            <li><a href="{% url 'notesapp:note_list' %}" role="button" class="contrast" style="width: 240px; background-color: #94d2bd; border: none;">{{ translations.back_to_list }}</a></li>
-            <li><a href="{% url 'notesapp:tag_list' %}" role="button" class="contrast" style="width: 240px; background-color: #005f73; border: none;">{{ translations.tag_manager }}</a></li>
-        </ul>
+    <aside>
+        <div style="margin-bottom: 40px; margin-top: 40px;">
+            <a href="{% url 'notesapp:note_list' %}" role="button" class="button contrast">{{ translations.back_to_list }}</a>
+        </div>
+        <div style="margin-bottom: 40px; margin-top: 40px;">
+            <a href="{% url 'notesapp:tag_list' %}" role="button" class="button tag-manager">{{ translations.tag_manager }}</a>
+        </div>
     </aside>
 </div>
 {% endblock %}

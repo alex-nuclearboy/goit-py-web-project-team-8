@@ -14,34 +14,84 @@
         margin: 4px 2px;
         cursor: pointer;
         border-radius: 4px;
+        transition: background-color 0.3s ease;
     }
-    .primary {
+
+    .button.primary {
         background-color: #0a9396;
     }
-    .cancel {
+
+    .button.primary:hover {
+        background-color: #086f6d;
+    }
+
+    .button.cancel {
         background-color: #ae2012;
+    }
+
+    .button.cancel:hover {
+        background-color: #7e1710;
+    }
+
+    .button.contrast {
+        background-color: #005f73;
+        color: #fff;
+        padding: 10px;
+        display: inline-block;
+        text-align: center;
+        width: 240px;
+    }
+
+    .button.contrast:hover {
+        background-color: #004050;
+    }
+
+    .content-container {
+        display: flex;
+        max-width: 1200px;
+        margin: auto;
+    }
+
+    main {
+        flex: 3;
+        padding-right: 20px;
+    }
+
+    aside {
+        flex: 1;
+        min-width: 200px;
+        max-width: 300px;
+    }
+
+    .grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
     }
 </style>
 
-    <h2>
-        {% if form.instance.pk %}
-            {{ translations.update_group }}
-        {% else %}
-            {{ translations.create_group }}
-        {% endif %}
-    </h2>
-    <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <div class="grid">
-            <button type="submit" class="button primary">
-                {% if form.instance.pk %}
-                    {{ translations.update_button }}
-                {% else %}
-                    {{ translations.create_button }}
-                {% endif %}
-            </button>
-            <a href="{% url 'contactsapp:group_list' %}" class="button cancel">{{ translations.cancel_button }}</a>
+<div class="content-container">
+    <main>
+        <h1>{% if form.instance.pk %}{{ translations.update_group }}{% else %}{{ translations.create_group }}{% endif %}</h1>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <div class="grid">
+                <button type="submit" class="button primary">
+                    {% if form.instance.pk %}
+                        {{ translations.update_button }}
+                    {% else %}
+                        {{ translations.create_button }}
+                    {% endif %}
+                </button>
+                <a href="{% url 'contactsapp:group_list' %}" class="button cancel">{{ translations.cancel_button }}</a>
+            </div>
+        </form>
+    </main>
+    <aside>
+        <div style="margin-bottom: 40px; margin-top: 40px;">
+            <a href="{% url 'contactsapp:group_list' %}" role="button" class="button contrast">{{ translations.back_to_list }}</a>
         </div>
-    </form>
+    </aside>
+</div>
 {% endblock content %}
