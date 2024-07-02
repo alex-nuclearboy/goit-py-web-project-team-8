@@ -34,7 +34,7 @@ text_array = {
         'name': 'Name',
         'name_placeholder': 'John Doe',
         'phone': 'Phone Number',
-        'phone_placeholder': '+380990009900',
+        'phone_placeholder': '+1-800-555-9900',
         'address': 'Address',
         'address_placeholder': '20 West 34th St., New York, NY 10001, USA',
         'email': 'Email',
@@ -82,7 +82,10 @@ text_array = {
         'December': 'December',
         'contact_not_found': 'Error! Contact not found!',
         'back_to_list': 'Back to List',
-        '': ''
+        'birthday_in_future': 'Birthday cannot be in the future.',
+        'birthday_too_old': 'Birthday must be within the last 200 years.',
+        'invalid_phone': 'Invalid phone number format.',
+        'invalid_email': 'Invalid email address format.',
     },
     'uk': {
         'dashboard': 'Головна сторінка',
@@ -166,6 +169,10 @@ text_array = {
         'November': 'листопада',
         'December': 'грудня',
         'contact_not_found': 'Помилка! Контакт не знайдено!',
-        'back_to_list': 'Назад до списку'
+        'back_to_list': 'Назад до списку',
+        'birthday_in_future': 'Дата народження не може бути у майбутньому.',
+        'birthday_too_old': 'Дата народження повинна бути не раніше останніх 200 років.',
+        'invalid_phone': 'Неправильний формат номера телефону.',
+        'invalid_email': 'Неправильний формат електронної пошти.',
     }
 }

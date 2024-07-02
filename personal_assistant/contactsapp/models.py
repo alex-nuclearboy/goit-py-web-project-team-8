@@ -19,7 +19,7 @@ class Group(models.Model):
 class Contact(models.Model):
     creator = models.ForeignKey(User, on_delete=models.CASCADE)
     name = models.CharField(max_length=20, verbose_name='Name', null=False)
-    phone = models.CharField(max_length=12, verbose_name='Phone', blank=True)
+    phone = models.CharField(max_length=15, verbose_name='Phone', blank=True)
     email = models.EmailField(max_length=30, verbose_name='Email', blank=True)
     address = models.CharField(max_length=100, verbose_name='Address', blank=True)
     birthday = models.DateField(default=None, verbose_name='Birthday', null=True, blank=True)
