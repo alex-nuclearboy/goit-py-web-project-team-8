@@ -165,7 +165,9 @@ exit
 
 By following these steps, you will properly deactivate the Poetry environment along with stopping the Django development server and the Docker containers used for the application and database.
 
-# Ласкаво просимо до додатка "Особистий Помічник"
+<a href="#top" id="backToTopBtn" title="Go to top">Top</a>
+
+# Ласкаво просимо до застосунку "Особистий Помічник"
 
 <a id="ukrainian-version"></a>
 
