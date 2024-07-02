@@ -1,35 +1,31 @@
 # Use the official Python image from the Docker Hub
-FROM python:3.10-slim
+FROM python:3.12-slim
 
 # Set environment variables
-ENV PYTHONDONTWRITEBYTECODE=1
-ENV PYTHONUNBUFFERED=1
+ENV PYTHONDONTWRITEBYTECODE 1
+ENV PYTHONUNBUFFERED 1
 
 # Set work directory
-WORKDIR /code
+WORKDIR /app
+
+# Install Poetry
+RUN pip install poetry
+
+# Copy only requirements to cache them in docker layer
+COPY pyproject.toml poetry.lock /app/
 
 # Install dependencies
-COPY pyproject.toml poetry.lock /code/
-RUN pip install poetry
-RUN poetry config virtualenvs.create false && poetry install --no-dev
+RUN poetry config virtualenvs.create false \
+    && poetry install --no-dev
 
 # Copy project
-COPY . /code/
+COPY . /app/
 
-# Change to the Django project directory
-WORKDIR /code/personal_assistant
-
-# Copy entrypoint script
-COPY entrypoint.sh /code/personal_assistant/entrypoint.sh
-
-# Make entrypoint script executable
-RUN chmod +x /code/personal_assistant/entrypoint.sh
+# Set work directory to the Django project directory
+WORKDIR /app/personal_assistant
 
 # Expose the port the app runs on
 EXPOSE 8000
 
-# Use the entrypoint script
-ENTRYPOINT ["/code/personal_assistant/entrypoint.sh"]
-
-# Start Gunicorn server
-CMD ["gunicorn", "personal_assistant.wsgi:application", "--bind", "0.0.0.0:8000"]
+# Run the application
+CMD ["gunicorn", "--bind", "0.0.0.0:8000", "personal_assistant.wsgi:application"]
