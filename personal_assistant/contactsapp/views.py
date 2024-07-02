@@ -274,7 +274,10 @@ def upcoming_birthdays(request):
             contact.age = get_years_ukrainian(age)  # Temporary attribute to store age with correct declension
         contacts.extend(current_year_contacts)
 
-    days_declined = get_days_ukrainian(days)
+    if language == 'en':
+        days_declined = f"{days} days"
+    else:
+        days_declined = get_days_ukrainian(days)
 
     return render(
         request,
