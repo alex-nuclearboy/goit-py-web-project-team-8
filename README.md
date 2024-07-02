@@ -27,41 +27,41 @@ With the Personal Assistant App, you can effortlessly maintain an organised life
 
 ### News Portal
 
-- <img src="https://img.icons8.com/ios-filled/50/45818E/news.png" width="25" height="25"/> **Daily News Summary:** Stay updated with a curated collection of the most important news. Users can choose an area of interest (general, business, entertainment, health, science, sports, technology) and country (Ukraine ![Ukraine Flag](https://img.icons8.com/?size=20&id=5cFvmahMQv5S&format=png&color=000000), USA ![USA Flag](https://img.icons8.com/?size=20&id=fIgZUHgwc76e&format=png&color=000000), United Kingdom ![UK Flag](https://img.icons8.com/?size=20&id=ShNNs7i8tXQF&format=png&color=000000), France ![France Flag](https://img.icons8.com/?size=20&id=YwnngGdMBmIV&format=png&color=000000), Germany ![Germany Flag](https://img.icons8.com/?size=20&id=vRrbNnaD93Ys&format=png&color=000000), or Poland ![Poland Flag](https://img.icons8.com/?size=20&id=civsLZTDrVTT&format=png&color=000000)). Gather information from selected resources with news headlines.
+- <img src="https://img.icons8.com/ios-filled/50/0F52BA/news.png" width="25" height="25"/> **Daily News Summary:** Stay updated with a curated collection of the most important news. Users can choose an area of interest (general, business, entertainment, health, science, sports, technology) and country (Ukraine ![Ukraine Flag](https://img.icons8.com/?size=20&id=5cFvmahMQv5S&format=png&color=000000), USA ![USA Flag](https://img.icons8.com/?size=20&id=fIgZUHgwc76e&format=png&color=000000), United Kingdom ![UK Flag](https://img.icons8.com/?size=20&id=ShNNs7i8tXQF&format=png&color=000000), France ![France Flag](https://img.icons8.com/?size=20&id=YwnngGdMBmIV&format=png&color=000000), Germany ![Germany Flag](https://img.icons8.com/?size=20&id=vRrbNnaD93Ys&format=png&color=000000), or Poland ![Poland Flag](https://img.icons8.com/?size=20&id=civsLZTDrVTT&format=png&color=000000)). Gather information from selected resources with news headlines.
 
-- <img src="https://img.icons8.com/ios-filled/50/45818E/partly-cloudy-day.png" width="25" height="25"/> **Current Weather Information:** Get the latest weather updates to plan your day effectively. The app provides accurate and up-to-date weather forecasts.
-- <img src="https://img.icons8.com/ios-filled/50/45818E/currency-exchange.png" width="25" height="25"/> **Real-Time Exchange Rates:** Stay informed about the latest currency exchange rates. This feature is especially useful for users dealing with international transactions or travel.
+- <img src="https://img.icons8.com/ios-filled/50/0F52BA/partly-cloudy-day.png" width="25" height="25"/> **Current Weather Information:** Get the latest weather updates to plan your day effectively. The app provides accurate and up-to-date weather forecasts.
+- <img src="https://img.icons8.com/ios-filled/50/0F52BA/currency-exchange.png" width="25" height="25"/> **Real-Time Exchange Rates:** Stay informed about the latest currency exchange rates. This feature is especially useful for users dealing with international transactions or travel.
 
 ### Address Book
 
-- <img src="https://img.icons8.com/ios-filled/50/45818E/address-book.png" width="25" height="25"/> **Store Contacts:** Save contacts with detailed information, including names, addresses, phone numbers, email addresses, and birthdays in a contact book.
-- <img src="https://img.icons8.com/ios-filled/50/45818E/birthday.png" width="25" height="25"/> **Upcoming Birthdays:** Display a list of contacts with upcoming birthdays based on a user-specified number of days from the current date.
-- <img src="https://img.icons8.com/?size=100&id=dCS93MYAhxrF&format=png&color=45818E" width="25" height="25"/> **Input Validation:** Validate phone numbers, email addresses, and birth dates during contact creation or editing, notifying users of incorrect entries.
-- <img src="https://img.icons8.com/ios-filled/50/45818E/search.png" width="25" height="25"/> **Search Contacts:** Search through contacts in the contact book to find specific entries quickly.
-- <img src="https://img.icons8.com/ios-filled/50/45818E/edit.png" width="25" height="25"/> **Edit and Delete Contacts:** Modify and remove contact entries from the contact book as needed.
-- <img src="https://img.icons8.com/?size=100&id=123367&format=png&color=45818E" width="25" height="25"/> **Organise Contacts:** Group your contacts for better management and accessibility. Create and manage groups such as Family, Friends, Work, etc.
+- <img src="https://img.icons8.com/ios-filled/50/0F52BA/address-book.png" width="25" height="25"/> **Store Contacts:** Save contacts with detailed information, including names, addresses, phone numbers, email addresses, and birthdays in a contact book.
+- <img src="https://img.icons8.com/ios-filled/50/0F52BA/birthday.png" width="25" height="25"/> **Upcoming Birthdays:** Display a list of contacts with upcoming birthdays based on a user-specified number of days from the current date.
+- <img src="https://img.icons8.com/?size=100&id=dCS93MYAhxrF&format=png&color=0F52BA" width="25" height="25"/> **Input Validation:** Validate phone numbers, email addresses, and birth dates during contact creation or editing, notifying users of incorrect entries.
+- <img src="https://img.icons8.com/ios-filled/50/0F52BA/search.png" width="25" height="25"/> **Search Contacts:** Search through contacts in the contact book to find specific entries quickly.
+- <img src="https://img.icons8.com/ios-filled/50/0F52BA/edit.png" width="25" height="25"/> **Edit and Delete Contacts:** Modify and remove contact entries from the contact book as needed.
+- <img src="https://img.icons8.com/?size=100&id=123367&format=png&color=0F52BA" width="25" height="25"/> **Organise Contacts:** Group your contacts for better management and accessibility. Create and manage groups such as Family, Friends, Work, etc.
 
 ### Notes Organiser
 
-- <img src="https://img.icons8.com/ios-filled/50/000000/note.png" width="25" height="25"/> **Store Notes:** Save notes with textual information, keeping track of important thoughts and ideas.
-- <img src="https://img.icons8.com/ios-filled/50/000000/search.png" width="25" height="25"/> **Search Notes:** Search through stored notes to find specific information quickly.
-- <img src="https://img.icons8.com/ios-filled/50/000000/edit.png" width="25" height="25"/> **Edit and Delete Notes:** Modify and remove notes as needed to keep your notes organised.
-- <img src="https://img.icons8.com/ios-filled/50/000000/tags.png" width="25" height="25"/> **Tags for Notes:** Add tags or keywords to notes to describe their topic and content.
-- <img src="https://img.icons8.com/ios-filled/50/000000/sorting-options.png" width="25" height="25"/> **Search and Sort Notes by Tags:** Find and organise notes based on keywords (tags) for easy retrieval and management.
+- <img src="https://img.icons8.com/ios-filled/50/0F52BA/note.png" width="25" height="25"/> **Store Notes:** Save notes with textual information, keeping track of important thoughts and ideas.
+- <img src="https://img.icons8.com/ios-filled/50/0F52BA/search.png" width="25" height="25"/> **Search Notes:** Search through stored notes to find specific information quickly.
+- <img src="https://img.icons8.com/ios-filled/50/0F52BA/edit.png" width="25" height="25"/> **Edit and Delete Notes:** Modify and remove notes as needed to keep your notes organised.
+- <img src="https://img.icons8.com/ios-filled/50/0F52BA/tags.png" width="25" height="25"/> **Tags for Notes:** Add tags or keywords to notes to describe their topic and content.
+- <img src="https://img.icons8.com/ios-filled/50/0F52BA/sorting-options.png" width="25" height="25"/> **Search and Sort Notes by Tags:** Find and organise notes based on keywords (tags) for easy retrieval and management.
 
 ### File Manager
 
-- <img src="https://img.icons8.com/ios-filled/50/000000/upload.png" width="25" height="25"/> **File Uploads:** Upload user files to a cloud service and access them via the web interface. This feature ensures your important documents are always available.
-- <img src="https://img.icons8.com/ios-filled/50/000000/download.png" width="25" height="25"/> **File Downloads:** Download your files from the cloud service via the web interface, making it easy to retrieve and share your documents.
-- <img src="https://img.icons8.com/ios-filled/50/000000/categorize.png" width="25" height="25"/> **File Categorisation:** Categorise files by type (images, documents, videos, etc.) and display files filtered by the selected category, making it easy to manage and find your files.
+- <img src="https://img.icons8.com/ios-filled/50/0F52BA/upload.png" width="25" height="25"/> **File Uploads:** Upload user files to a cloud service and access them via the web interface. This feature ensures your important documents are always available.
+- <img src="https://img.icons8.com/ios-filled/50/0F52BA/download.png" width="25" height="25"/> **File Downloads:** Download your files from the cloud service via the web interface, making it easy to retrieve and share your documents.
+- <img src="https://img.icons8.com/ios-filled/50/0F52BA/categorize.png" width="25" height="25"/> **File Categorisation:** Categorise files by type (images, documents, videos, etc.) and display files filtered by the selected category, making it easy to manage and find your files.
 
 ### Authentication and Authorisation
 
-- <img src="https://img.icons8.com/ios-filled/50/000000/public.png" width="25" height="25"/> **Public Access:** Unregistered users have access to the news portal.
-- <img src="https://img.icons8.com/ios-filled/50/000000/lock.png" width="25" height="25"/> **Restricted Features:** Registered and logged-in users can access all other features of the app, including the address book, notes organiser, and file manager.
-- <img src="https://img.icons8.com/ios-filled/50/000000/key.png" width="25" height="25"/> **User Authorisation:** Implement robust user authorisation to ensure data privacy and security.
-- <img src="https://img.icons8.com/ios-filled/50/000000/privacy.png" width="25" height="25"/> **Data Privacy:** Ensure each registered user can access only their data and files, protecting user information.
-- <img src="https://img.icons8.com/ios-filled/50/000000/recovery.png" width="25" height="25"/> **Password Recovery:** Implement a password recovery mechanism via email for users who need to reset their passwords.
+- <img src="https://img.icons8.com/ios-filled/50/0F52BA/public.png" width="25" height="25"/> **Public Access:** Unregistered users have access to the news portal.
+- <img src="https://img.icons8.com/ios-filled/50/0F52BA/lock.png" width="25" height="25"/> **Restricted Features:** Registered and logged-in users can access all other features of the app, including the address book, notes organiser, and file manager.
+- <img src="https://img.icons8.com/ios-filled/50/0F52BA/key.png" width="25" height="25"/> **User Authorisation:** Implement robust user authorisation to ensure data privacy and security.
+- <img src="https://img.icons8.com/ios-filled/50/0F52BA/privacy.png" width="25" height="25"/> **Data Privacy:** Ensure each registered user can access only their data and files, protecting user information.
+- <img src="https://img.icons8.com/ios-filled/50/0F52BA/recovery.png" width="25" height="25"/> **Password Recovery:** Implement a password recovery mechanism via email for users who need to reset their passwords.
 
 By integrating these features, the Personal Assistant App ensures all your essential information is well-organised and easily accessible whenever you need it. Enhance your productivity and stay ahead with the Personal Assistant App.
 
@@ -72,14 +72,14 @@ By integrating these features, the Personal Assistant App ensures all your essen
 
 To run the server with this application, you will need:
 
-- <img src="https://img.icons8.com/ios-filled/50/000000/docker.png" width="25" height="25"/> **Docker and Docker Compose:** Ensure you have Docker and Docker Compose installed on your system to handle the database containers.
-- <img src="https://img.icons8.com/ios-filled/50/000000/python.png" width="25" height="25"/> **Python:** Ensure Python 3.10 or higher is installed on your system.
-- <img src="https://img.icons8.com/?size=100&id=111300&format=png&color=000000" width="25" height="25"/> **Poetry:** This project uses Poetry for dependency management. Install Poetry if you haven't already.
+- <img src="https://img.icons8.com/ios-filled/50/0F52BA/docker.png" width="25" height="25"/> **Docker and Docker Compose:** Ensure you have Docker and Docker Compose installed on your system to handle the database containers.
+- <img src="https://img.icons8.com/ios-filled/50/0F52BA/python.png" width="25" height="25"/> **Python:** Ensure Python 3.10 or higher is installed on your system.
+- <img src="https://img.icons8.com/?size=100&id=111300&format=png&color=0F52BA" width="25" height="25"/> **Poetry:** This project uses Poetry for dependency management. Install Poetry if you haven't already.
 
 Additionally, you will need:
 
-- <img src="https://img.icons8.com/ios-filled/50/000000/cloud.png" width="25" height="25"/> **Cloudinary:** For managing file uploads. Ensure you have a Cloudinary account and the necessary API keys.
-- <img src="https://img.icons8.com/ios-filled/50/000000/email.png" width="25" height="25"/> **SMTP Email Service:** For sending emails. Ensure you have access to an SMTP email service (e.g., Meta.ua, SendGrid) and the necessary credentials.
+- <img src="https://img.icons8.com/ios-filled/50/0F52BA/cloud.png" width="25" height="25"/> **Cloudinary:** For managing file uploads. Ensure you have a Cloudinary account and the necessary API keys.
+- <img src="https://img.icons8.com/ios-filled/50/0F52BA/email.png" width="25" height="25"/> **SMTP Email Service:** For sending emails. Ensure you have access to an SMTP email service (e.g., Meta.ua, SendGrid) and the necessary credentials.
 
 
 ### Installation and Usage
@@ -97,17 +97,17 @@ cd goit-py-web-project-team-8
 ```
 
 - **Set up the environment** using the following commands depending on your operating system:
-   - <img src="https://img.icons8.com/ios-filled/50/000000/linux.png" width="25" height="25"/> <img src="https://img.icons8.com/ios-filled/50/000000/mac-os.png" width="25" height="25"/> Unix/Linux/macOS:
+   - <img src="https://img.icons8.com/ios-filled/50/0F52BA/linux.png" width="25" height="25"/> <img src="https://img.icons8.com/ios-filled/50/0F52BA/mac-os.png" width="25" height="25"/> Unix/Linux/macOS:
    ```bash
    cp .env.example .env
    ```
-   - <img src="https://img.icons8.com/ios-filled/50/000000/windows8.png" width="25" height="25"/> Windows:
+   - <img src="https://img.icons8.com/ios-filled/50/0F52BA/windows8.png" width="25" height="25"/> Windows:
    ```powershell
    copy .env.example .env
    ```
 
    <div style="border: 2px solid #0a9396; padding: 10px; border-radius: 5px; background-color: #f0f4f8;">
-      <img src="https://img.icons8.com/ios-filled/50/000000/warning-shield.png" width="25" height="25"/>
+      <img src="https://img.icons8.com/ios-filled/50/0F52BA/warning-shield.png" width="25" height="25"/>
       <strong>NOTE:</strong> Adjust the <code>.env</code> file with your specific settings, including database credentials, Cloudinary API keys, and SMTP server details.
 </div>
 
@@ -195,41 +195,41 @@ By following these steps, you will properly deactivate the Poetry environment al
 
 ### Новинний портал <a id="news-portal-ua"></a>
 
-- <img src="https://img.icons8.com/ios-filled/50/000000/news.png" width="25" height="25"/> **Щоденний огляд новин:** Будьте в курсі зібраних найважливіших новин. Користувачі можуть обрати область інтересів (загальні, бізнес, розваги, здоров'я, наука, спорт, технології) та країну (Україна ![Ukraine Flag](https://img.icons8.com/?size=20&id=5cFvmahMQv5S&format=png&color=000000), США ![USA Flag](https://img.icons8.com/?size=20&id=fIgZUHgwc76e&format=png&color=000000), Велика Британія ![UK Flag](https://img.icons8.com/?size=20&id=ShNNs7i8tXQF&format=png&color=000000), Франція ![France Flag](https://img.icons8.com/?size=20&id=YwnngGdMBmIV&format=png&color=000000), Німеччина ![Germany Flag](https://img.icons8.com/?size=20&id=vRrbNnaD93Ys&format=png&color=000000), або Польща ![Poland Flag](https://img.icons8.com/?size=20&id=civsLZTDrVTT&format=png&color=000000)). Збирайте інформацію з вибраних ресурсів з заголовками новин.
+- <img src="https://img.icons8.com/ios-filled/50/0F52BA/news.png" width="25" height="25"/> **Щоденний огляд новин:** Будьте в курсі зібраних найважливіших новин. Користувачі можуть обрати область інтересів (загальні, бізнес, розваги, здоров'я, наука, спорт, технології) та країну (Україна ![Ukraine Flag](https://img.icons8.com/?size=20&id=5cFvmahMQv5S&format=png&color=000000), США ![USA Flag](https://img.icons8.com/?size=20&id=fIgZUHgwc76e&format=png&color=000000), Велика Британія ![UK Flag](https://img.icons8.com/?size=20&id=ShNNs7i8tXQF&format=png&color=000000), Франція ![France Flag](https://img.icons8.com/?size=20&id=YwnngGdMBmIV&format=png&color=000000), Німеччина ![Germany Flag](https://img.icons8.com/?size=20&id=vRrbNnaD93Ys&format=png&color=000000), або Польща ![Poland Flag](https://img.icons8.com/?size=20&id=civsLZTDrVTT&format=png&color=000000)). Збирайте інформацію з вибраних ресурсів з заголовками новин.
 
-- <img src="https://img.icons8.com/ios-filled/50/000000/partly-cloudy-day.png" width="25" height="25"/> **Актуальна інформація про погоду:** Отримуйте найсвіжіші оновлення погоди для ефективного планування свого дня. застосунок надає точні та актуальні прогнози погоди.
-- <img src="https://img.icons8.com/ios-filled/50/000000/currency-exchange.png" width="25" height="25"/> **Курси валют у реальному часі:** Будьте в курсі останніх курсів валют. Ця функція особливо корисна для користувачів, які мають справу з міжнародними транзакціями або подорожами.
+- <img src="https://img.icons8.com/ios-filled/50/0F52BA/partly-cloudy-day.png" width="25" height="25"/> **Актуальна інформація про погоду:** Отримуйте найсвіжіші оновлення погоди для ефективного планування свого дня. застосунок надає точні та актуальні прогнози погоди.
+- <img src="https://img.icons8.com/ios-filled/50/0F52BA/currency-exchange.png" width="25" height="25"/> **Курси валют у реальному часі:** Будьте в курсі останніх курсів валют. Ця функція особливо корисна для користувачів, які мають справу з міжнародними транзакціями або подорожами.
 
 ### Адресна книга <a id="address-book-ua"></a>
 
-- <img src="https://img.icons8.com/ios-filled/50/000000/address-book.png" width="25" height="25"/> **Зберігання контактів:** Зберігайте контакти з детальною інформацією, включаючи імена, адреси, номери телефонів, електронні адреси та дні народження у книзі своїх контактів.
-- <img src="https://img.icons8.com/ios-filled/50/000000/birthday.png" width="25" height="25"/> **Нагадування про дні народження:** Виводьте список контактів з їхніми днями народження на основі вказаної кількості днів від поточної дати.
-- <img src="https://img.icons8.com/?size=100&id=dCS93MYAhxrF&format=png&color=000000" width="25" height="25"/> **Перевірка введених даних:** Застосунок перевірить номери телефонів, електронні адреси та дати народження під час створення або редагування контактів, повідомляючи вас у разі некоректного введення даних.
-- <img src="https://img.icons8.com/ios-filled/50/000000/search.png" width="25" height="25"/> **Пошук контактів:** Шукайте контакти в адресній книзі для швидкого знаходження конкретних записів.
-- <img src="https://img.icons8.com/ios-filled/50/000000/edit.png" width="25" height="25"/> **Редагування та видалення контактів:** Змінюйте та видаляйте контактні записи з адресної книги за потреби.
-- <img src="https://img.icons8.com/?size=100&id=123367&format=png&color=000000" width="25" height="25"/> **Організація контактів:** Групуйте ваші контакти для кращого управління та доступності. Створюйте та керуйте групами, такими як Сім'я, Друзі, Робота тощо.
+- <img src="https://img.icons8.com/ios-filled/50/0F52BA/address-book.png" width="25" height="25"/> **Зберігання контактів:** Зберігайте контакти з детальною інформацією, включаючи імена, адреси, номери телефонів, електронні адреси та дні народження у книзі своїх контактів.
+- <img src="https://img.icons8.com/ios-filled/50/0F52BA/birthday.png" width="25" height="25"/> **Нагадування про дні народження:** Виводьте список контактів з їхніми днями народження на основі вказаної кількості днів від поточної дати.
+- <img src="https://img.icons8.com/?size=100&id=dCS93MYAhxrF&format=png&color=0F52BA" width="25" height="25"/> **Перевірка введених даних:** Застосунок перевірить номери телефонів, електронні адреси та дати народження під час створення або редагування контактів, повідомляючи вас у разі некоректного введення даних.
+- <img src="https://img.icons8.com/ios-filled/50/0F52BA/search.png" width="25" height="25"/> **Пошук контактів:** Шукайте контакти в адресній книзі для швидкого знаходження конкретних записів.
+- <img src="https://img.icons8.com/ios-filled/50/0F52BA/edit.png" width="25" height="25"/> **Редагування та видалення контактів:** Змінюйте та видаляйте контактні записи з адресної книги за потреби.
+- <img src="https://img.icons8.com/?size=100&id=123367&format=png&color=0F52BA" width="25" height="25"/> **Організація контактів:** Групуйте ваші контакти для кращого управління та доступності. Створюйте та керуйте групами, такими як Сім'я, Друзі, Робота тощо.
 
 ### Органайзер нотаток <a id="notes-organiser-ua"></a>
 
-- <img src="https://img.icons8.com/ios-filled/50/000000/note.png" width="25" height="25"/> **Зберігання нотаток:** Зберігайте нотатки з текстовою інформацією, відстежуючи важливі думки та ідеї.
-- <img src="https://img.icons8.com/ios-filled/50/000000/search.png" width="25" height="25"/> **Пошук нотаток:** Шукайте збережені нотатки, щоб швидко знаходити потрібну інформацію.
-- <img src="https://img.icons8.com/ios-filled/50/000000/edit.png" width="25" height="25"/> **Редагування та видалення нотаток:** Змінюйте та видаляйте нотатки за потреби, щоб тримати їх організованими.
-- <img src="https://img.icons8.com/ios-filled/50/000000/tags.png" width="25" height="25"/> **Теги для нотаток:** Додавайте теги або ключові слова до нотаток, щоб описати їх тему та зміст.
-- <img src="https://img.icons8.com/ios-filled/50/000000/sorting-options.png" width="25" height="25"/> **Пошук і сортування нотаток за тегами:** Знаходьте та організовуйте нотатки на основі ключових слів (тегів) для легкого пошуку та управління.
+- <img src="https://img.icons8.com/ios-filled/50/0F52BA/note.png" width="25" height="25"/> **Зберігання нотаток:** Зберігайте нотатки з текстовою інформацією, відстежуючи важливі думки та ідеї.
+- <img src="https://img.icons8.com/ios-filled/50/0F52BA/search.png" width="25" height="25"/> **Пошук нотаток:** Шукайте збережені нотатки, щоб швидко знаходити потрібну інформацію.
+- <img src="https://img.icons8.com/ios-filled/50/0F52BA/edit.png" width="25" height="25"/> **Редагування та видалення нотаток:** Змінюйте та видаляйте нотатки за потреби, щоб тримати їх організованими.
+- <img src="https://img.icons8.com/ios-filled/50/0F52BA/tags.png" width="25" height="25"/> **Теги для нотаток:** Додавайте теги або ключові слова до нотаток, щоб описати їх тему та зміст.
+- <img src="https://img.icons8.com/ios-filled/50/0F52BA/sorting-options.png" width="25" height="25"/> **Пошук і сортування нотаток за тегами:** Знаходьте та організовуйте нотатки на основі ключових слів (тегів) для легкого пошуку та управління.
 
 ### Файловий менеджер <a id="file-manager-ua"></a>
 
-- <img src="https://img.icons8.com/ios-filled/50/000000/upload.png" width="25" height="25"/> **Завантаження файлів:** Завантажуйте ваші файли до хмарного сервісу та отримуйте доступ до них через веб-інтерфейс. Ця функція забезпечує доступність важливих документів у будь-який час.
-- <img src="https://img.icons8.com/ios-filled/50/000000/download.png" width="25" height="25"/> **Скачування файлів:** Завантажуйте ваші файли з хмарного сервісу через веб-інтерфейс, який допомагає легко отримувати та ділитися вашими документами.
-- <img src="https://img.icons8.com/ios-filled/50/000000/categorize.png" width="25" height="25"/> **Категоризація файлів:** Категоризуйте файли за типом (зображення, документи, відео тощо) та відображайте файли, відфільтровані за вибраною категорією - це спрощує управління та пошук файлів.
+- <img src="https://img.icons8.com/ios-filled/50/0F52BA/upload.png" width="25" height="25"/> **Завантаження файлів:** Завантажуйте ваші файли до хмарного сервісу та отримуйте доступ до них через веб-інтерфейс. Ця функція забезпечує доступність важливих документів у будь-який час.
+- <img src="https://img.icons8.com/ios-filled/50/0F52BA/download.png" width="25" height="25"/> **Скачування файлів:** Завантажуйте ваші файли з хмарного сервісу через веб-інтерфейс, який допомагає легко отримувати та ділитися вашими документами.
+- <img src="https://img.icons8.com/ios-filled/50/0F52BA/categorize.png" width="25" height="25"/> **Категоризація файлів:** Категоризуйте файли за типом (зображення, документи, відео тощо) та відображайте файли, відфільтровані за вибраною категорією - це спрощує управління та пошук файлів.
 
 ### Аутентифікація та авторизація <a id="authentication-and-authorisation-ua"></a>
 
-- <img src="https://img.icons8.com/ios-filled/50/000000/public.png" width="25" height="25"/> **Публічний доступ:** Незареєстровані користувачі мають доступ до новинного порталу.
-- <img src="https://img.icons8.com/ios-filled/50/000000/lock.png" width="25" height="25"/> **Обмежені функції:** Зареєстровані та залогінені користувачі можуть отримати доступ до всіх інших функцій застосунку, включаючи адресну книгу, органайзер нотаток та файловий менеджер.
-- <img src="https://img.icons8.com/ios-filled/50/000000/key.png" width="25" height="25"/> **Авторизація користувачів:** Реалізовано надійну авторизацію користувачів для забезпечення конфіденційності та безпеки даних.
-- <img src="https://img.icons8.com/ios-filled/50/000000/privacy.png" width="25" height="25"/> **Конфіденційність даних:** Забезпечено доступ кожного зареєстрованого користувача лише до їхніх даних і файлів, захищаючи інформацію користувачів.
-- <img src="https://img.icons8.com/ios-filled/50/000000/recovery.png" width="25" height="25"/> **Відновлення паролю:** Реалізовано механізм відновлення паролю через електронну пошту для користувачів, яким потрібно скинути пароль.
+- <img src="https://img.icons8.com/ios-filled/50/0F52BA/public.png" width="25" height="25"/> **Публічний доступ:** Незареєстровані користувачі мають доступ до новинного порталу.
+- <img src="https://img.icons8.com/ios-filled/50/0F52BA/lock.png" width="25" height="25"/> **Обмежені функції:** Зареєстровані та залогінені користувачі можуть отримати доступ до всіх інших функцій застосунку, включаючи адресну книгу, органайзер нотаток та файловий менеджер.
+- <img src="https://img.icons8.com/ios-filled/50/0F52BA/key.png" width="25" height="25"/> **Авторизація користувачів:** Реалізовано надійну авторизацію користувачів для забезпечення конфіденційності та безпеки даних.
+- <img src="https://img.icons8.com/ios-filled/50/0F52BA/privacy.png" width="25" height="25"/> **Конфіденційність даних:** Забезпечено доступ кожного зареєстрованого користувача лише до їхніх даних і файлів, захищаючи інформацію користувачів.
+- <img src="https://img.icons8.com/ios-filled/50/0F52BA/recovery.png" width="25" height="25"/> **Відновлення паролю:** Реалізовано механізм відновлення паролю через електронну пошту для користувачів, яким потрібно скинути пароль.
 
 Інтегруючи ці функції, застосунок "Особистий Помічник" гарантує, що вся ваша важлива інформація добре організована та легко доступна у будь-який час. Підвищуйте свою продуктивність і будьте попереду з додатком "Особистий Помічник".
 
@@ -239,14 +239,14 @@ By following these steps, you will properly deactivate the Poetry environment al
 
 Для запуску сервера з цим застосунком, вам потрібно:
 
-- <img src="https://img.icons8.com/ios-filled/50/000000/docker.png" width="25" height="25"/> **Docker та Docker Compose:** Переконайтеся, що у вас встановлені Docker та Docker Compose для обробки контейнера бази даних.
-- <img src="https://img.icons8.com/ios-filled/50/000000/python.png" width="25" height="25"/> **Python:** Переконайтеся, що у вас встановлено Python 3.10 або вище.
-- <img src="https://img.icons8.com/?size=100&id=111300&format=png&color=000000" width="25" height="25"/> **Poetry:** Цей проект використовує Poetry для управління залежностями. Встановіть Poetry, якщо ви ще не зробили цього.
+- <img src="https://img.icons8.com/ios-filled/50/0F52BA/docker.png" width="25" height="25"/> **Docker та Docker Compose:** Переконайтеся, що у вас встановлені Docker та Docker Compose для обробки контейнера бази даних.
+- <img src="https://img.icons8.com/ios-filled/50/0F52BA/python.png" width="25" height="25"/> **Python:** Переконайтеся, що у вас встановлено Python 3.10 або вище.
+- <img src="https://img.icons8.com/?size=100&id=111300&format=png&color=0F52BA" width="25" height="25"/> **Poetry:** Цей проект використовує Poetry для управління залежностями. Встановіть Poetry, якщо ви ще не зробили цього.
 
 Додатково вам знадобляться:
 
-- <img src="https://img.icons8.com/ios-filled/50/000000/cloud.png" width="25" height="25"/> **Cloudinary:** Для управління завантаженням файлів. Переконайтеся, що у вас є обліковий запис Cloudinary та необхідні API ключі.
-- <img src="https://img.icons8.com/ios-filled/50/000000/email.png" width="25" height="25"/> **SMTP сервіс електронної пошти:** Для надсилання електронних листів. Переконайтеся, що у вас є доступ до SMTP сервісу (наприклад, Meta.ua, SendGrid) та необхідні облікові дані.
+- <img src="https://img.icons8.com/ios-filled/50/0F52BA/cloud.png" width="25" height="25"/> **Cloudinary:** Для управління завантаженням файлів. Переконайтеся, що у вас є обліковий запис Cloudinary та необхідні API ключі.
+- <img src="https://img.icons8.com/ios-filled/50/0F52BA/email.png" width="25" height="25"/> **SMTP сервіс електронної пошти:** Для надсилання електронних листів. Переконайтеся, що у вас є доступ до SMTP сервісу (наприклад, Meta.ua, SendGrid) та необхідні облікові дані.
 
 ### Встановлення та використання <a id="installation-and-usage-ua"></a>
 
@@ -263,18 +263,18 @@ cd goit-py-web-project-team-8
 ```
 
 - **Налаштуйте середовище** використовуючи наступні команди в залежності від вашої операційної системи:
-   - <img src="https://img.icons8.com/ios-filled/50/000000/linux.png" width="25" height="25"/> <img src="https://img.icons8.com/ios-filled/50/000000/mac-os.png" width="25" height="25"/> Unix/Linux/macOS:
+   - <img src="https://img.icons8.com/ios-filled/50/0F52BA/linux.png" width="25" height="25"/> <img src="https://img.icons8.com/ios-filled/50/0F52BA/mac-os.png" width="25" height="25"/> Unix/Linux/macOS:
    ```bash
    cp .env.example .env
    ```
 
-   - <img src="https://img.icons8.com/ios-filled/50/000000/windows8.png" width="25" height="25"/> Windows:
+   - <img src="https://img.icons8.com/ios-filled/50/0F52BA/windows8.png" width="25" height="25"/> Windows:
    ```powershell
    copy .env.example .env
    ```
 
    <div style="border: 2px solid #0a9396; padding: 10px; border-radius: 5px; background-color: #f0f4f8;">
-      <img src="https://img.icons8.com/ios-filled/50/000000/warning-shield.png" width="25" height="25"/>
+      <img src="https://img.icons8.com/ios-filled/50/0F52BA/warning-shield.png" width="25" height="25"/>
       <strong>ПРИМІТКА:</strong> Налаштуйте файл <code>.env</code> з вашими специфічними налаштуваннями, включаючи облікові дані бази даних, ключі API Cloudinary та дані SMTP сервера.
 </div>
 
