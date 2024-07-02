@@ -27,7 +27,7 @@ With the Personal Assistant App, you can effortlessly maintain an organised life
 
 ### News Portal
 
-- <img src="https://img.icons8.com/ios-filled/50/000000/news.png" width="25" height="25"/> **Daily News Summary:** Stay updated with a curated collection of the most important news. Users can choose an area of interest (general, business, entertainment, health, science, sports, technology) and country (Ukraine ![Ukraine Flag](https://img.icons8.com/?size=20&id=5cFvmahMQv5S&format=png&color=000000), USA ![USA Flag](https://img.icons8.com/?size=20&id=fIgZUHgwc76e&format=png&color=000000), United Kingdom ![UK Flag](https://img.icons8.com/?size=20&id=ShNNs7i8tXQF&format=png&color=000000), France ![France Flag](https://img.icons8.com/?size=20&id=YwnngGdMBmIV&format=png&color=000000), Germany ![Germany Flag](https://img.icons8.com/?size=20&id=vRrbNnaD93Ys&format=png&color=000000), or Poland ![Poland Flag](https://img.icons8.com/?size=20&id=civsLZTDrVTT&format=png&color=000000)). Gather information from selected resources with news headlines.
+- <img src="https://img.icons8.com/ios-filled/50/000000/news.png?color=blue" width="25" height="25"/> **Daily News Summary:** Stay updated with a curated collection of the most important news. Users can choose an area of interest (general, business, entertainment, health, science, sports, technology) and country (Ukraine ![Ukraine Flag](https://img.icons8.com/?size=20&id=5cFvmahMQv5S&format=png&color=000000), USA ![USA Flag](https://img.icons8.com/?size=20&id=fIgZUHgwc76e&format=png&color=000000), United Kingdom ![UK Flag](https://img.icons8.com/?size=20&id=ShNNs7i8tXQF&format=png&color=000000), France ![France Flag](https://img.icons8.com/?size=20&id=YwnngGdMBmIV&format=png&color=000000), Germany ![Germany Flag](https://img.icons8.com/?size=20&id=vRrbNnaD93Ys&format=png&color=000000), or Poland ![Poland Flag](https://img.icons8.com/?size=20&id=civsLZTDrVTT&format=png&color=000000)). Gather information from selected resources with news headlines.
 
 - <img src="https://img.icons8.com/ios-filled/50/000000/partly-cloudy-day.png" width="25" height="25"/> **Current Weather Information:** Get the latest weather updates to plan your day effectively. The app provides accurate and up-to-date weather forecasts.
 - <img src="https://img.icons8.com/ios-filled/50/000000/currency-exchange.png" width="25" height="25"/> **Real-Time Exchange Rates:** Stay informed about the latest currency exchange rates. This feature is especially useful for users dealing with international transactions or travel.
@@ -167,9 +167,9 @@ By following these steps, you will properly deactivate the Poetry environment al
 
 <a href="#top" id="backToTopBtn" title="Go to top">Top</a>
 
-# Ласкаво просимо до застосунку "Особистий Помічник"
-
 <a id="ukrainian-version"></a>
+
+# Ласкаво просимо до застосунку "Особистий Помічник"
 
 [Jump to English version](#top)
 
