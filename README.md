@@ -79,7 +79,7 @@ To run the server with this application, you will need:
 Additionally, you will need:
 
 - <img src="https://img.icons8.com/ios-filled/50/0F52BA/cloud.png" width="25" height="25"/> **Cloudinary:** For managing file uploads. Ensure you have a Cloudinary account and the necessary API keys.
-- <img src="https://img.icons8.com/ios-filled/50/0F52BA/email.png" width="25" height="25"/> **SMTP Email Service:** For sending emails. Ensure you have access to an SMTP email service (e.g., Meta.ua, SendGrid) and the necessary credentials.
+- <img src="https://img.icons8.com/ios-filled/50/0F52BA/email.png" width="25" height="25"/> **SMTP Email Service:** For sending emails. Ensure you have access to an SMTP email service (e.g., [Meta](https://meta.ua/uk/), [SendGrid](https://sendgrid.com/en-us)) and the necessary credentials.
 
 
 ### Installation and Usage
@@ -246,7 +246,7 @@ By following these steps, you will properly deactivate the Poetry environment al
 Додатково вам знадобляться:
 
 - <img src="https://img.icons8.com/ios-filled/50/0F52BA/cloud.png" width="25" height="25"/> **Cloudinary:** Для управління завантаженням файлів. Переконайтеся, що у вас є обліковий запис Cloudinary та необхідні API ключі.
-- <img src="https://img.icons8.com/ios-filled/50/0F52BA/email.png" width="25" height="25"/> **SMTP сервіс електронної пошти:** Для надсилання електронних листів. Переконайтеся, що у вас є доступ до SMTP сервісу (наприклад, Meta.ua, SendGrid) та необхідні облікові дані.
+- <img src="https://img.icons8.com/ios-filled/50/0F52BA/email.png" width="25" height="25"/> **SMTP сервіс електронної пошти:** Для надсилання електронних листів. Переконайтеся, що у вас є доступ до SMTP сервісу (наприклад, [Meta](https://meta.ua/uk/), [SendGrid](https://sendgrid.com/en-us)) та необхідні облікові дані.
 
 ### Встановлення та використання <a id="installation-and-usage-ua"></a>
 
