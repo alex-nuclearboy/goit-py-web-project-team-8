@@ -165,7 +165,7 @@ exit
 
 By following these steps, you will properly deactivate the Poetry environment along with stopping the Django development server and the Docker containers used for the application and database.
 
-<a href="#top" id="backToTopBtn" title="Go to top">Top</a>
+<a href="#top" title="Go to top">Top</a>
 
 <a id="ukrainian-version"></a>
 
@@ -332,23 +332,4 @@ exit
 
 Дотримуючись цих кроків, ви правильно деактивуєте середовище Poetry разом із зупинкою сервера розробки Django та Docker контейнерів, що використовуються для додатка та бази даних.
 
-<style>
-#backToTopBtn {
-  display: block; /* Відображати блок */
-  position: fixed; /* Фіксоване положення */
-  bottom: 20px; /* Відступ знизу */
-  right: 30px; /* Відступ праворуч */
-  z-index: 99; /* Зробіть її видимою над іншими елементами */
-  border: none; /* Без рамки */
-  outline: none; /* Без обведення */
-  background-color: #0a9396; /* Колір фону */
-  color: white; /* Колір тексту */
-  cursor: pointer; /* Курсор у вигляді руки */
-  padding: 15px; /* Відступи */
-  border-radius: 10px; /* Закруглені кути */
-  font-size: 18px; /* Розмір шрифту */
-  text-decoration: none; /* Без підкреслення */
-}
-</style>
-
-<a href="#top" id="backToTopBtn" title="Go to top">Top</a>
+<a href="#top" title="Go to top">Top</a>
