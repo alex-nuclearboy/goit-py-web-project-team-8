@@ -19,8 +19,17 @@ COPY . /code/
 # Change to the Django project directory
 WORKDIR /code/personal_assistant
 
+# Copy entrypoint script
+COPY entrypoint.sh /code/personal_assistant/entrypoint.sh
+
+# Make entrypoint script executable
+RUN chmod +x /code/personal_assistant/entrypoint.sh
+
 # Expose the port the app runs on
 EXPOSE 8000
 
-# Start the Django server
-CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
+# Use the entrypoint script
+ENTRYPOINT ["/code/personal_assistant/entrypoint.sh"]
+
+# Start Gunicorn server
+CMD ["gunicorn", "personal_assistant.wsgi:application", "--bind", "0.0.0.0:8000"]
