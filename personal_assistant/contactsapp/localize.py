@@ -7,7 +7,7 @@ text_array = {
         'login': 'Login',
         'my_notes': 'My Notes',
         'my_contacts': 'My Contacts',
-        'my_files': 'My files',
+        'my_files': 'My Files',
         'addressbook': 'Address Book',
         'my_groups': 'Contact Groups',
         'contact_list': 'My Contacts',

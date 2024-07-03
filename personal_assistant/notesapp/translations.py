@@ -2,7 +2,7 @@ translations = {
     'en': {
         'dashboard': 'Home Page',
         'my_contacts': 'My Contacts',
-        'my_files': 'My files',
+        'my_files': 'My Files',
         'welcome': 'Welcome',
         'profile': 'Profile',
         'logout': 'Logout',

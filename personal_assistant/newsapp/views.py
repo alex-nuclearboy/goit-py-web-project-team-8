@@ -2,6 +2,7 @@ from django.shortcuts import render
 import requests
 import datetime
 import urllib.parse
+from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 
 from .translations import translations
 
@@ -102,7 +103,15 @@ def main(request):
 
     news_data = fetch_news(category, country, trans)
 
-    exchange_rates = fetch_exchange_rates()
+    # Пагінація новин
+    page = request.GET.get('page', 1)
+    paginator = Paginator(news_data, 10)
+    try:
+        news_data = paginator.page(page)
+    except PageNotAnInteger:
+        news_data = paginator.page(1)
+    except EmptyPage:
+        news_data = paginator.page(paginator.num_pages)
 
     context = {
         'translations': trans,

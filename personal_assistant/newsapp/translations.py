@@ -3,7 +3,7 @@ translations = {
         'title': 'Personal Assistant App',
         'my_notes': 'My Notes',
         'my_contacts': 'My Contacts',
-        'my_files': 'My files',
+        'my_files': 'My Files',
         'welcome': 'Welcome',
         'profile': 'Profile',
         'logout': 'Logout',
@@ -41,7 +41,13 @@ translations = {
         'update_news': 'Update News',
         'todays_news_from': "Today's News from",
         'category': 'Category',
-        'error_fetching_news': "Error fetching news: %(error)s"
+        'error_fetching_news': "Error fetching news: %(error)s",
+        'first': 'First',
+        'previous': 'Previous',
+        'page': 'Page',
+        'of': 'of',
+        'next': 'Next',
+        'last': 'Last',
     },
     'uk': {
         'title': 'Особистий Асистент',
@@ -85,6 +91,12 @@ translations = {
         'update_news': 'Оновити новини',
         'todays_news_from': 'Сьогоднішні новини з:',
         'category': 'Категорія',
-        'error_fetching_news': "Помилка під час отримання новин: %(error)s"
+        'error_fetching_news': "Помилка під час отримання новин: %(error)s",
+        'first': 'Перша',
+        'previous': 'Попередня',
+        'page': 'Сторінка',
+        'of': 'з',
+        'next': 'Наступна',
+        'last': 'Остання',
     }
 }
