@@ -91,7 +91,7 @@
 
 <div class="content-container">
     <main>
-        <h1>{% if form.instance.pk %}{{ translations.edit_note }}{% else %}{{ translations.add_note }}{% endif %}</h1>
+        <h2>{% if form.instance.pk %}{{ translations.edit_note }}{% else %}{{ translations.add_note }}{% endif %}</h2>
         <form method="post">
             {% csrf_token %}
             {{ form.as_p }}

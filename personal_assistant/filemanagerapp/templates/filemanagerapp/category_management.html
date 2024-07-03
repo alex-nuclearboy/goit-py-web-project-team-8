@@ -1,0 +1,113 @@
+{% extends "filemanagerapp/base.html" %}
+{% load l10n %}
+{% load custom_tags %}
+
+{% block title %}{{ translations.category_management }}{% endblock %}
+
+{% block content %}
+<script>
+    function filterByCategory(categoryName) {
+        const baseUrl = '{% url "filemanagerapp:file_list" %}';
+        const url = new URL(baseUrl, window.location.origin);
+        url.searchParams.set('category', categoryName);
+        window.location.href = url.toString();
+    }
+
+    function confirmDelete(categoryId) {
+        if (confirm('{{ translations.confirm_delete_category }}')) {
+            window.location.href = `/filemanagerapp/category/${categoryId}/delete`;
+        }
+    }
+</script>
+
+<style>
+    .category-button {
+        display: inline-block;
+        padding: 8px 12px;
+        margin: 2px;
+        text-decoration: none;
+        background-color: #0a9396;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        font-size: 19px;
+        width: 200px;
+        text-align: center;
+        transition: background-color 0.3s ease;
+    }
+
+    .category-button:hover {
+        background-color: #005f73;
+    }
+
+    .category-button-delete {
+        background-color: #ae2012;
+        margin-left: 10px;
+    }
+
+    .category-button-delete:hover {
+        background-color: #7e1710;
+    }
+
+    .category-button-add {
+        background-color: #005f73;
+        color: #fff;
+        padding: 10px;
+        display: inline-block;
+        text-align: center;
+        width: 240px;
+    }
+
+    .category-button-add:hover {
+        background-color: #004050;
+    }
+
+    .category-button-back {
+        background-color: #ca6702;
+        color: #fff;
+        padding: 10px;
+        display: inline-block;
+        text-align: center;
+        width: 240px;
+    }
+
+    .category-button-back:hover {
+        background-color: #a05201;
+    }
+
+    .file-item {
+        border-bottom: 1px solid #ccc;
+        padding-bottom: 10px;
+        margin-bottom: 10px;
+    }
+</style>
+
+<div class="content-container" style="display: flex; max-width: 1200px; margin: auto;">
+    <main style="flex: 3; padding-right: 20px;">
+        <h2>{{ translations.category_management_title }}</h2>
+        {% if categories %}
+            <ul>
+                {% for category in categories %}
+                <li class="file-item">
+                    {{ category.name|translate_category:translated_categories }}
+                    <div>
+                        <a href="#" onclick="filterByCategory('{{ category.name }}')" role="button" class="category-button">{{ translations.view_files }}</a>
+                        <a href="#" onclick="confirmDelete('{{ category.id }}')" role="button" class="category-button category-button-delete">{{ translations.delete }}</a>
+                    </div>
+                </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>{{ translations.no_categories_yet }} <a href="{% url 'filemanagerapp:create_category' %}">{{ translations.add_new_category }}?</a></p>
+        {% endif %}
+    </main>
+    <aside style="flex: 1; min-width: 200px; max-width: 300px;">
+        <div style="margin-bottom: 40px; margin-top: 40px;">
+            <a href="{% url 'filemanagerapp:file_list' %}" class="category-button category-button-back">{{ translations.back_to_files }}</a>
+        </div>
+        <div style="margin-bottom: 40px; margin-top: 40px;">
+            <a href="{% url 'filemanagerapp:create_category' %}" class="category-button category-button-add">{{ translations.add_category }}</a>
+        </div>
+    </aside>
+</div>
+{% endblock content %}

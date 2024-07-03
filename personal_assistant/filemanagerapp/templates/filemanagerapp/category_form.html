@@ -1,0 +1,123 @@
+{% extends "filemanagerapp/base.html" %}
+{% load l10n %}
+
+{% block title %}{{ translations.create_category }}{% endblock %}
+
+{% block content %}
+<script>
+    function resetFormAndRedirect() {
+        document.querySelector('form').reset();
+        window.location.href = '{% url "filemanagerapp:category_management" %}';
+    }
+</script>
+
+<style>
+    .category-button {
+        display: inline-block;
+        padding: 8px 12px;
+        margin: 2px;
+        text-decoration: none;
+        background-color: #0a9396;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        font-size: 19px;
+        width: 140px;
+        text-align: center;
+        transition: background-color 0.3s ease;
+    }
+
+    .category-button:hover {
+        background-color: #005f73;
+    }
+
+    .category-button-reset {
+        background-color: #ae2012;
+        margin-left: 10px;
+    }
+
+    .category-button-reset:hover {
+        background-color: #7e1710;
+    }
+
+    .button {
+        padding: 16px 20px;
+        color: #fff;
+        border: none;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        margin: 4px 2px;
+        cursor: pointer;
+        border-radius: 4px;
+        transition: background-color 0.3s ease;
+    }
+
+    .button.primary {
+        background-color: #0a9396;
+    }
+
+    .button.primary:hover {
+        background-color: #086f6d;
+    }
+
+    .button.cancel {
+        background-color: #ae2012;
+    }
+
+    .button.cancel:hover {
+        background-color: #7e1710;
+    }
+
+    .category-button-back {
+        background-color: #ca6702;
+        color: #fff;
+        padding: 10px;
+        display: inline-block;
+        text-align: center;
+        width: 240px;
+    }
+
+    .category-button-back:hover {
+        background-color: #a05201;
+    }
+
+    .category-button-file-list {
+        background-color: #005f73;
+        color: #fff;
+        padding: 10px;
+        display: inline-block;
+        text-align: center;
+        width: 240px;
+    }
+
+    .category-button-file-list:hover {
+        background-color: #004050;
+    }
+</style>
+
+<div class="content-container" style="display: flex; max-width: 1200px; margin: auto;">
+    <main style="flex: 3; padding-right: 20px;">
+        <h2>{{ translations.create_category }}</h2>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            {% if form.non_field_errors %}
+                <div class="error">{{ form.non_field_errors }}</div>
+            {% endif %}
+            <div class="grid">
+                <button type="submit" class="button primary">{{ translations.create }}</button>
+                <button type="button" onclick="resetFormAndRedirect()" class="button cancel">{{ translations.cancel }}</button>
+            </div>
+        </form>
+    </main>
+    <aside style="flex: 1; min-width: 200px; max-width: 300px;">
+        <div style="margin-bottom: 40px; margin-top: 40px;">
+            <a href="{% url 'filemanagerapp:file_list' %}" class="category-button category-button-file-list">{{ translations.back_to_files }}</a>
+        </div>
+        <div style="margin-bottom: 40px; margin-top: 40px;">
+            <a href="{% url 'filemanagerapp:category_management' %}" class="category-button category-button-back">{{ translations.category_management }}</a>
+        </div>
+    </aside>
+</div>
+{% endblock content %}

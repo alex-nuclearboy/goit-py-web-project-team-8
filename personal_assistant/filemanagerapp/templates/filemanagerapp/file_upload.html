@@ -1,0 +1,149 @@
+<!-- filemanagerapp/templates/filemanagerapp/file_upload.html -->
+{% extends "filemanagerapp/base.html" %}
+{% load l10n custom_tags %}
+
+{% block title %}{% if edit_mode %}{{ translations.edit_file_category }}{% else %}{{ translations.upload_file }}{% endif %}{% endblock %}
+
+{% block content %}
+<style>
+    .file-button {
+        display: inline-block;
+        padding: 8px 12px;
+        margin: 2px;
+        text-decoration: none;
+        background-color: #0a9396;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        font-size: 19px;
+        width: 140px;
+        text-align: center;
+        transition: background-color 0.3s ease;
+    }
+
+    .file-button:hover {
+        background-color: #005f73;
+    }
+
+    .file-button-back {
+        background-color: #005f73;
+        color: #fff;
+        padding: 10px;
+        display: inline-block;
+        text-align: center;
+        width: 240px;
+    }
+
+    .file-button-back:hover {
+        background-color: #004050;
+    }
+
+    .file-button-add {
+        background-color: #6bac96;
+        color: #fff;
+        padding: 10px;
+        display: inline-block;
+        text-align: center;
+        width: 240px;
+    }
+
+    .file-button-add:hover {
+        background-color: #0A9396;
+    }
+
+    .file-button-category {
+        background-color: #ca6702;
+        color: #fff;
+        padding: 10px;
+        display: inline-block;
+        text-align: center;
+        width: 240px;
+    }
+
+    .file-button-category:hover {
+        background-color: #a05201;
+    }
+
+
+    .button {
+        padding: 16px 20px;
+        color: #fff;
+        border: none;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        margin: 4px 2px;
+        cursor: pointer;
+        border-radius: 4px;
+        transition: background-color 0.3s ease;
+    }
+
+    .button.primary {
+        background-color: #0a9396;
+    }
+
+    .button.primary:hover {
+        background-color: #086f6d;
+    }
+
+    .button.cancel {
+        background-color: #ae2012;
+    }
+
+    .button.cancel:hover {
+        background-color: #7e1710;
+    }
+
+    .bold-label {
+        font-weight: bold;
+    }
+</style>
+
+<script>
+    function resetFormAndRedirect() {
+        document.querySelector('form').reset();
+        window.location.href = '{% url "filemanagerapp:file_list" %}';
+    }
+</script>
+
+<div class="content-container" style="display: flex; max-width: 1200px; margin: auto;">
+    <main style="flex: 3; padding-right: 20px;">
+        <h2>{% if edit_mode %}{{ translations.edit_file_category }}{% else %}{{ translations.upload_file }}{% endif %}</h2>
+        {% if edit_mode %}
+            <p><strong>{{ translations.file }}:</strong> {{ file_name }}</p>
+            <p><strong>{{ translations.current_category }}:</strong> {{ current_category|translate_category:translations }}</p>
+        {% endif %}
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div>
+                {% if not edit_mode %}
+                <label class="bold-label">{{ translations.file }}:</label>
+                {{ form.file }}
+                {% endif %}
+            </div>
+            <div>
+                <label class="bold-label">{{ translations.category }}:</label>
+                {{ form.category }}
+            </div>
+            <div class="grid">
+                <button type="submit" class="button primary">{% if edit_mode %}{{ translations.save_changes }}{% else %}{{ translations.upload_file }}{% endif %}</button>
+                <button type="button" onclick="resetFormAndRedirect()" class="button cancel">{{ translations.cancel }}</button>
+            </div>
+        </form>
+    </main>
+
+    <aside style="flex: 1; min-width: 200px; max-width: 300px;">
+        <div style="margin-bottom: 40px; margin-top: 40px;">
+            <a href="{% url 'filemanagerapp:file_list' %}" class="file-button file-button-back">{{ translations.back_to_files }}</a>
+        </div>
+        {% if edit_mode %}
+            <div style="margin-bottom: 40px; margin-top: 40px;">
+                <a href="{% url 'filemanagerapp:file_upload' %}" class="file-button file-button-add">{{ translations.upload_file }}</a>
+            </div>
+        {% endif %}
+        <div style="margin-bottom: 40px; margin-top: 40px;">
+            <a href="{% url 'filemanagerapp:category_management' %}" class="file-button file-button-category">{{ translations.category_management }}</a>
+        </div>
+    </aside>
+</div>
+{% endblock %}

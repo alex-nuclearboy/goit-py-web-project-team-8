@@ -70,6 +70,12 @@
     .button-reset:hover {
         background-color: #7e1710;
     }
+
+    .file-item {
+        border-bottom: 1px solid #ccc;
+        padding-bottom: 10px;
+        margin-bottom: 10px;
+    }
 </style>
 
 <script>
@@ -85,9 +91,9 @@
         {% if contacts %}
             <ul>
                 {% for contact in contacts %}
-                    <li>
-                        <a href="{% url 'contactsapp:contact_details' contact.id %}">{{ contact.name }}</a> - 
-                        {{ translations.birthday }}: {{ contact.birthday|date:"j F Y"|translate_month:months }} ({{ contact.age }})
+                    <li class="file-item">
+                        <a href="{% url 'contactsapp:contact_details' contact.id %}">{{ contact.name }}</a><br>
+                        {{ translations.birthday }}: {{ contact.birthday|date:"j F"|translate_month:months }} ({{ contact.age }})
                     </li>
                 {% endfor %}
             </ul>

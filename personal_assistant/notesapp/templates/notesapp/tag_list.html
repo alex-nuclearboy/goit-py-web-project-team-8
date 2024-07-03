@@ -22,7 +22,7 @@
         border: none;
         border-radius: 4px;
         font-size: 19px;
-        width: 140px;
+        width: 200px;
         text-align: center;
         transition: background-color 0.3s ease;
     }
@@ -59,6 +59,7 @@
         padding: 5px 10px;
         margin-left: 10px;
         border: none;
+        width: 140px;
     }
 
     .tag-button-reset:hover {
@@ -83,6 +84,12 @@
     .pagination a:hover {
         background-color: #005f73;
     }
+
+    .file-item {
+        border-bottom: 1px solid #ccc;
+        padding-bottom: 10px;
+        margin-bottom: 10px;
+    }
 </style>
 
 <div class="content-container" style="display: flex; max-width: 1200px; margin: auto;">
@@ -91,12 +98,15 @@
         {% if tags %}
         <ul>
             {% for tag in tags %}
-            <li>
-                <a href="{% url 'notesapp:note_list' %}?tag={{ tag.name }}" role="button" class="outline" style="width: 200px;">{{ tag.name }}</a>
-                <form action="{% url 'notesapp:delete_tag' tag.id %}" method="post" style="display:inline;">
-                    {% csrf_token %}
-                    <button type="button" class="tag-button tag-button-delete" onclick="confirmDelete(this.form)">{{ translations.delete_tag }}</button>
-                </form>
+            <li class="file-item">
+                {{ tag.name }}
+                <div>
+                    <a href="{% url 'notesapp:note_list' %}?tag={{ tag.name }}" role="button" class="tag-button" style="width: 200px;">{{ translations.view_notes }}</a>
+                    <form action="{% url 'notesapp:delete_tag' tag.id %}" method="post" style="display:inline;">
+                        {% csrf_token %}
+                        <button type="button" class="tag-button tag-button-delete" onclick="confirmDelete(this.form)">{{ translations.delete_tag }}</button>
+                    </form>
+            </div>
             </li>
             {% endfor %}
         </ul>
