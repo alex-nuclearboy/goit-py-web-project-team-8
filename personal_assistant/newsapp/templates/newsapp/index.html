@@ -86,7 +86,7 @@
             display: flex;
             gap: 20px;
             align-items: center;
-            }
+        }
         .form-group {
             display: flex;
             flex-direction: column;
@@ -130,6 +130,41 @@
         }
         .header .left .buttons .nav-button.third:hover {
             background-color: #0a9396;
+        }
+        .pagination {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin: 20px 0;
+        }
+        .pagination a {
+            padding: 8px 12px;
+            border-radius: 5px;
+            text-decoration: none;
+            color: #fff;
+            background-color: #0a9396;
+            transition: background-color 0.3s ease;
+        }
+        .pagination a:hover {
+            background-color: #086f6d;
+        }
+
+        .pagination a {
+            display: inline-block;
+            padding: 8px 12px;
+            margin: 2px;
+            text-decoration: none;
+            background-color: #0a9396;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 19px;
+            width: 140px;
+            text-align: center;
+        }
+
+        .pagination a:hover {
+            background-color: #005f73;
         }
     </style>
 </head>
@@ -221,14 +256,30 @@
             <ul>
                 {% for article in news_data %}
                     <li>
-                        <a href="{{ article.url }}">{{ article.title }}</a> 
+                        <a href="{{ article.url }}" target="_blank">{{ article.title }}</a> 
                         - {{ article.source.name }}
                     </li>
                 {% endfor %}
             </ul>
+
+            <!-- Pagination -->
+            <div class="pagination">
+                {% if news_data.has_previous %}
+                    <a href="?page=1&city={{ selected_city }}&category={{ selected_category }}&country={{ selected_country }}" class="nav-button">{{ translations.first }}</a>
+                    <a href="?page={{ news_data.previous_page_number }}&city={{ selected_city }}&category={{ selected_category }}&country={{ selected_country }}" class="nav-button">{{ translations.previous }}</a>
+                {% endif %}
+                <span>{{ translations.page }} {{ news_data.number }} {{ translations.of }} {{ news_data.paginator.num_pages }}</span>
+                {% if news_data.has_next %}
+                    <a href="?page={{ news_data.next_page_number }}&city={{ selected_city }}&category={{ selected_category }}&country={{ selected_country }}" class="nav-button">{{ translations.next }}</a>
+                    <a href="?page={{ news_data.paginator.num_pages }}&city={{ selected_city }}&category={{ selected_category }}&country={{ selected_country }}" class="nav-button">{{ translations.last }}</a>
+                {% endif %}
+            </div>
+
         </main>
         <aside style="margin-top: 40px;">
             <form method="GET" action="{% url 'newsapp:index' %}">
+                <input type="hidden" name="category" value="{{ selected_category }}">
+                <input type="hidden" name="country" value="{{ selected_country }}">
                 {% if weather_error_message %}
                     <div class="alert-error">{{ weather_error_message }}</div>
                 {% endif %}

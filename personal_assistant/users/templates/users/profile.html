@@ -6,6 +6,7 @@
 {% block nav_left_buttons %}
     <a href="{% url 'contactsapp:contact_list' %}" class="nav-button primary">{{ translations.my_contacts }}</a>
     <a href="{% url 'notesapp:note_list' %}" class="nav-button secondary">{{ translations.my_notes }}</a>
+    <a href="{% url 'filemanagerapp:file_list' %}" class="nav-button third">{{ translations.my_files }}</a>
 {% endblock %}
 
 {% block nav_right_buttons %}

@@ -4,7 +4,7 @@ translations = {
         'title': 'Personal Assistant App',
         'my_notes': 'My Notes',
         'my_contacts': 'My Contacts',
-        'my_files': 'My files',
+        'my_files': 'My Files',
         'welcome': 'Welcome',
         'profile': 'Profile',
         'logout': 'Logout',
