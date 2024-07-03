@@ -72,7 +72,7 @@
 
 <div class="content-container">
     <main>
-        <h1>{% if form.instance.pk %}{{ translations.update_group }}{% else %}{{ translations.create_group }}{% endif %}</h1>
+        <h2>{% if form.instance.pk %}{{ translations.update_group }}{% else %}{{ translations.create_group }}{% endif %}</h2>
         <form method="post">
             {% csrf_token %}
             {{ form.as_p }}

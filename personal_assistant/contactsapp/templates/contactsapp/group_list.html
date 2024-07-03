@@ -43,7 +43,7 @@
         border: none;
         border-radius: 4px;
         font-size: 19px;
-        width: 140px;
+        width: 200px;
         text-align: center;
         transition: background-color 0.3s ease;
     }
@@ -86,6 +86,12 @@
     .button-add:hover {
         background-color: #6db4a6;
     }
+
+    .file-item {
+        border-bottom: 1px solid #ccc;
+        padding-bottom: 10px;
+        margin-bottom: 10px;
+    }
 </style>
 
 <div class="content-container">
@@ -94,8 +100,7 @@
             <h2>{{ text.list }}</h2>
             <ul>
                 {% for group in groups %}
-                    <li>
-                        <a href="{% url 'contactsapp:contact_list' %}?group_id={{ group.id }}" role="button" class="outline" style="width: 200px;">
+                    <li class="file-item">
                             {% if group.name == 'Family' %}
                                 {{ translations.family_group }}
                             {% elif group.name == 'Friends' %}
@@ -105,12 +110,14 @@
                             {% else %}
                                 {{ group.name }}
                             {% endif %}
-                        </a>
-                        <a href="{% url 'contactsapp:update_group' group.id %}" role="button" class="button button-edit">{{ text.edit }}</a>
-                        <form action="{% url 'contactsapp:delete_group' group.id %}" method="post" style="display: inline;">
-                            {% csrf_token %}
-                            <button type="button" class="button button-delete" onclick="confirmDelete(this.form, '{{ group.name }}')">{{ text.delete }}</button>
-                        </form>
+                        <div>
+                            <a href="{% url 'contactsapp:contact_list' %}?group_id={{ group.id }}" role="button" class="button">{{ translations.view_contacts }}</a>
+                            <a href="{% url 'contactsapp:update_group' group.id %}" role="button" class="button button-edit">{{ text.edit }}</a>
+                            <form action="{% url 'contactsapp:delete_group' group.id %}" method="post" style="display: inline;">
+                                {% csrf_token %}
+                                <button type="button" class="button button-delete" onclick="confirmDelete(this.form, '{{ group.name }}')">{{ text.delete }}</button>
+                            </form>
+                        </div>
                     </li>
                 {% endfor %}
             </ul>

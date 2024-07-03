@@ -86,6 +86,12 @@
     .note-button-tag-manager:hover {
         background-color: #a05201;
     }
+
+    .file-item {
+        border-bottom: 1px solid #ccc;
+        padding-bottom: 10px;
+        margin-bottom: 10px;
+    }
 </style>
 
 <div class="content-container" style="display: flex; max-width: 1200px; margin: auto;">
@@ -98,7 +104,7 @@
             <p>{{ translations.showing_search_results_for }}: <strong>{{ query }}</strong></p>
         {% endif %}
         {% if notes %}
-        <ul>
+        <ul class="file-item">
             {% for note in notes %}
             <li>
                 <a href="{% url 'notesapp:note_details' note.id %}" role="button" class="outline" style="width: 200px;">{{ note.title }}</a>

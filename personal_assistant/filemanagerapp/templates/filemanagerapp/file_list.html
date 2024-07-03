@@ -1,0 +1,155 @@
+<!-- filemanagerapp/file_list.html -->
+{% extends "filemanagerapp/base.html" %}
+{% load l10n %}
+{% load custom_tags %}
+
+{% block title %}{{ translations.file_manager }}{% endblock %}
+
+{% block content %}
+<script>
+    function confirmDelete(fileId) {
+        if (confirm('{{ translations.confirm_delete_file }}')) {
+            window.location.href = `/filemanagerapp/file/${fileId}/delete/`;
+        }
+    }
+
+    function filterByCategory(categoryName) {
+        const baseUrl = '{% url "filemanagerapp:file_list" %}';
+        const url = new URL(baseUrl, window.location.origin);
+        url.searchParams.set('category', categoryName);
+        window.location.href = url.toString();
+    }
+</script>
+
+<style>
+    .file-button {
+        display: inline-block;
+        padding: 8px 12px;
+        margin: 2px;
+        text-decoration: none;
+        background-color: #6bac96;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        font-size: 19px;
+        width: 200px;
+        text-align: center;
+        transition: background-color 0.3s ease;
+    }
+
+    .file-button:hover {
+        background-color: #005f73;
+    }
+
+    .file-button-edit {
+        background-color: #ee9b00;
+        margin-left: 10px;
+    }
+
+    .file-button-edit:hover {
+        background-color: #b88100;
+    }
+
+    .file-button-delete {
+        background-color: #ae2012;
+        margin-left: 10px;
+    }
+
+    .file-button-delete:hover {
+        background-color: #7e1710;
+    }
+
+    .file-button-add {
+        background-color: #005f73;
+        color: #fff;
+        padding: 10px;
+        display: inline-block;
+        text-align: center;
+        width: 240px;
+    }
+
+    .file-button-add:hover {
+        background-color: #004050;
+    }
+
+    .file-button-category {
+        background-color: #ca6702;
+        color: #fff;
+        padding: 10px;
+        display: inline-block;
+        text-align: center;
+        width: 240px;
+    }
+
+    .file-button-category:hover {
+        background-color: #a05201;
+    }
+
+    .file-item {
+        border-bottom: 1px solid #ccc;
+        padding-bottom: 10px;
+        margin-bottom: 10px;
+    }
+</style>
+
+<div class="content-container" style="display: flex; max-width: 1200px; margin: auto;">
+    <main style="flex: 3; padding-right: 20px;">
+        <h2>{{ translations.my_files }}</h2>
+        {% if selected_category_name and selected_category_name != 'All' %}
+            <p>{{ translations.showing_files_for_category }}: <strong>{{ selected_category_name|translate_category:translated_categories }}</strong></p>
+        {% endif %}
+        {% if files %}
+        <ul>
+            {% for file in files %}
+            <li class="file-item">
+                <p>{{ file.file.name }} ({{ translations.category }}: {{ file.category.name|translate_category:translated_categories }})</p>
+                <div>
+                    <a href="{{ file.file.url }}" download role="button" class="file-button">{{ translations.download }}</a>
+                    <a href="{% url 'filemanagerapp:edit_file_category' file.id %}" role="button" class="file-button file-button-edit">{{ translations.edit_category }}</a>
+                    <a href="#" onclick="confirmDelete('{{ file.id }}')" role="button" class="file-button file-button-delete">{{ translations.delete_file }}</a>
+                </div>
+            </li>
+            {% endfor %}
+        </ul>
+        {% else %}
+            {% if has_files %}
+                <p>{{ translations.no_files_in_category }} <a href="{% url 'filemanagerapp:file_upload' %}">{{ translations.upload_new_file }}</a>?</p>
+            {% else %}
+                <p>{{ translations.no_files_uploaded }} <a href="{% url 'filemanagerapp:file_upload' %}">{{ translations.upload_new_file }}</a> {{ translations.to_get_started }}</p>
+            {% endif %}
+        {% endif %}
+
+        <footer style="text-align: center; margin-top: 20px;">
+            <div class="pagination">
+                {% if files.has_previous %}
+                    <a href="?page=1{% if selected_category_name %}&category={{ selected_category_name }}{% endif %}" role="button" class="file-button">{{ translations.first }}</a>
+                    <a href="?page={{ files.previous_page_number }}{% if selected_category_name %}&category={{ selected_category_name }}{% endif %}" role="button" class="file-button">{{ translations.previous }}</a>
+                {% endif %}
+                <span style="padding-left: 15px; padding-right: 15px">{{ translations.page }} {{ files.number }} {{ translations.of }} {{ files.paginator.num_pages }}</span>
+                {% if files.has_next %}
+                    <a href="?page={{ files.next_page_number }}{% if selected_category_name %}&category={{ selected_category_name }}{% endif %}" role="button" class="file-button">{{ translations.next }}</a>
+                    <a href="?page={{ files.paginator.num_pages }}{% if selected_category_name %}&category={{ selected_category_name }}{% endif %}" role="button" class="file-button">{{ translations.last }}</a>
+                {% endif %}
+            </div>
+        </footer>
+    </main>
+
+    <aside style="flex: 1; min-width: 200px; max-width: 300px;">
+        <div style="margin-bottom: 40px; margin-top: 40px;">
+            <a href="{% url 'filemanagerapp:file_upload' %}" class="file-button file-button-add">{{ translations.upload_file }}</a>
+        </div>
+        <div style="margin-bottom: 40px; margin-top: 40px;">
+            <h3>{{ translations.categories }}</h3>
+            <a href="{% url 'filemanagerapp:category_management' %}" class="file-button file-button-category">{{ translations.category_management }}</a>
+        </div>
+        {% if categories %}
+        <ul>
+            <li><a href="#" onclick="filterByCategory('All')" style="text-decoration: none; color: #0a9396;">{{ translations.all }}</a></li>
+            {% for category in categories %}
+            <li><a href="#" onclick="filterByCategory('{{ category.name }}')" style="text-decoration: none; color: #0a9396;">{{ category.name|translate_category:translated_categories }}</a></li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+    </aside>
+</div>
+{% endblock content %}

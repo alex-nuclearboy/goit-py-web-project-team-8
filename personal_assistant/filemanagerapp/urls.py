@@ -1,13 +1,40 @@
 from django.urls import path
-from .views import upload_file, file_list, manage_category, download_file, delete_file
+from . import views
 
-app_name = "filemanagerapp"
+app_name = 'filemanagerapp'
 
 urlpatterns = [
-    path('upload/', upload_file, name='upload_file'),
-    path('files/<str:category>/', file_list, name='file_list_by_category'),
-    path('files/', file_list, name='file_list'),
-    path('categories/manage/', manage_category, name='manage_category'),
-    path('files/download/<int:file_id>/', download_file, name='download_file'),
-    path('files/delete/<int:file_id>/', delete_file, name='delete_file'),
+    path(
+        'category/manage/',
+        views.category_management,
+        name='category_management'
+    ),
+    path(
+        'category/add/',
+        views.create_category,
+        name='create_category'
+    ),
+    path(
+        'category/<int:category_id>/delete/',
+        views.delete_category,
+        name='delete_category'
+    ),
+    path(
+        'category/file/<int:file_id>/edit/',
+        views.edit_file_category,
+        name='edit_file_category'
+    ),
+
+    path('files/', views.file_list, name='file_list'),
+    path('file/upload/', views.file_upload, name='file_upload'),
+    path(
+        'file/<int:file_id>/download/',
+        views.file_download,
+        name='file_download'
+    ),
+    path(
+        'file/<int:file_id>/delete/',
+        views.file_delete,
+        name='file_delete'
+    ),
 ]

@@ -2,6 +2,7 @@ translations = {
     'en': {
         'dashboard': 'Home Page',
         'my_contacts': 'My Contacts',
+        'my_files': 'My files',
         'welcome': 'Welcome',
         'profile': 'Profile',
         'logout': 'Logout',
@@ -36,7 +37,7 @@ translations = {
         'back_to_list': 'Back to List',
         'add_new_tag': 'Adding a new tag',
         'add_tag': 'Add Tag',
-        'delete_tag': 'Delete',
+        'delete_tag': 'Delete Tag',
         'confirm_delete_tag': 'Are you sure you want to delete this tag?',
         'back_to_notes': 'Back to Notes',
         'no_tags_yet': 'It looks like you don\'t have any tags yet. You can add a new tag in the panel on the right to get started.',
@@ -67,10 +68,12 @@ translations = {
         'October': 'October',
         'November': 'November',
         'December': 'December',
+        'view_notes': 'View Notes'
     },
     'uk': {
         'dashboard': 'Головна сторінка',
         'my_contacts': 'Мої контакти',
+        'my_files': 'Мої файли',
         'welcome': 'Ласкаво просимо',
         'profile': 'Профіль',
         'logout': 'Вийти',
@@ -105,7 +108,7 @@ translations = {
         'back_to_list': 'Назад до списку',
         'add_new_tag': 'Додавання нового тегу',
         'add_tag': 'Додати тег',
-        'delete_tag': 'Видалити',
+        'delete_tag': 'Видалити тег',
         'confirm_delete_tag': 'Ви впевнені, що хочете видалити цей тег?',
         'back_to_notes': 'Список нотаток',
         'no_tags_yet': 'Схоже, у вас ще немає тегів. Ви можете додати новий тег в панелі праворуч, щоб розпочати.',
@@ -136,5 +139,6 @@ translations = {
         'October': 'жовтня',
         'November': 'листопада',
         'December': 'грудня',
+        'view_notes': 'Нотатки за тегом'
     }
 }

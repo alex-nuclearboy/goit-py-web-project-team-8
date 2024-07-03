@@ -124,6 +124,13 @@
         .nav-button.secondary:hover {
             background-color: #005f73;
         }
+        .header .left .buttons .nav-button.third  {
+            background-color: #6bac96;
+            border: none
+        }
+        .header .left .buttons .nav-button.third:hover {
+            background-color: #0a9396;
+        }
     </style>
 </head>
 <body>
@@ -133,6 +140,7 @@
                 {% if user.is_authenticated %}
                 <a href="{% url 'contactsapp:contact_list' %}" role="button" class="nav-button primary">{{ translations.my_contacts }}</a>
                 <a href="{% url 'notesapp:note_list' %}" role="button" class="nav-button secondary">{{ translations.my_notes }}</a>
+                <a href="{% url 'filemanagerapp:file_list' %}" role="button" class="nav-button third">{{ translations.my_files }}</a>
                 {% endif %}
             </div>
         </div>

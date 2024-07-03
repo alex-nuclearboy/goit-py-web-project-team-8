@@ -116,6 +116,12 @@
     .pagination a:hover {
         background-color: #005f73;
     }
+
+    .file-item {
+        border-bottom: 1px solid #ccc;
+        padding-bottom: 10px;
+        margin-bottom: 10px;
+    }
 </style>
 
 <div class="content-container" style="display: flex; max-width: 1200px; margin: auto;">
@@ -129,7 +135,7 @@
         {% if contacts %}
             <ul>
                 {% for contact in contacts %}
-                    <li style="margin-bottom: 10px;">
+                    <li style="margin-bottom: 10px;" class="file-item">
                         <a href="{% url 'contactsapp:contact_details' contact.id %}" role="button" class="outline" style="width: 200px;">
                             {{ contact.name }}
                         </a>
