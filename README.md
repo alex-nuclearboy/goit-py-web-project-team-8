@@ -8,6 +8,8 @@ The Personal Assistant App is designed to help you stay organized and efficient 
 
 With the Personal Assistant App, you can effortlessly maintain an organised lifestyle, prioritise tasks, and enhance productivity. By keeping your contacts, notes, and files in one place, you'll save time and reduce the stress of managing your personal and professional information.
 
+[https://goit-py-web-project-team-8.fly.dev/home/](https://goit-py-web-project-team-8.fly.dev/home/)
+
 ## Table of Contents
 
 1. [Key Features](#key-features)
