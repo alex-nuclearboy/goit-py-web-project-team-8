@@ -179,6 +179,8 @@ By following these steps, you will properly deactivate the Poetry environment al
 
 Із застосунком "Особистий Помічник" ви зможете без зусиль підтримувати організований спосіб життя, пріоритезувати завдання та підвищувати продуктивність. Зберігаючи ваші контакти, нотатки та файли в одному місці, ви заощаджуєте час і знижуєте стрес від управління вашою особистою та професійною інформацією.
 
+[https://goit-py-web-project-team-8.fly.dev/home/](https://goit-py-web-project-team-8.fly.dev/home/)
+
 ## Зміст
 
 1. [Основні функції](#key-features-ua)
